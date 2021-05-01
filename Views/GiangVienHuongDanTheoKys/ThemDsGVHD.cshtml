@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.GiangVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm Giảng Viên Hướng Dẫn Theo Kỳ</h2>
+
+@using (Html.BeginForm())
+{
+
+    <table class="table table-bordered text-wrap" id="BangGVHD">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.MaGiangVien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomThu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonViCongTac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaGiangVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomThu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonViCongTac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @*<input type="checkbox" name="name" id="Check_@item.Id" value="@item.Id" />*@
+                    <a href="#" class="btn btn-primary" onclick="ThemGVHD(@item.Id)">Thêm</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <button class="btn-block btn btn-outline-secondary">@Html.ActionLink("Lưu", "Index", "GiangVienHuongDanTheoKys")</button>
+}
+
+<script>
+    var ThemGVHD = function (Id) {
+        $.ajax({
+            type: "POST",
+            url: "/GiangVienHuongDanTheoKys/ThemDsGVHD",
+            data: { idGVHD: Id },
+            //success: function (response) {
+            //    window.location.href = "/GiangVienHuongDanTheoKys/DanhSachGVHD";
+            //}
+        })
+    }
+</script>

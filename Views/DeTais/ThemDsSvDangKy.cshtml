@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.SinhVien>
+
+    @{
+        ViewBag.Title = "ThemDsSvDangKy";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Thêm Danh Sách Sinh Viên Đăng Ký</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaSinhVien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HomThu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaLop)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DienThoai)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSinhVien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomThu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLop)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DienThoai)
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary" onclick="ThemSvdk(@item.Id)">Thêm</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    <button class="btn-block btn btn-outline-secondary">@Html.ActionLink("Lưu", "DsSvDangky", "DeTais")</button>
+    <script>
+        var ThemSvdk = function (Id) {
+            $.ajax({
+                type: "POST",
+                url: "/DeTais/ThemDsSvDangKy",
+                data: { idSvdk: Id },
+                //success: function (response) {
+                //    window.location.href = "/GiangVienHuongDanTheoKys/DanhSachGVHD";
+                //}
+            })
+        }
+    </script>

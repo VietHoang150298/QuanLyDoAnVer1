@@ -1,0 +1,98 @@
+﻿@model QuanLyDoAn.Models.SinhVien
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SinhVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaSinhVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSinhVien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoDem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoDem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomThu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomThu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdLop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdLop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaLop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaLop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinChiTichLuy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinChiTichLuy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemTichLuy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemTichLuy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

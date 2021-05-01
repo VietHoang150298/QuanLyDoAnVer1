@@ -1,0 +1,91 @@
+﻿@model QuanLyDoAn.Models.DeTai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DeTai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDeTai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDeTai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDeTai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDeTai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KetQua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KetQua)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanXet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanXet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdSinhVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSinhVien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdMonHoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMonHoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdHoiDong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdHoiDong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdGvhdTheoky)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdGvhdTheoky)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkFileBaoCaoCuoiCung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkFileBaoCaoCuoiCung)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

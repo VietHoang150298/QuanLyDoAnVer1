@@ -1,0 +1,51 @@
+﻿@model QuanLyDoAn.Models.MonHoc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MonHoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaMonHoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaMonHoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMonHoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMonHoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DieuKienTienQuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DieuKienTienQuyet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdHocKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdHocKy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
