@@ -7,13 +7,13 @@ namespace QuanLyDoAn.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Update_tbl_giang_vien : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update_tbl_giang_vien));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104271253367_Update_tbl_giang_vien"; }
+            get { return "202105051017175_Initial"; }
         }
         
         string IMigrationMetadata.Source

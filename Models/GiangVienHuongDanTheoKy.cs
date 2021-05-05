@@ -9,7 +9,8 @@ namespace QuanLyDoAn.Models
     [Table("GiangVienHuongDanTheoKys")]
     public partial class GiangVienHuongDanTheoKy
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdGVHD { get; set; }
 
         public int? IdGiangVien { get; set; }
 

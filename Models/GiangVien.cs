@@ -8,7 +8,8 @@ namespace QuanLyDoAn.Models
 
     public partial class GiangVien
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdGiangVien { get; set; }
 
         public string MaGiangVien { get; set; }
 
@@ -19,12 +20,13 @@ namespace QuanLyDoAn.Models
         public string HoTen { get; set; }
 
         public string HomThu { get; set; }
-        public string MaBoMon { get; set; }
 
         public string GhiChu { get; set; }
 
         public string DonViCongTac { get; set; }
 
         public string DienThoai { get; set; }
+
+        public string MaBoMon { get; set; }
     }
 }

@@ -20,10 +20,10 @@ namespace QuanLyDoAn.Controllers
         {
             var GvhdTheoKy = from a in db.GiangVienHuongDanTheoKys
                              join b in db.GiangViens
-                             on a.IdGiangVien equals b.Id
+                             on a.IdGVHD equals b.IdGiangVien
                              select new GiangVienHuongDanViewModel
                              {
-                                 Id = a.Id,
+                                 Id = a.IdGVHD,
                                  HoTen = b.HoTen,
                                  SoLuongSinhVienHuongDan = a.SoLuongSinhVienHuongDan
                              };
@@ -40,7 +40,7 @@ namespace QuanLyDoAn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.IdHocky = new SelectList(db.HocKys, "Id", "TenHocKy");
+            ViewBag.IdHocky = new SelectList(db.HocKys, "IdHocKy", "TenHocKy");
             GiangVienHuongDanTheoKy giangVienHuongDanTheoKy = db.GiangVienHuongDanTheoKys.Find(id);
             if (giangVienHuongDanTheoKy == null)
             {
@@ -53,7 +53,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IdGiangVien,IdHocKy,SoLuongSinhVienHuongDan")] GiangVienHuongDanTheoKy giangVienHuongDanTheoKy)
+        public ActionResult Edit([Bind(Include = "IdGVHD,IdGiangVien,IdHocKy,SoLuongSinhVienHuongDan")] GiangVienHuongDanTheoKy giangVienHuongDanTheoKy)
         {
             if (ModelState.IsValid)
             {
@@ -156,9 +156,9 @@ namespace QuanLyDoAn.Controllers
             ViewBag.Hocky = db.HocKys.FirstOrDefault().TenHocKy.ToString();
             var model = from a in db.GiangVienHuongDanTheoKys
                         join b in db.HocKys
-                        on a.IdHocKy equals b.Id
+                        on a.IdHocKy equals b.IdHocKy
                         join c in db.GiangViens
-                        on a.IdGiangVien equals c.Id
+                        on a.IdGiangVien equals c.IdGiangVien
                         select new GiangVienHuongDanViewModel()
                         {
                             MaGiangVien = c.MaGiangVien,

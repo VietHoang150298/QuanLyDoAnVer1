@@ -8,13 +8,12 @@ namespace QuanLyDoAn.Models
 
     public partial class PhanBien
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdPhanBien { get; set; }
 
         public string MaPhanBien { get; set; }
 
         public int? IdGiangVien { get; set; }
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
 
         public DateTime? ThoiKhoaBieu { get; set; }
 

@@ -8,7 +8,8 @@ namespace QuanLyDoAn.Models
 
     public partial class SinhVien
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdSinhVien { get; set; }
 
         public string MaSinhVien { get; set; }
 

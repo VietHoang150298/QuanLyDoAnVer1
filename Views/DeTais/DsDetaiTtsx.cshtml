@@ -28,6 +28,9 @@
         <th>
             Tên Sinh Viên
         </th>
+        <th>
+            Tên Giảng Viên
+        </th>
         <th></th>
     </tr>
 
@@ -48,6 +51,9 @@
             </td>
             <td>
                 @item.HoTenSinhVien
+            </td>
+            <td>
+                @item.HoTenGvhd
             </td>
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.Id})

@@ -21,19 +21,22 @@ namespace QuanLyDoAn.Controllers
         {
             var deTais = from a in db.DeTais
                          join b in db.SinhViens
-                         on a.IdSinhVien equals b.Id
+                         on a.IdSinhVien equals b.IdSinhVien
                          join c in db.GiangVienHuongDanTheoKys
-                         on a.IdGvhdTheoky equals c.Id
+                         on a.IdGvhdTheoky equals c.IdGVHD
+                         join e in db.GiangViens
+                         on c.IdGiangVien equals e.IdGiangVien
                          join d in db.MonHocs
-                         on a.IdMonHoc equals d.Id
+                         on a.IdMonHoc equals d.IdMonHoc
                          select new DeTaiViewModel()
                          {
-                             Id = a.Id,
+                             Id = a.IdDeTai,
                              MaDeTai = a.MaDeTai,
                              TenDeTai = a.TenDeTai,
                              KetQua = a.KetQua,
                              NhanXet = a.NhanXet,
                              HoTenSinhVien = b.HoTen,
+                             HoTenGvhd = e.HoTen
                          };
             ViewBag.deTais = deTais.ToList();
             return View();
@@ -65,7 +68,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MaDeTai,TenDeTai,KetQua,NhanXet,IdSinhVien,IdMonHoc,IdHoiDong,IdGvhdTheoky,LinkFileBaoCaoCuoiCung")] DeTai deTai)
+        public ActionResult Create([Bind(Include = "IdDeTai,MaDeTai,TenDeTai,KetQua,NhanXet,IdSinhVien,IdMonHoc,IdHoiDong,IdGvhdTheoky,LinkFileBaoCaoCuoiCung")] DeTai deTai)
         {
             if (ModelState.IsValid)
             {
@@ -84,8 +87,8 @@ namespace QuanLyDoAn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.IdMonHoc = new SelectList(db.MonHocs, "Id", "TenMonHoc");
-            ViewBag.IdGvhdTheoky = new SelectList(db.GiangVienHuongDanTheoKys, "Id", "IdGiangVien");
+            ViewBag.IdMonHoc = new SelectList(db.MonHocs, "IdMonHoc", "TenMonHoc");
+            ViewBag.IdGvhdTheoky = new SelectList(db.GiangVienHuongDanTheoKys, "IdGVHD", "IdGiangVien");
             DeTai deTai = db.DeTais.Find(id);
             if (deTai == null)
             {
@@ -99,7 +102,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,MaDeTai,TenDeTai,KetQua,NhanXet,IdSinhVien,IdMonHoc,IdHoiDong,IdGvhdTheoky,LinkFileBaoCaoCuoiCung")] DeTai deTai)
+        public ActionResult Edit([Bind(Include = "IdDeTai,MaDeTai,TenDeTai,KetQua,NhanXet,IdSinhVien,IdMonHoc,IdHoiDong,IdGvhdTheoky,LinkFileBaoCaoCuoiCung")] DeTai deTai)
         {
             if (ModelState.IsValid)
             {
@@ -161,10 +164,10 @@ namespace QuanLyDoAn.Controllers
         {
             var svDanhky = from a in db.SinhViens
                            join b in db.DeTais
-                           on a.Id equals b.IdSinhVien
+                           on a.IdSinhVien equals b.IdSinhVien
                            select new SinhVienViewModel()
                            {
-                               Id = b.Id,
+                               Id = b.IdDeTai,
                                HoTen = a.HoTen,
                                HomThu = a.HomThu,
                                DienThoai = a.DienThoai,

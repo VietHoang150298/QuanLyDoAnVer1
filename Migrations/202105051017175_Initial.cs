@@ -11,103 +11,105 @@ namespace QuanLyDoAn.Migrations
                 "dbo.DeTais",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdDeTai = c.Int(nullable: false, identity: true),
                         MaDeTai = c.String(),
                         TenDeTai = c.String(),
-                        KetQua = c.Single(nullable: false),
+                        KetQua = c.Single(),
                         NhanXet = c.String(),
-                        IdMonHoc = c.Int(nullable: false),
-                        IdHoiDong = c.Int(nullable: false),
+                        IdMonHoc = c.Int(),
+                        IdHoiDong = c.Int(),
                         LinkFileBaoCaoCuoiCung = c.String(),
+                        IdSinhVien = c.Int(),
+                        IdGvhdTheoky = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdDeTai);
             
             CreateTable(
                 "dbo.GiangVienHuongDanTheoKys",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        IdGiangVien = c.Int(nullable: false),
-                        IdHocKy = c.Int(nullable: false),
-                        SoLuongSinhVienHuongDan = c.Int(nullable: false),
+                        IdGVHD = c.Int(nullable: false, identity: true),
+                        IdGiangVien = c.Int(),
+                        IdHocKy = c.Int(),
+                        SoLuongSinhVienHuongDan = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdGVHD);
             
             CreateTable(
                 "dbo.GiangViens",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdGiangVien = c.Int(nullable: false, identity: true),
                         MaGiangVien = c.String(),
                         HoDem = c.String(),
                         Ten = c.String(),
                         HoTen = c.String(),
                         HomThu = c.String(),
-                        IdThongTinChung = c.String(),
-                        TenThongTinChung = c.String(),
                         GhiChu = c.String(),
                         DonViCongTac = c.String(),
                         DienThoai = c.String(),
+                        MaBoMon = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdGiangVien);
             
             CreateTable(
                 "dbo.HocKys",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdHocKy = c.Int(nullable: false, identity: true),
                         MaHocKy = c.String(),
                         TenHocKy = c.String(maxLength: 50),
-                        NamBatDau = c.String(),
-                        NamKetThuc = c.String(),
+                        NamBatDau = c.DateTime(nullable: false),
+                        NamKetThuc = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdHocKy);
             
             CreateTable(
                 "dbo.HoiDongDanhGiaKQs",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdHoiDongDGKQ = c.Int(nullable: false, identity: true),
                         MaHoiDong = c.String(),
                         TenHoiDong = c.String(),
-                        ThoiKhoaBieu = c.String(),
-                        KetQuaCaNhan = c.Int(nullable: false),
+                        ThoiKhoaBieu = c.DateTime(),
+                        KetQuaCaNhan = c.Int(),
                         NhanXet = c.String(),
-                        IdGiangVien = c.Int(nullable: false),
-                        IdPhanBien = c.Int(nullable: false),
+                        IdGiangVien = c.Int(),
+                        IdPhanBien = c.Int(),
+                        IdHocKy = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdHoiDongDGKQ);
             
             CreateTable(
                 "dbo.MonHocs",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdMonHoc = c.Int(nullable: false, identity: true),
                         MaMonHoc = c.String(),
                         TenMonHoc = c.String(),
-                        IdGiangVienHuongDanTheoKy = c.Int(nullable: false),
-                        IdSinhVien = c.Int(nullable: false),
+                        DieuKienTienQuyet = c.Int(nullable: false),
+                        IdHocKy = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdMonHoc);
             
             CreateTable(
                 "dbo.PhanBiens",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdPhanBien = c.Int(nullable: false, identity: true),
                         MaPhanBien = c.String(),
-                        IdGiangVien = c.Int(nullable: false),
-                        ThoiKhoaBieu = c.DateTime(nullable: false),
-                        KetQuaPhanBien = c.Int(nullable: false),
+                        IdGiangVien = c.Int(),
+                        ThoiKhoaBieu = c.DateTime(),
+                        KetQuaPhanBien = c.Int(),
                         NhanXet = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdPhanBien);
             
             CreateTable(
                 "dbo.SinhViens",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        IdSinhVien = c.Int(nullable: false, identity: true),
                         MaSinhVien = c.String(),
                         HoDem = c.String(),
                         Ten = c.String(),
@@ -116,12 +118,10 @@ namespace QuanLyDoAn.Migrations
                         IdLop = c.String(),
                         MaLop = c.String(),
                         DienThoai = c.String(),
-                        TinChiTichLuy = c.String(),
-                        DiemTichLuy = c.String(),
-                        IdThongTinChung = c.String(),
-                        TenThongTinChung = c.String(),
+                        TinChiTichLuy = c.Int(),
+                        DiemTichLuy = c.Single(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.IdSinhVien);
             
         }
         

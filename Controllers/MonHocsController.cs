@@ -38,7 +38,7 @@ namespace QuanLyDoAn.Controllers
         // GET: MonHocs/Create
         public ActionResult Create()
         {
-            ViewBag.IdHocky = new SelectList(db.HocKys, "Id", "TenHocKy");
+            ViewBag.IdHocky = new SelectList(db.HocKys, "IdHocKy", "TenHocKy");
             return View();
         }
 
@@ -47,7 +47,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MaMonHoc,TenMonHoc,DieuKienTienQuyet,IdHocKy")] MonHoc monHoc)
+        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,IdHocKy")] MonHoc monHoc)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace QuanLyDoAn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.IdHocky = new SelectList(db.HocKys, "Id", "TenHocKy");
+            ViewBag.IdHocky = new SelectList(db.HocKys, "IdHocKy", "TenHocKy");
             MonHoc monHoc = db.MonHocs.Find(id);
             if (monHoc == null)
             {
@@ -80,7 +80,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,MaMonHoc,TenMonHoc,DieuKienTienQuyet,IdHocKy")] MonHoc monHoc)
+        public ActionResult Edit([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,IdHocKy")] MonHoc monHoc)
         {
             if (ModelState.IsValid)
             {

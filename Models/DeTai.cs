@@ -8,7 +8,8 @@ namespace QuanLyDoAn.Models
 
     public partial class DeTai
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdDeTai { get; set; }
 
         public string MaDeTai { get; set; }
 
@@ -17,13 +18,15 @@ namespace QuanLyDoAn.Models
         public float? KetQua { get; set; }
 
         public string NhanXet { get; set; }
-        public int? IdSinhVien { get; set; }
 
         public int? IdMonHoc { get; set; }
 
         public int? IdHoiDong { get; set; }
 
-        public int? IdGvhdTheoky { get; set; }
         public string LinkFileBaoCaoCuoiCung { get; set; }
+
+        public int? IdSinhVien { get; set; }
+
+        public int? IdGvhdTheoky { get; set; }
     }
 }

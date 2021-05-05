@@ -48,7 +48,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MaGiangVien,HoDem,Ten,HoTen,HomThu,MaBoMon,IdThongTinChung,TenThongTinChung,GhiChu,DonViCongTac,DienThoai")] GiangVien giangVien)
+        public ActionResult Create([Bind(Include = "IdGiangVien,MaGiangVien,HoDem,Ten,HoTen,HomThu,MaBoMon,IdThongTinChung,TenThongTinChung,GhiChu,DonViCongTac,DienThoai")] GiangVien giangVien)
         {
             if (ModelState.IsValid)
             {

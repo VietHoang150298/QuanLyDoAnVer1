@@ -8,7 +8,8 @@ namespace QuanLyDoAn.Models
 
     public partial class MonHoc
     {
-        public int Id { get; set; }
+        [Key]
+        public int IdMonHoc { get; set; }
 
         public string MaMonHoc { get; set; }
 

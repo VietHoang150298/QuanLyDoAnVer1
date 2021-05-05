@@ -144,41 +144,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104271019430_Initial.cs" />
-    <Compile Include="Migrations\202104271019430_Initial.Designer.cs">
-      <DependentUpon>202104271019430_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104271154423_Update_tbl_sinhvien.cs" />
-    <Compile Include="Migrations\202104271154423_Update_tbl_sinhvien.Designer.cs">
-      <DependentUpon>202104271154423_Update_tbl_sinhvien.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104271204530_Initial2.cs" />
-    <Compile Include="Migrations\202104271204530_Initial2.Designer.cs">
-      <DependentUpon>202104271204530_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104271253367_Update_tbl_giang_vien.cs" />
-    <Compile Include="Migrations\202104271253367_Update_tbl_giang_vien.Designer.cs">
-      <DependentUpon>202104271253367_Update_tbl_giang_vien.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104271549192_Update_tbl_1.cs" />
-    <Compile Include="Migrations\202104271549192_Update_tbl_1.Designer.cs">
-      <DependentUpon>202104271549192_Update_tbl_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104271552336_Update_tbl_2.cs" />
-    <Compile Include="Migrations\202104271552336_Update_tbl_2.Designer.cs">
-      <DependentUpon>202104271552336_Update_tbl_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104281504119_Update_tbl3.cs" />
-    <Compile Include="Migrations\202104281504119_Update_tbl3.Designer.cs">
-      <DependentUpon>202104281504119_Update_tbl3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104291032290_Update_tbl_4.cs" />
-    <Compile Include="Migrations\202104291032290_Update_tbl_4.Designer.cs">
-      <DependentUpon>202104291032290_Update_tbl_4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104291042466_Update_tbl_5.cs" />
-    <Compile Include="Migrations\202104291042466_Update_tbl_5.Designer.cs">
-      <DependentUpon>202104291042466_Update_tbl_5.cs</DependentUpon>
+    <Compile Include="Migrations\202105051017175_Initial.cs" />
+    <Compile Include="Migrations\202105051017175_Initial.Designer.cs">
+      <DependentUpon>202105051017175_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DeTai.cs" />
@@ -377,39 +345,15 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104271019430_Initial.resx">
-      <DependentUpon>202104271019430_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104271154423_Update_tbl_sinhvien.resx">
-      <DependentUpon>202104271154423_Update_tbl_sinhvien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104271204530_Initial2.resx">
-      <DependentUpon>202104271204530_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104271253367_Update_tbl_giang_vien.resx">
-      <DependentUpon>202104271253367_Update_tbl_giang_vien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104271549192_Update_tbl_1.resx">
-      <DependentUpon>202104271549192_Update_tbl_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104271552336_Update_tbl_2.resx">
-      <DependentUpon>202104271552336_Update_tbl_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104281504119_Update_tbl3.resx">
-      <DependentUpon>202104281504119_Update_tbl3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104291032290_Update_tbl_4.resx">
-      <DependentUpon>202104291032290_Update_tbl_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104291042466_Update_tbl_5.resx">
-      <DependentUpon>202104291042466_Update_tbl_5.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105051017175_Initial.resx">
+      <DependentUpon>202105051017175_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
