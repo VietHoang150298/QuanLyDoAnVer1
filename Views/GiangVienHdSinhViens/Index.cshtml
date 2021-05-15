@@ -1,0 +1,92 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.GiangVienHdSinhVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách giảng viên hướng dẫn sinh viên @ViewBag.HocKy</h2>
+
+@using (Html.BeginForm("Doc_File_Excel", "GiangVienHdSinhViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal fade form-horizontal" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Thêm Thông Tin Giảng Viên</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    @Html.Raw(ViewBag.Error) <br /><span>Excel File</span>
+                    <input type="file" class="btn btn-outline-primary" name="excelfile" />
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input class="btn btn-primary" type="submit" name="Doc_File_Excel" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importExcelModal">
+        Nhập File Excel
+    </button>
+}
+
+<p>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create")</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Dữ Liệu Đề Tài", "Index", "DeTais")</button>
+</p>
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.MaGiangVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenGiangVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSinhVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSinhVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaHocKy)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaGiangVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenGiangVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHocKy)
+            </td>
+        </tr>
+    }
+
+</table>
+
+

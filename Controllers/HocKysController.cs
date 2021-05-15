@@ -20,6 +20,27 @@ namespace QuanLyDoAn.Controllers
             return View(db.HocKys.ToList());
         }
 
+        public ActionResult InitialInfo(string TenHocKy)
+          {
+            ViewBag.HocKy = TenHocKy.ToString();
+            return View();
+        }
+
+        // GET: HocKys/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HocKy hocKy = db.HocKys.Find(id);
+            if (hocKy == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hocKy);
+        }
+
         // GET: HocKys/Create
         public ActionResult Create()
         {
@@ -31,7 +52,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MaHocKy,TenHocKy,NamBatDau,NamKetThuc")] HocKy hocKy)
+        public ActionResult Create([Bind(Include = "IdHocKy,MaHocKy,TenHocKy,NamBatDau,NamKetThuc")] HocKy hocKy)
         {
             if (ModelState.IsValid)
             {

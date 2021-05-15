@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông Tin Sinh Viên</h2>
+<h2>Danh sách sinh viên @ViewBag.HocKy</h2>
 
 @using (Html.BeginForm("Doc_File_Excel", "SinhViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -46,7 +46,7 @@
 
 <p class="mt-3">
     <button class="btn btn-outline-primary">@Html.ActionLink("Thêm Mới", "Create")</button>
-    <button class="btn btn-outline-primary">@Html.ActionLink("Thêm Danh Sách Sinh Viên Thực Tập", "ThemDsSvDangKy", "DeTais")</button>
+    <button class="btn btn-outline-primary">@Html.ActionLink("Phân Giảng Viên Hướng Dẫn", "Index", "GiangVienHdSinhViens")</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">

@@ -1,0 +1,49 @@
+﻿@model QuanLyDoAn.Models.HocKy
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Thông tin chi tiết</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHocKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHocKy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenHocKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHocKy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NamBatDau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NamKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamKetThuc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdHocKy }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

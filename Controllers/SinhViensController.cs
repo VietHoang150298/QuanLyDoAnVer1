@@ -18,11 +18,18 @@ namespace QuanLyDoAn.Controllers
         // GET: SinhViens
         public ActionResult Index()
         {
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.TenHocKy )
+                             .ToList()
+                             .FirstOrDefault();
+            ViewBag.HocKy = hocKy;
             return View(db.SinhViens.ToList());
         }
 
         // GET: SinhViens/Details/5
-        public ActionResult Details(int? id) 
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -47,7 +54,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MaSinhVien,HoDem,Ten,HoTen,HomThu,IdLop,MaLop,DienThoai,TinChiTichLuy,DiemTichLuy,IdThongTinChung,TenThongTinChung")] SinhVien sinhVien)
+        public ActionResult Create([Bind(Include = "IdSinhVien,MaSinhVien,HoDem,Ten,HoTen,HomThu,MaLop,DienThoai,TinChiTichLuy,DiemTichLuy,MaHocKy")] SinhVien sinhVien)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +72,12 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
         {
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.MaHocKy)
+                             .ToList()
+                             .FirstOrDefault();
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select an excel file";
@@ -91,11 +104,11 @@ namespace QuanLyDoAn.Controllers
                         sinhVien.Ten = ((Excel.Range)range.Cells[row, 3]).Text;
                         sinhVien.HoTen = ((Excel.Range)range.Cells[row, 4]).Text;
                         sinhVien.HomThu = ((Excel.Range)range.Cells[row, 5]).Text;
-                        sinhVien.IdLop = ((Excel.Range)range.Cells[row, 6]).Text;
-                        sinhVien.MaLop = ((Excel.Range)range.Cells[row, 7]).Text;
-                        sinhVien.DienThoai = ((Excel.Range)range.Cells[row, 8]).Text;
-                        sinhVien.TinChiTichLuy = Convert.ToInt32(((Excel.Range)range.Cells[row, 9]).Text);
-                        sinhVien.DiemTichLuy = float.Parse(((Excel.Range)range.Cells[row, 10]).Text);
+                        sinhVien.MaLop = ((Excel.Range)range.Cells[row, 6]).Text;
+                        sinhVien.DienThoai = ((Excel.Range)range.Cells[row, 7]).Text;
+                        sinhVien.TinChiTichLuy = Convert.ToInt32(((Excel.Range)range.Cells[row, 8]).Text);
+                        sinhVien.DiemTichLuy = float.Parse(((Excel.Range)range.Cells[row, 9]).Text);
+                        sinhVien.MaHocKy = hocKy.ToString();
                         DsSinhVien.Add(sinhVien);
                         db.SinhViens.Add(sinhVien);
                     }
@@ -115,7 +128,6 @@ namespace QuanLyDoAn.Controllers
 
 
         //Import File Excel============================================================================
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

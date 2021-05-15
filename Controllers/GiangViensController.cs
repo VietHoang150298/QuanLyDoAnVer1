@@ -18,7 +18,13 @@ namespace QuanLyDoAn.Controllers
         // GET: GiangViens
         public ActionResult Index()
         {
-            ViewBag.hocky = db.HocKys.FirstOrDefault().TenHocKy.ToString();
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.TenHocKy)
+                             .ToList()
+                             .FirstOrDefault();
+            ViewBag.HocKy = hocKy;
             return View(db.GiangViens.ToList());
         }
 
@@ -48,10 +54,11 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdGiangVien,MaGiangVien,HoDem,Ten,HoTen,HomThu,MaBoMon,IdThongTinChung,TenThongTinChung,GhiChu,DonViCongTac,DienThoai")] GiangVien giangVien)
+        public ActionResult Create([Bind(Include = "IdGiangVien,MaGiangVien,HoDem,Ten,HoTen,HomThu,DonViCongTac,DienThoai,MaBoMon,MaHocKy")] GiangVien giangVien)
         {
             if (ModelState.IsValid)
             {
+                giangVien.MaHocKy = db.HocKys.LastOrDefault().MaHocKy;
                 db.GiangViens.Add(giangVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,11 +68,17 @@ namespace QuanLyDoAn.Controllers
         }
 
         //Import File Excel============================================================================
-
         [HttpPost]
 
         public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
         {
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.MaHocKy)
+                             .ToList()
+                             .FirstOrDefault();
+            ViewBag.HocKy = hocKy;
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select an excel file";
@@ -93,9 +106,9 @@ namespace QuanLyDoAn.Controllers
                         giangVien.HoTen = ((Excel.Range)range.Cells[row, 4]).Text;
                         giangVien.HomThu = ((Excel.Range)range.Cells[row, 5]).Text;
                         giangVien.MaBoMon = ((Excel.Range)range.Cells[row, 6]).Text;
-                        giangVien.GhiChu = ((Excel.Range)range.Cells[row, 7]).Text;
-                        giangVien.DonViCongTac = ((Excel.Range)range.Cells[row, 8]).Text;
-                        giangVien.DienThoai = ((Excel.Range)range.Cells[row, 9]).Text;
+                        giangVien.DonViCongTac = ((Excel.Range)range.Cells[row, 7]).Text;
+                        giangVien.DienThoai = ((Excel.Range)range.Cells[row, 8]).Text;
+                        giangVien.MaHocKy = hocKy.ToString();
                         DsGiangVien.Add(giangVien);
                         db.GiangViens.Add(giangVien);
                     }
@@ -111,7 +124,6 @@ namespace QuanLyDoAn.Controllers
                 }
             }
         }
-
 
         //Import File Excel============================================================================
         protected override void Dispose(bool disposing)

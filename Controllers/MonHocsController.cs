@@ -17,6 +17,13 @@ namespace QuanLyDoAn.Controllers
         // GET: MonHocs
         public ActionResult Index()
         {
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.TenHocKy)
+                             .ToList()
+                             .FirstOrDefault();
+            ViewBag.HocKy = hocKy;
             return View(db.MonHocs.ToList());
         }
 
@@ -38,7 +45,6 @@ namespace QuanLyDoAn.Controllers
         // GET: MonHocs/Create
         public ActionResult Create()
         {
-            ViewBag.IdHocky = new SelectList(db.HocKys, "IdHocKy", "TenHocKy");
             return View();
         }
 
@@ -47,8 +53,15 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,IdHocKy")] MonHoc monHoc)
+        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc)
         {
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.MaHocKy)
+                             .ToList()
+                             .FirstOrDefault();
+            monHoc.MaHocKy = hocKy.ToString();
             if (ModelState.IsValid)
             {
                 db.MonHocs.Add(monHoc);
@@ -66,7 +79,6 @@ namespace QuanLyDoAn.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.IdHocky = new SelectList(db.HocKys, "IdHocKy", "TenHocKy");
             MonHoc monHoc = db.MonHocs.Find(id);
             if (monHoc == null)
             {
@@ -80,7 +92,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,IdHocKy")] MonHoc monHoc)
+        public ActionResult Edit([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc)
         {
             if (ModelState.IsValid)
             {

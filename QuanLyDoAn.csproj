@@ -135,10 +135,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DeTaisController.cs" />
-    <Compile Include="Controllers\GiangVienHuongDanTheoKysController.cs" />
+    <Compile Include="Controllers\GiangVienHdSinhViensController.cs" />
     <Compile Include="Controllers\GiangViensController.cs" />
     <Compile Include="Controllers\HocKysController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HoiDongDanhGiaKQsController.cs" />
     <Compile Include="Controllers\MonHocsController.cs" />
     <Compile Include="Controllers\SinhViensController.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,12 +148,62 @@
     <Compile Include="Migrations\202105051017175_Initial.Designer.cs">
       <DependentUpon>202105051017175_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105060410170_Update_tbl_1.cs" />
+    <Compile Include="Migrations\202105060410170_Update_tbl_1.Designer.cs">
+      <DependentUpon>202105060410170_Update_tbl_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060638054_Update_tbl_2.cs" />
+    <Compile Include="Migrations\202105060638054_Update_tbl_2.Designer.cs">
+      <DependentUpon>202105060638054_Update_tbl_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060640287_Update_tbl_3.cs" />
+    <Compile Include="Migrations\202105060640287_Update_tbl_3.Designer.cs">
+      <DependentUpon>202105060640287_Update_tbl_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060655190_Update_tbl_4.cs" />
+    <Compile Include="Migrations\202105060655190_Update_tbl_4.Designer.cs">
+      <DependentUpon>202105060655190_Update_tbl_4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060701351_Update_tbl_5.cs" />
+    <Compile Include="Migrations\202105060701351_Update_tbl_5.Designer.cs">
+      <DependentUpon>202105060701351_Update_tbl_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060711214_Update_tbl_6.cs" />
+    <Compile Include="Migrations\202105060711214_Update_tbl_6.Designer.cs">
+      <DependentUpon>202105060711214_Update_tbl_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060716348_Update_tbl_7.cs" />
+    <Compile Include="Migrations\202105060716348_Update_tbl_7.Designer.cs">
+      <DependentUpon>202105060716348_Update_tbl_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060728505_Update_tbl_8.cs" />
+    <Compile Include="Migrations\202105060728505_Update_tbl_8.Designer.cs">
+      <DependentUpon>202105060728505_Update_tbl_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060840245_Update_tbl_9.cs" />
+    <Compile Include="Migrations\202105060840245_Update_tbl_9.Designer.cs">
+      <DependentUpon>202105060840245_Update_tbl_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105061242045_Update_tbl_10.cs" />
+    <Compile Include="Migrations\202105061242045_Update_tbl_10.Designer.cs">
+      <DependentUpon>202105061242045_Update_tbl_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105121629310_11.cs" />
+    <Compile Include="Migrations\202105121629310_11.Designer.cs">
+      <DependentUpon>202105121629310_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105131428458_Update_tbl_11.cs" />
+    <Compile Include="Migrations\202105131428458_Update_tbl_11.Designer.cs">
+      <DependentUpon>202105131428458_Update_tbl_11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ChiTietHoiDong.cs" />
     <Compile Include="Models\DeTai.cs" />
     <Compile Include="Models\GiangVien.cs" />
-    <Compile Include="Models\GiangVienHuongDanTheoKy.cs" />
+    <Compile Include="Models\GiangVienHdSinhVien.cs" />
     <Compile Include="Models\HocKy.cs" />
     <Compile Include="Models\HoiDongDanhGiaKQ.cs" />
+    <Compile Include="Models\KetQua.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\PhanBien.cs" />
     <Compile Include="Models\QLDADbContext.cs" />
@@ -294,12 +344,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\SinhViens\Create.cshtml" />
-    <Content Include="Views\SinhViens\Details.cshtml" />
-    <Content Include="Views\SinhViens\Index.cshtml" />
-    <Content Include="Views\GiangViens\Create.cshtml" />
-    <Content Include="Views\GiangViens\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -311,29 +355,36 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_MainNavBar.cshtml" />
-    <Content Include="Views\GiangVienHuongDanTheoKys\Delete.cshtml" />
-    <Content Include="Views\GiangVienHuongDanTheoKys\Edit.cshtml" />
-    <Content Include="Views\GiangVienHuongDanTheoKys\Index.cshtml" />
     <Content Include="Views\HocKys\Create.cshtml" />
     <Content Include="Views\HocKys\Delete.cshtml" />
+    <Content Include="Views\HocKys\Details.cshtml" />
     <Content Include="Views\HocKys\Edit.cshtml" />
     <Content Include="Views\HocKys\Index.cshtml" />
-    <Content Include="Views\GiangVienHuongDanTheoKys\DanhSachGVHD.cshtml" />
-    <Content Include="Views\GiangVienHuongDanTheoKys\ThemDsGVHD.cshtml" />
     <Content Include="Views\GiangViens\Details.cshtml" />
-    <Content Include="Views\GiangVienHuongDanTheoKys\Details.cshtml" />
-    <Content Include="Views\DeTais\Create.cshtml" />
-    <Content Include="Views\DeTais\Delete.cshtml" />
-    <Content Include="Views\DeTais\Details.cshtml" />
-    <Content Include="Views\DeTais\Edit.cshtml" />
-    <Content Include="Views\DeTais\DsSvDangky.cshtml" />
+    <Content Include="Views\GiangViens\Index.cshtml" />
+    <Content Include="Views\GiangViens\Create.cshtml" />
+    <Content Include="Views\SinhViens\Create.cshtml" />
+    <Content Include="Views\SinhViens\Details.cshtml" />
+    <Content Include="Views\SinhViens\Index.cshtml" />
     <Content Include="Views\MonHocs\Create.cshtml" />
     <Content Include="Views\MonHocs\Delete.cshtml" />
     <Content Include="Views\MonHocs\Details.cshtml" />
     <Content Include="Views\MonHocs\Edit.cshtml" />
     <Content Include="Views\MonHocs\Index.cshtml" />
-    <Content Include="Views\DeTais\ThemDsSvDangKy.cshtml" />
-    <Content Include="Views\DeTais\DsDetaiTtsx.cshtml" />
+    <Content Include="Views\GiangVienHdSinhViens\Create.cshtml" />
+    <Content Include="Views\GiangVienHdSinhViens\Delete.cshtml" />
+    <Content Include="Views\GiangVienHdSinhViens\Details.cshtml" />
+    <Content Include="Views\GiangVienHdSinhViens\Edit.cshtml" />
+    <Content Include="Views\GiangVienHdSinhViens\Index.cshtml" />
+    <Content Include="Views\DeTais\Create.cshtml" />
+    <Content Include="Views\DeTais\Edit.cshtml" />
+    <Content Include="Views\DeTais\Index.cshtml" />
+    <Content Include="Views\DeTais\Details.cshtml" />
+    <Content Include="Views\HocKys\InitialInfo.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\Create.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\Index.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\DsDeTai.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\ThemChiTietHoiDong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,6 +404,42 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105051017175_Initial.resx">
       <DependentUpon>202105051017175_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060410170_Update_tbl_1.resx">
+      <DependentUpon>202105060410170_Update_tbl_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060638054_Update_tbl_2.resx">
+      <DependentUpon>202105060638054_Update_tbl_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060640287_Update_tbl_3.resx">
+      <DependentUpon>202105060640287_Update_tbl_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060655190_Update_tbl_4.resx">
+      <DependentUpon>202105060655190_Update_tbl_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060701351_Update_tbl_5.resx">
+      <DependentUpon>202105060701351_Update_tbl_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060711214_Update_tbl_6.resx">
+      <DependentUpon>202105060711214_Update_tbl_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060716348_Update_tbl_7.resx">
+      <DependentUpon>202105060716348_Update_tbl_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060728505_Update_tbl_8.resx">
+      <DependentUpon>202105060728505_Update_tbl_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060840245_Update_tbl_9.resx">
+      <DependentUpon>202105060840245_Update_tbl_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105061242045_Update_tbl_10.resx">
+      <DependentUpon>202105061242045_Update_tbl_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105121629310_11.resx">
+      <DependentUpon>202105121629310_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105131428458_Update_tbl_11.resx">
+      <DependentUpon>202105131428458_Update_tbl_11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

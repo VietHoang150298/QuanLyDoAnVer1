@@ -1,7 +1,8 @@
-namespace QuanLyDoAn.Models
+﻿namespace QuanLyDoAn.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -10,23 +11,20 @@ namespace QuanLyDoAn.Models
     {
         [Key]
         public int IdDeTai { get; set; }
-
+        [DisplayName("Mã Đề Tài")]
         public string MaDeTai { get; set; }
-
+        [DisplayName("Tên Đề Tài")]
         public string TenDeTai { get; set; }
-
-        public float? KetQua { get; set; }
-
-        public string NhanXet { get; set; }
-
-        public int? IdMonHoc { get; set; }
-
-        public int? IdHoiDong { get; set; }
-
+        [DisplayName("File Báo Cáo")]
         public string LinkFileBaoCaoCuoiCung { get; set; }
+        [DisplayName("Mã Môn Học")]
+        public string MaMonHoc { get; set; }
+        [DisplayName("Mã Sinh Viên")]
+        public string MaSinhVien { get; set; }
+        [DisplayName("Mã Giảng Viên")]
+        public string MaGiangVien { get; set; }
 
-        public int? IdSinhVien { get; set; }
-
-        public int? IdGvhdTheoky { get; set; }
+        [DisplayName("Mã Hội Đồng")]
+        public string MaHoiDong { get; set; }
     }
 }

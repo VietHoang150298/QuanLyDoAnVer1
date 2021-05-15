@@ -4,12 +4,9 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn có chắc rằng muốn xóa môn học?</h3>
 <div>
-    <h4>MonHoc</h4>
+    <h4>Xóa môn học</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,11 +34,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdHocKy)
+            @Html.DisplayNameFor(model => model.MaHocKy)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdHocKy)
+            @Html.DisplayFor(model => model.MaHocKy)
         </dd>
 
     </dl>
@@ -51,7 +48,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Trở về", "Index")
         </div>
     }
 </div>

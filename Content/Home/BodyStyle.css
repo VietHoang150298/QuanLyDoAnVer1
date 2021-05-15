@@ -4,8 +4,8 @@
     margin-right: 200px;
 }
 
-    body .body-content #RenderBody {
-        min-height: 300px;
+    body .body-content {
+        min-height: 600px;
     }
 /*body .body-content #RenderBody table tr{
             white-space: nowrap;

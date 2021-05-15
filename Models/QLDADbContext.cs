@@ -12,14 +12,16 @@ namespace QuanLyDoAn.Models
         {
         }
 
+        public virtual DbSet<ChiTietHoiDong> ChiTietHoiDongs { get; set; }
         public virtual DbSet<DeTai> DeTais { get; set; }
-        public virtual DbSet<GiangVienHuongDanTheoKy> GiangVienHuongDanTheoKys { get; set; }
         public virtual DbSet<GiangVien> GiangViens { get; set; }
         public virtual DbSet<HocKy> HocKys { get; set; }
         public virtual DbSet<HoiDongDanhGiaKQ> HoiDongDanhGiaKQs { get; set; }
+        public virtual DbSet<KetQua> KetQuas { get; set; }
         public virtual DbSet<MonHoc> MonHocs { get; set; }
         public virtual DbSet<PhanBien> PhanBiens { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
+        public virtual DbSet<GiangVienHdSinhVien> GiangVienHdSinhViens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

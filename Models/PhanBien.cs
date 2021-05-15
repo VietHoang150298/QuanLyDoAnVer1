@@ -12,13 +12,12 @@ namespace QuanLyDoAn.Models
         public int IdPhanBien { get; set; }
 
         public string MaPhanBien { get; set; }
-
-        public int? IdGiangVien { get; set; }
-
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime? ThoiKhoaBieu { get; set; }
 
-        public int? KetQuaPhanBien { get; set; }
+        public string MaGiangVien { get; set; }
 
-        public string NhanXet { get; set; }
+        public string MaSinhVien { get; set; }
     }
 }

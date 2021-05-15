@@ -5,14 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>MonHoc</h4>
+        <h4>Sửa thông tin</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdMonHoc)
@@ -36,16 +34,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DieuKienTienQuyet, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DieuKienTienQuyet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DieuKienTienQuyet, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.DieuKienTienQuyet)
+                    @Html.ValidationMessageFor(model => model.DieuKienTienQuyet, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdHocKy, "IdHocKy", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaHocKy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdHocKy", (IEnumerable<SelectListItem>)ViewBag.IdHocky, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdHocKy, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MaHocKy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaHocKy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdMonHoc, "IdMonHoc", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdMonHoc", (IEnumerable<SelectListItem>)ViewBag.IdMonHoc, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdMonHoc, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -58,5 +66,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index")
 </div>

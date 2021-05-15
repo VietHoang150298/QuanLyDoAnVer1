@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "DsDeTai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Danh sách đề tài</h4>
+
+
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            Tên Đề Tài
+        </th>
+        <th>
+            Sinh Viên
+        </th>
+        <th>
+            Giảng Viên Hướng Dẫn
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.dsHoiDong)
+    {
+        <tr>
+            <td>
+                @item.TenDeTai
+            </td>
+            <td>
+                @item.HoTenSinhVien
+            </td>
+            <td>
+                @item.HoTenGvhd
+            </td>
+        </tr>
+    }
+
+</table>

@@ -5,10 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>GiangVien</h4>
+    <h4>Thông tin chi tiết</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -52,22 +50,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaBoMon)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaBoMon)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GhiChu)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.DonViCongTac)
         </dt>
 
@@ -83,8 +65,25 @@
             @Html.DisplayFor(model => model.DienThoai)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.MaBoMon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaBoMon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHocKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHocKy)
+        </dd>
+
     </dl>
 </div>
 <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdGiangVien }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

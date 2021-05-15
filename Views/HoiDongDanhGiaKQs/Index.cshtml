@@ -1,0 +1,51 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.HoiDongDanhGiaKQ>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách hội đồng</h2>
+
+<p>
+    @Html.ActionLink("Thêm Mới", "Create")
+</p>
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.MaHoiDong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuongThanhVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaHocKy)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHoiDong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiKhoaBieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongThanhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHocKy)
+            </td>
+            <td>
+                @Html.ActionLink("Đề Tài", "DsDeTai", new { maHoiDong = item.MaHoiDong }) |
+                @Html.ActionLink("Thêm Chi Tiết", "ThemChiTietHoiDong", new { maHoiDong = item.MaHoiDong })
+            </td>
+        </tr>
+    }
+
+</table>

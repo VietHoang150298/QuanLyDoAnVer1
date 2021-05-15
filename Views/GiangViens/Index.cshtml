@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Danh sách giảng viên học kỳ @ViewBag.hocky</h2>
+<h2>Danh sách giảng viên đăng ký hướng dẫn @ViewBag.HocKy</h2>
 
 @using (Html.BeginForm("Doc_File_Excel", "GiangViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -45,7 +45,7 @@
 
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create")</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Giảng Viên Hướng Dẫn", "ThemDsGVHD", "GiangVienHuongDanTheoKys")</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Sinh Viên Hướng Dẫn", "Index", "SinhViens")</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
@@ -86,7 +86,7 @@
                 @Html.DisplayFor(modelItem => item.DienThoai)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new {id = item.IdGiangVien })
+                @Html.ActionLink("Details", "Details", new { id = item.IdGiangVien })
             </td>
         </tr>
     }

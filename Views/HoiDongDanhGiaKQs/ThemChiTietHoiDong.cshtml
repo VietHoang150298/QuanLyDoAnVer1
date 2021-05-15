@@ -1,0 +1,67 @@
+﻿@model QuanLyDoAn.Models.ChiTietHoiDong
+
+@{
+    ViewBag.Title = "ThemChiTietHoiDong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ThemChiTietHoiDong</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thêm chi tiết hội đồng</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaHoiDong, "Hội đồng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaHoiDong", (IEnumerable<SelectListItem>)ViewBag.MaHoiDong, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaGiangVien1, "Giảng Viên 1", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaGiangVien1", (IEnumerable<SelectListItem>)ViewBag.MaGiangVien, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaGiangVien2, "Giảng Viên 2", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaGiangVien2", (IEnumerable<SelectListItem>)ViewBag.MaGiangVien, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaGiangVien3, "Giảng Viên 3", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaGiangVien3", (IEnumerable<SelectListItem>)ViewBag.MaGiangVien, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaGiangVien4, "Giảng Viên 4", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaGiangVien4", (IEnumerable<SelectListItem>)ViewBag.MaGiangVien, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaGiangVien5, "Giảng Viên 5", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaGiangVien5", (IEnumerable<SelectListItem>)ViewBag.MaGiangVien, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
