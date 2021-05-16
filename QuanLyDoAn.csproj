@@ -201,6 +201,22 @@
     <Compile Include="Migrations\202105151343213_Update_tbl12.Designer.cs">
       <DependentUpon>202105151343213_Update_tbl12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105160941028_Update_tbl_31.cs" />
+    <Compile Include="Migrations\202105160941028_Update_tbl_31.Designer.cs">
+      <DependentUpon>202105160941028_Update_tbl_31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105160946051_Update_tbl_13.cs" />
+    <Compile Include="Migrations\202105160946051_Update_tbl_13.Designer.cs">
+      <DependentUpon>202105160946051_Update_tbl_13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105161108386_Update_tbl_14.cs" />
+    <Compile Include="Migrations\202105161108386_Update_tbl_14.Designer.cs">
+      <DependentUpon>202105161108386_Update_tbl_14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105161133181_Update_tbl_15.cs" />
+    <Compile Include="Migrations\202105161133181_Update_tbl_15.Designer.cs">
+      <DependentUpon>202105161133181_Update_tbl_15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
     <Compile Include="Models\DeTai.cs" />
@@ -211,6 +227,7 @@
     <Compile Include="Models\KetQua.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\PhanBien.cs" />
+    <Compile Include="Models\PhanBienDeTai.cs" />
     <Compile Include="Models\QLDADbContext.cs" />
     <Compile Include="Models\SinhVien.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -455,6 +472,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105151343213_Update_tbl12.resx">
       <DependentUpon>202105151343213_Update_tbl12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160941028_Update_tbl_31.resx">
+      <DependentUpon>202105160941028_Update_tbl_31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160946051_Update_tbl_13.resx">
+      <DependentUpon>202105160946051_Update_tbl_13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105161108386_Update_tbl_14.resx">
+      <DependentUpon>202105161108386_Update_tbl_14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105161133181_Update_tbl_15.resx">
+      <DependentUpon>202105161133181_Update_tbl_15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

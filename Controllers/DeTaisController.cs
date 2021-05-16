@@ -87,7 +87,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDeTai,MaDeTai,TenDeTai,LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong")] DeTai deTai)
+        public ActionResult Edit([Bind(Include = "IdDeTai,MaDeTai,TenDeTai, LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong")] DeTai deTai)
         {
 
             if (ModelState.IsValid)
@@ -137,6 +137,7 @@ namespace QuanLyDoAn.Controllers
                         deTai.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
                         deTai.MaGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
                         deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
+                        deTai.SoLuongPhanBien = 0;
                         DsDeTai.Add(deTai);
                         db.DeTais.Add(deTai);
                     }

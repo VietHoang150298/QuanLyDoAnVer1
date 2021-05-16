@@ -26,5 +26,7 @@
 
         [DisplayName("Mã Hội Đồng")]
         public string MaHoiDong { get; set; }
+        [DisplayName("Số Lượng Phản Biện")]
+        public int? SoLuongPhanBien { get; set; }
     }
 }

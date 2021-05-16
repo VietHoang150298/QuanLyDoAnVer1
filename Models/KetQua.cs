@@ -28,8 +28,6 @@
         [StringLength(50)]
         [DisplayName("Mã Đề Tài")]
         public string MaDeTai { get; set; }
-        [StringLength(50)]
-        [DisplayName("Mã Phản Biện")]
-        public string MaPhanBien { get; set; }
+        public bool? IsPhanBien { get; set; }
     }
 }

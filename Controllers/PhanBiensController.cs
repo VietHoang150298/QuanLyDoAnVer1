@@ -18,6 +18,8 @@ namespace QuanLyDoAn.Controllers
         public ActionResult Index()
         {
             return View(db.PhanBiens.ToList());
+
+
         }
 
         // GET: PhanBiens/Details/5
@@ -47,7 +49,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPhanBien,MaPhanBien,ThoiKhoaBieu,MaGiangVien,MaDeTai")] PhanBien phanBien)
+        public ActionResult Create([Bind(Include = "IdPhanBien,ThoiKhoaBieu,MaGiangVien")] PhanBien phanBien)
         {
             if (ModelState.IsValid)
             {
@@ -116,14 +118,31 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult DsDeTai(string maPhanBien)
+        public ActionResult DsDeTai(string maGiangVien)
         {
-            return View(db.DeTais.ToList());
+
+            return View(db.DeTais.Where(s => s.SoLuongPhanBien < 2).ToList());
         }
 
-        public ActionResult PhanCongPhanBien(string maDeTai)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DsDeTai([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien)
         {
-            return View();
+
+            foreach (var maDeTai in maDeTais)
+            {
+                db.PhanBienDeTais.Add(new PhanBienDeTai { 
+                    MaDeTai = maDeTai,
+                    MaGiangVien = maGiangVien,
+                    MaHocKy = ""
+                });
+                DeTai deTai = (from a in db.DeTais
+                               where a.MaDeTai == maDeTai
+                               select a).SingleOrDefault();
+                deTai.SoLuongPhanBien += 1;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
 

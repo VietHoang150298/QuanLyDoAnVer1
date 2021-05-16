@@ -22,6 +22,7 @@ namespace QuanLyDoAn.Models
         public virtual DbSet<PhanBien> PhanBiens { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
         public virtual DbSet<GiangVienHdSinhVien> GiangVienHdSinhViens { get; set; }
+        public virtual DbSet<PhanBienDeTai> PhanBienDeTais { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
