@@ -18,6 +18,6 @@ namespace QuanLyDoAn.Models
 
         public string MaGiangVien { get; set; }
 
-        public string MaSinhVien { get; set; }
+        public string MaDeTai { get; set; }
     }
 }

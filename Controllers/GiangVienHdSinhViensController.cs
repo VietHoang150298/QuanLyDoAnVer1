@@ -61,10 +61,10 @@ namespace QuanLyDoAn.Controllers
                     for (int row = 2; row <= range.Rows.Count; row++)
                     {
                         GiangVienHdSinhVien giangVienHdSinhVien = new GiangVienHdSinhVien();
-                        giangVienHdSinhVien.MaGiangVien = ((Excel.Range)range.Cells[row, 1]).Text;
-                        giangVienHdSinhVien.TenGiangVien = ((Excel.Range)range.Cells[row, 2]).Text;
-                        giangVienHdSinhVien.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
-                        giangVienHdSinhVien.TenSinhVien = ((Excel.Range)range.Cells[row, 4]).Text;
+                        giangVienHdSinhVien.MaSinhVien = ((Excel.Range)range.Cells[row, 1]).Text;
+                        giangVienHdSinhVien.TenSinhVien = ((Excel.Range)range.Cells[row, 2]).Text;
+                        giangVienHdSinhVien.MaGiangVien = ((Excel.Range)range.Cells[row, 3]).Text;
+                        giangVienHdSinhVien.TenGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
                         giangVienHdSinhVien.MaHocKy = hocKy.ToString();
                         DsGiangVienHdSinhViens.Add(giangVienHdSinhVien);
                         db.GiangVienHdSinhViens.Add(giangVienHdSinhVien);

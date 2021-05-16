@@ -1,0 +1,53 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.PhanBien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách phản biện</h2>
+
+<p>
+    @Html.ActionLink("Thêm Mới", "Create")
+</p>
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.MaPhanBien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaGiangVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaDeTai)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaPhanBien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiKhoaBieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaGiangVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDeTai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdPhanBien }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdPhanBien }) |
+                @Html.ActionLink("Chọn Phản Biện", "DsDeTai", new { id = item.MaPhanBien }) 
+            </td>
+        </tr>
+    }
+
+</table>

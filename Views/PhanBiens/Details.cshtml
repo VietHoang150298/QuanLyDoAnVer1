@@ -1,0 +1,51 @@
+﻿@model QuanLyDoAn.Models.PhanBien
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PhanBien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaPhanBien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPhanBien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiKhoaBieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaGiangVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaGiangVien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDeTai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDeTai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPhanBien }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

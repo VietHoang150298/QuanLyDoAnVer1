@@ -140,6 +140,7 @@
     <Compile Include="Controllers\HocKysController.cs" />
     <Compile Include="Controllers\HoiDongDanhGiaKQsController.cs" />
     <Compile Include="Controllers\MonHocsController.cs" />
+    <Compile Include="Controllers\PhanBiensController.cs" />
     <Compile Include="Controllers\SinhViensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202105131428458_Update_tbl_11.cs" />
     <Compile Include="Migrations\202105131428458_Update_tbl_11.Designer.cs">
       <DependentUpon>202105131428458_Update_tbl_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105151343213_Update_tbl12.cs" />
+    <Compile Include="Migrations\202105151343213_Update_tbl12.Designer.cs">
+      <DependentUpon>202105151343213_Update_tbl12.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -385,6 +390,13 @@
     <Content Include="Views\HoiDongDanhGiaKQs\Index.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DsDeTai.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\ThemChiTietHoiDong.cshtml" />
+    <Content Include="Views\PhanBiens\Create.cshtml" />
+    <Content Include="Views\PhanBiens\Delete.cshtml" />
+    <Content Include="Views\PhanBiens\Details.cshtml" />
+    <Content Include="Views\PhanBiens\Edit.cshtml" />
+    <Content Include="Views\PhanBiens\Index.cshtml" />
+    <Content Include="Views\PhanBiens\DsDeTai.cshtml" />
+    <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -440,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105131428458_Update_tbl_11.resx">
       <DependentUpon>202105131428458_Update_tbl_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105151343213_Update_tbl12.resx">
+      <DependentUpon>202105151343213_Update_tbl12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

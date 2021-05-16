@@ -63,6 +63,11 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index");
         }
 
+        public int LayIdDeTai(int idDeTai)
+        {
+            return idDeTai;
+        }
+
         public ActionResult DsDeTai(string maHoiDong)
         {
             var hoiDong = from a in db.HoiDongDanhGiaKQs
