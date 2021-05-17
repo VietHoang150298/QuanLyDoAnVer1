@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<QuanLyDoAn.Models.HoiDongDanhGiaKQ>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "DanhSachPhanCongHD";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Danh sách hội đồng</h2>
 
 <p>
-    @Html.ActionLink("Thêm Mới", "Create")
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create")</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys")</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Phân công hội đồng", "DanhSachPhanCongHD")</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
@@ -26,6 +28,7 @@
         </th>
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
@@ -42,8 +45,9 @@
                 @Html.DisplayFor(modelItem => item.MaHocKy)
             </td>
             <td>
-                @Html.ActionLink("Đề Tài", "DsDeTai", new { maHoiDong = item.MaHoiDong }) |
-                @Html.ActionLink("Thêm Chi Tiết", "ThemChiTietHoiDong", new { maHoiDong = item.MaHoiDong })
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdHoiDongDGKQ }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdHoiDongDGKQ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdHoiDongDGKQ })
             </td>
         </tr>
     }

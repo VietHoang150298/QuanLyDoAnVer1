@@ -128,13 +128,18 @@ namespace QuanLyDoAn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DsDeTai([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien)
         {
-
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.MaHocKy)
+                             .ToList()
+                             .FirstOrDefault();
             foreach (var maDeTai in maDeTais)
             {
                 db.PhanBienDeTais.Add(new PhanBienDeTai { 
                     MaDeTai = maDeTai,
                     MaGiangVien = maGiangVien,
-                    MaHocKy = ""
+                    MaHocKy = hocKy.ToString()
                 });
                 DeTai deTai = (from a in db.DeTais
                                where a.MaDeTai == maDeTai

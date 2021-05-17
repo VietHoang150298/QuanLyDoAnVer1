@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "InitialInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -54,8 +53,18 @@
     <div class="col-lg-4">
         <div class="card text-primary border-primary" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Danh Sách giảng viên hướng dẫn sinh viên</h5>
+                <h5 class="card-title">Danh sách giảng viên hướng dẫn sinh viên</h5>
                 @Html.ActionLink("Khởi Tạo", "Index", "GiangVienHdSinhViens")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-lg-4">
+        <div class="card text-primary border-primary" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Phản Biện</h5>
+                @Html.ActionLink("Khởi Tạo", "Index", "PhanBiens")
             </div>
         </div>
     </div>

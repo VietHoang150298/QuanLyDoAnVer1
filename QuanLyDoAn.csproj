@@ -217,6 +217,10 @@
     <Compile Include="Migrations\202105161133181_Update_tbl_15.Designer.cs">
       <DependentUpon>202105161133181_Update_tbl_15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105171450507_Update_tbl_16.cs" />
+    <Compile Include="Migrations\202105171450507_Update_tbl_16.Designer.cs">
+      <DependentUpon>202105171450507_Update_tbl_16.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
     <Compile Include="Models\DeTai.cs" />
@@ -406,14 +410,14 @@
     <Content Include="Views\HoiDongDanhGiaKQs\Create.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\Index.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DsDeTai.cshtml" />
-    <Content Include="Views\HoiDongDanhGiaKQs\ThemChiTietHoiDong.cshtml" />
     <Content Include="Views\PhanBiens\Create.cshtml" />
     <Content Include="Views\PhanBiens\Delete.cshtml" />
     <Content Include="Views\PhanBiens\Details.cshtml" />
     <Content Include="Views\PhanBiens\Edit.cshtml" />
     <Content Include="Views\PhanBiens\Index.cshtml" />
     <Content Include="Views\PhanBiens\DsDeTai.cshtml" />
-    <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\PhanCongThanhVienHD.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\DanhSachPhanCongHD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -484,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105161133181_Update_tbl_15.resx">
       <DependentUpon>202105161133181_Update_tbl_15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105171450507_Update_tbl_16.resx">
+      <DependentUpon>202105171450507_Update_tbl_16.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

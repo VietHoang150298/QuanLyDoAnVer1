@@ -29,7 +29,7 @@
         background-color: #0094ff;
     }
 
-    #navbarSupportedContent ul li .nav-item:hover {
+    #navbarSupportedContent ul li .ActionLinkItem:hover {
         text-decoration: none;
         color: white;
     }

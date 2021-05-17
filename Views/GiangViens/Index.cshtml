@@ -21,7 +21,7 @@
 
                 <div class="modal-body">
 
-                    @Html.Raw(ViewBag.Error) <br /><span>Excel File</span>
+                    @Html.Raw(ViewBag.Error) <br/><span>Excel File</span>
                     <input type="file" class="btn btn-outline-primary" name="excelfile" />
 
 
@@ -46,6 +46,7 @@
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create")</button>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Sinh Viên Hướng Dẫn", "Index", "SinhViens")</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys")</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">

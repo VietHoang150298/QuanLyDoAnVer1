@@ -43,7 +43,7 @@ namespace QuanLyDoAn.Controllers
         }
 
         // GET: MonHocs/Create
-        public ActionResult Create()
+        public ActionResult Create(string maHocKy)
         {
             return View();
         }
@@ -53,7 +53,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc)
+        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc,string maHocKy)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)

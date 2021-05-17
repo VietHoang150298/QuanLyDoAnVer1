@@ -1,55 +1,52 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.MonHoc>
+﻿@model IEnumerable<QuanLyDoAn.Models.HoiDongDanhGiaKQ>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin môn học @ViewBag.HocKy</h2>
+<h2>Danh sách phân công hội đồng đánh giá kết quả</h2>
 
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create")</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Giảng Viên Hướng Dẫn", "Index", "GiangViens")</button>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys")</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.MaMonHoc)
+            @Html.DisplayNameFor(model => model.MaHoiDong)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TenMonHoc)
+            @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DieuKienTienQuyet)
+            @Html.DisplayNameFor(model => model.SoLuongThanhVien)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MaHocKy)
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MaMonHoc)
+                @Html.DisplayFor(modelItem => item.MaHoiDong)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TenMonHoc)
+                @Html.DisplayFor(modelItem => item.ThoiKhoaBieu)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DieuKienTienQuyet)
+                @Html.DisplayFor(modelItem => item.SoLuongThanhVien)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaHocKy)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.IdMonHoc }) |
-                @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdMonHoc }) |
-                @Html.ActionLink("Xóa", "Delete", new { id = item.IdMonHoc })
+                @Html.ActionLink("Phân Công", "PhanCongThanhVienHD", new { maHoiDong = item.MaHoiDong }) |
             </td>
         </tr>
     }
 
 </table>
+

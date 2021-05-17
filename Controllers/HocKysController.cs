@@ -20,9 +20,15 @@ namespace QuanLyDoAn.Controllers
             return View(db.HocKys.ToList());
         }
 
-        public ActionResult InitialInfo(string TenHocKy)
+        public ActionResult InitialInfo()
           {
-            ViewBag.HocKy = TenHocKy.ToString();
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.TenHocKy)
+                             .ToList()
+                             .FirstOrDefault();
+            ViewBag.HocKy = hocKy.ToString();
             return View();
         }
 

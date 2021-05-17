@@ -13,21 +13,34 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        @Html.ActionLink("Học Kỳ", "Index", "HocKys")
+                        @Html.ActionLink("Học Kỳ", "Index", "HocKys", null, new { @class= "ActionLinkItem"} )
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Môn Học", "Index", "MonHocs")
+                        @Html.ActionLink("Môn Học", "Index", "MonHocs", null, new { @class = "ActionLinkItem" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Giảng Viên", "Index", "GiangViens")
+                        @Html.ActionLink("Giảng Viên", "Index", "GiangViens", null, new { @class = "ActionLinkItem" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Sinh Viên", "Index", "SinhViens")
+                        @Html.ActionLink("Sinh Viên", "Index", "SinhViens", null, new { @class = "ActionLinkItem" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Đề Tài", "Index", "DeTais")
+                        @Html.ActionLink("Đề Tài", "Index", "DeTais", null, new { @class = "ActionLinkItem" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Phản Biện", "Index", "PhanBiens", null, new { @class = "ActionLinkItem" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Hội Đồng", "Index", "HoiDongDanhGiaKQs", null, new { @class = "ActionLinkItem" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("SVGV", "Index", "GiangVienHdSinhViens", null, new { @class = "ActionLinkItem" })
                     </li>
                 </ul>
+                @*<form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>*@
             </div>
         </div>
     </nav>
