@@ -20,6 +20,8 @@
         [DisplayName("Số Lượng Thành Viên")]
         public int SoLuongThanhVien { get; set; }
 
+        public int DemSoLuongThanhVien { get; set; }
+
         [DisplayName("Mã Học Kỳ")]
         public string MaHocKy { get; set; }
     }

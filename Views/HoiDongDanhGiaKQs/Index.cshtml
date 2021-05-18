@@ -47,7 +47,8 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdHoiDongDGKQ }) |
                 @Html.ActionLink("Details", "Details", new { id = item.IdHoiDongDGKQ }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdHoiDongDGKQ })
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdHoiDongDGKQ }) |
+                @Html.ActionLink("Chọn Đề Tài", "PhanCongDanhGia", new { maHoiDong = item.MaHoiDong }) 
             </td>
         </tr>
     }

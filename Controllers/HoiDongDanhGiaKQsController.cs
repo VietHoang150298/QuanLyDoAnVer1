@@ -2,7 +2,9 @@
 using QuanLyDoAn.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,8 +26,9 @@ namespace QuanLyDoAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,MaDeTai,MaHocKy")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
+        public ActionResult Create([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaHocKy")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
         {
+            hoiDongDanhGiaKQ.DemSoLuongThanhVien = 0;
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
                              .Take(1)
@@ -44,7 +47,7 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult DanhSachPhanCongHD()
         {
-            return View(db.HoiDongDanhGiaKQs.Where(s => s.SoLuongThanhVien > 0).ToList());
+            return View(db.HoiDongDanhGiaKQs.Where(s => s.DemSoLuongThanhVien < s.SoLuongThanhVien).ToList());
         }
         
         public ActionResult PhanCongThanhVienHD(string maHoiDong)
@@ -65,12 +68,39 @@ namespace QuanLyDoAn.Controllers
                 HoiDongDanhGiaKQ hoiDongDanhGiaKQ = (from a in db.HoiDongDanhGiaKQs
                                where a.MaHoiDong == maHoiDong
                                select a).SingleOrDefault();
-                hoiDongDanhGiaKQ.SoLuongThanhVien -= 1;
-                db.SaveChanges();
+                hoiDongDanhGiaKQ.DemSoLuongThanhVien += 1;
+                if (hoiDongDanhGiaKQ.SoLuongThanhVien >= 0)
+                {
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Vượt quá số lương thành viên, mời chọn lại!";
+                    return RedirectToAction("PhanCongThanhVienHD");
+                }
             }
             return RedirectToAction("Index");
         }
 
+        public ActionResult PhanCongDanhGia(string maHoiDong)
+        {
+            return View(db.DeTais.ToList());
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult PhanCongDanhGia([Bind(Include = "IdDeTai,MaDeTai,TenDeTai,LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong,SoLuongPhanBien")] DeTai deTai,int[] idDeTais, string maHoiDong)
+        {
+            for (int i = 0; i < idDeTais.Count(); i++)
+            {
+                DeTai dsDeTai = db.DeTais.Find(Convert.ToInt32(idDeTais[i]));
+                dsDeTai.MaHoiDong = maHoiDong;
+                db.Entry(dsDeTai).State = EntityState.Modified;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         //public ActionResult DsDeTai(string maHoiDong)
         //{
         //    var hoiDong = from a in db.HoiDongDanhGiaKQs

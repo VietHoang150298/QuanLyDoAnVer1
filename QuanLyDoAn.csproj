@@ -221,6 +221,10 @@
     <Compile Include="Migrations\202105171450507_Update_tbl_16.Designer.cs">
       <DependentUpon>202105171450507_Update_tbl_16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105180440093_Update_tbl_161.cs" />
+    <Compile Include="Migrations\202105180440093_Update_tbl_161.Designer.cs">
+      <DependentUpon>202105180440093_Update_tbl_161.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
     <Compile Include="Models\DeTai.cs" />
@@ -418,6 +422,7 @@
     <Content Include="Views\PhanBiens\DsDeTai.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongThanhVienHD.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DanhSachPhanCongHD.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\PhanCongDanhGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -491,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105171450507_Update_tbl_16.resx">
       <DependentUpon>202105171450507_Update_tbl_16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105180440093_Update_tbl_161.resx">
+      <DependentUpon>202105180440093_Update_tbl_161.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

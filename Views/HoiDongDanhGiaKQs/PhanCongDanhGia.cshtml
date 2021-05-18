@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.DeTai>
+
+@{
+    ViewBag.Title = "PhanCongDanhGia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Phân công hội đồng đánh giá cho đề tài</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="table table-bordered text-wrap">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.TenDeTai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaMonHoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaSinhVien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaGiangVien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaHoiDong)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDeTai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaMonHoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaSinhVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaGiangVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHoiDong)
+                </td>
+                <td>
+                    <input type="checkbox" name="idDeTais[]" value="@item.IdDeTai" />
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
