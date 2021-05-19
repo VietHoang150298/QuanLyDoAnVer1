@@ -7,7 +7,7 @@
     body .body-content {
         min-height: 600px;
     }
-/*body .body-content #RenderBody table tr{
-            white-space: nowrap;
-            font-size: 14px; 
-        }*/
+        body .body-content p .headerButton:hover {
+            text-decoration: none;
+            color: white;
+        }

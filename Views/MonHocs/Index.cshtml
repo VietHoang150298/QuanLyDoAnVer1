@@ -8,9 +8,9 @@
 <h2>Thông tin môn học @ViewBag.HocKy</h2>
 
 <p>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create")</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Giảng Viên Hướng Dẫn", "Index", "GiangViens")</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys")</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Giảng Viên Hướng Dẫn", "Index", "GiangViens", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys", null, new { @class = "headerButton" })</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
