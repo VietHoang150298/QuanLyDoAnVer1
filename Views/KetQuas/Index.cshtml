@@ -1,0 +1,101 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.KetQua>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách kết quả</h2>
+
+@using (Html.BeginForm("Doc_File_Excel", "KetQuas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="modal fade form-horizontal" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Thêm Thông Tin Giảng Viên</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    @Html.Raw(ViewBag.Error) <br /><span>Excel File</span>
+                    <input type="file" class="btn btn-outline-primary" name="excelfile" />
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input class="btn btn-primary" type="submit" name="Doc_File_Excel" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importExcelModal">
+        Nhập File Excel
+    </button>
+}
+<p>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys", null, new { @class = "headerButton" })</button>
+</p>
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.MaHoiDong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaGiangVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaDeTai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiemSo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanXet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPhanBien)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHoiDong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaGiangVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDeTai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemSo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NhanXet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPhanBien)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdKetQua }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdKetQua }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdKetQua })
+            </td>
+        </tr>
+    }
+
+</table>

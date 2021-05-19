@@ -11,120 +11,116 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDoAn.Controllers
 {
-    public class DeTaisController : Controller
+    public class KetQuasController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
 
-        // GET: DeTais
+        // GET: KetQuas
         public ActionResult Index()
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy.ToString();
-            return View(db.DeTais.ToList());
+            return View(db.KetQuas.ToList());
         }
 
-        // GET: DeTais/Details/5
+        // GET: KetQuas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DeTai deTais = db.DeTais.Find(id);
-            if (deTais == null)
+            KetQua ketQua = db.KetQuas.Find(id);
+            if (ketQua == null)
             {
                 return HttpNotFound();
             }
-            return View(deTais);
+            return View(ketQua);
         }
 
-        public ActionResult XemFileBaoCao(string linkFileBaoCao)
-        {
-            return Redirect("https://localhost:44347/" + linkFileBaoCao);
-        }
-
-        // GET: DeTais/Create
+        // GET: KetQuas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DeTais/Create
+        // POST: KetQuas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDeTai,MaDeTai,TenDeTai,LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong")] DeTai deTai)
+        public ActionResult Create([Bind(Include = "IdKetQua,MaHoiDong,MaGiangVien,MaDeTai,DiemSo,NhanXet,IsPhanBien")] KetQua ketQua)
         {
             if (ModelState.IsValid)
             {
-                db.DeTais.Add(deTai);
+                db.KetQuas.Add(ketQua);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(deTai);
+            return View(ketQua);
         }
 
-        // GET: DeTais/Edit/5
+        // GET: KetQuas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.maHoiDong = new SelectList(db.HoiDongDanhGiaKQs, "MaHoiDong", "MaHoiDong");
-            DeTai deTai = db.DeTais.Find(id);
-            if (deTai == null)
+            KetQua ketQua = db.KetQuas.Find(id);
+            if (ketQua == null)
             {
                 return HttpNotFound();
             }
-            return View(deTai);
+            return View(ketQua);
         }
 
-        // POST: DeTais/Edit/5
+        // POST: KetQuas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDeTai,MaDeTai,TenDeTai, LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong")] DeTai deTai, HttpPostedFileBase inputFileBaoCao)
+        public ActionResult Edit([Bind(Include = "IdKetQua,MaHoiDong,MaGiangVien,MaDeTai,DiemSo,NhanXet,IsPhanBien")] KetQua ketQua)
         {
-            if (inputFileBaoCao != null)
-            {
-                string extensionName = System.IO.Path.GetExtension(inputFileBaoCao.FileName);
-                string path = "/Content/FileBaoCaos/" + extensionName;
-                string urlImg = System.IO.Path.Combine(Server.MapPath("~/Content/FileBaoCaos/") + extensionName);
-                inputFileBaoCao.SaveAs(urlImg);
-                //tours.avatar = path;
-                deTai.LinkFileBaoCaoCuoiCung = path;
-            }
             if (ModelState.IsValid)
             {
-                db.Entry(deTai).State = EntityState.Modified;
+                db.Entry(ketQua).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(deTai);
+            return View(ketQua);
         }
 
+        // GET: KetQuas/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            KetQua ketQua = db.KetQuas.Find(id);
+            if (ketQua == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ketQua);
+        }
+
+        // POST: KetQuas/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            KetQua ketQua = db.KetQuas.Find(id);
+            db.KetQuas.Remove(ketQua);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         //Import File Excel============================================================================
         [HttpPost]
 
         public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy;
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select an excel file";
@@ -142,18 +138,17 @@ namespace QuanLyDoAn.Controllers
                     Excel.Workbook workbook = application.Workbooks.Open(path);
                     Excel.Worksheet worksheet = workbook.ActiveSheet;
                     Excel.Range range = worksheet.UsedRange;
-                    List<DeTai> DsDeTai = new List<DeTai>();
+                    List<KetQua> DsKetQua = new List<KetQua>();
                     for (int row = 2; row <= range.Rows.Count; row++)
                     {
-                        DeTai deTai = new DeTai();
-                        deTai.MaDeTai = ((Excel.Range)range.Cells[row, 1]).Text;
-                        deTai.TenDeTai = ((Excel.Range)range.Cells[row, 2]).Text;
-                        deTai.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
-                        deTai.MaGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
-                        deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
-                        deTai.SoLuongPhanBien = 0;
-                        DsDeTai.Add(deTai);
-                        db.DeTais.Add(deTai);
+                        KetQua ketQua = new KetQua();
+                        ketQua.MaHoiDong = ((Excel.Range)range.Cells[row, 1]).Text;
+                        ketQua.MaGiangVien = ((Excel.Range)range.Cells[row, 2]).Text;
+                        ketQua.MaDeTai = ((Excel.Range)range.Cells[row, 3]).Text;
+                        ketQua.DiemSo = float.Parse(((Excel.Range)range.Cells[row, 4]).Text);
+                        ketQua.NhanXet = ((Excel.Range)range.Cells[row, 5]).Text;
+                        DsKetQua.Add(ketQua);
+                        db.KetQuas.Add(ketQua);
                     }
                     db.SaveChanges();
                     workbook.Close(0);
@@ -169,6 +164,7 @@ namespace QuanLyDoAn.Controllers
         }
 
         //Import File Excel============================================================================
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

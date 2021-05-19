@@ -118,7 +118,7 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult DsDeTai(string maGiangVien)
+        public ActionResult PhanCongPhanBien(string maGiangVien)
         {
 
             return View(db.DeTais.Where(s => s.SoLuongPhanBien < 2).ToList());
@@ -126,7 +126,7 @@ namespace QuanLyDoAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DsDeTai([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien)
+        public ActionResult PhanCongPhanBien([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)

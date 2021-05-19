@@ -1,0 +1,67 @@
+﻿@model QuanLyDoAn.Models.KetQua
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KetQua</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHoiDong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaHoiDong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaGiangVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaGiangVien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDeTai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDeTai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiemSo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiemSo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanXet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanXet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPhanBien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPhanBien)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdKetQua }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

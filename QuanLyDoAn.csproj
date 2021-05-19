@@ -139,6 +139,7 @@
     <Compile Include="Controllers\GiangViensController.cs" />
     <Compile Include="Controllers\HocKysController.cs" />
     <Compile Include="Controllers\HoiDongDanhGiaKQsController.cs" />
+    <Compile Include="Controllers\KetQuasController.cs" />
     <Compile Include="Controllers\MonHocsController.cs" />
     <Compile Include="Controllers\PhanBiensController.cs" />
     <Compile Include="Controllers\SinhViensController.cs" />
@@ -224,6 +225,30 @@
     <Compile Include="Migrations\202105180440093_Update_tbl_161.cs" />
     <Compile Include="Migrations\202105180440093_Update_tbl_161.Designer.cs">
       <DependentUpon>202105180440093_Update_tbl_161.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105190217304_Update_tbl_17.cs" />
+    <Compile Include="Migrations\202105190217304_Update_tbl_17.Designer.cs">
+      <DependentUpon>202105190217304_Update_tbl_17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105190240356_Update_tbl_18.cs" />
+    <Compile Include="Migrations\202105190240356_Update_tbl_18.Designer.cs">
+      <DependentUpon>202105190240356_Update_tbl_18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105190245568_Update_tbl_19.cs" />
+    <Compile Include="Migrations\202105190245568_Update_tbl_19.Designer.cs">
+      <DependentUpon>202105190245568_Update_tbl_19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105190247403_Update_tbl_20.cs" />
+    <Compile Include="Migrations\202105190247403_Update_tbl_20.Designer.cs">
+      <DependentUpon>202105190247403_Update_tbl_20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105190314158_Update_tbl_21.cs" />
+    <Compile Include="Migrations\202105190314158_Update_tbl_21.Designer.cs">
+      <DependentUpon>202105190314158_Update_tbl_21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105190315518_Update_tbl_22.cs" />
+    <Compile Include="Migrations\202105190315518_Update_tbl_22.Designer.cs">
+      <DependentUpon>202105190315518_Update_tbl_22.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -363,6 +388,11 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\KetQuas\Create.cshtml" />
+    <Content Include="Views\KetQuas\Delete.cshtml" />
+    <Content Include="Views\KetQuas\Details.cshtml" />
+    <Content Include="Views\KetQuas\Edit.cshtml" />
+    <Content Include="Views\KetQuas\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -419,7 +449,7 @@
     <Content Include="Views\PhanBiens\Details.cshtml" />
     <Content Include="Views\PhanBiens\Edit.cshtml" />
     <Content Include="Views\PhanBiens\Index.cshtml" />
-    <Content Include="Views\PhanBiens\DsDeTai.cshtml" />
+    <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongThanhVienHD.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DanhSachPhanCongHD.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongDanhGia.cshtml" />
@@ -427,6 +457,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ExcelFiles\" />
+    <Folder Include="Content\FileBaoCaos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -499,6 +530,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105180440093_Update_tbl_161.resx">
       <DependentUpon>202105180440093_Update_tbl_161.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105190217304_Update_tbl_17.resx">
+      <DependentUpon>202105190217304_Update_tbl_17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105190240356_Update_tbl_18.resx">
+      <DependentUpon>202105190240356_Update_tbl_18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105190245568_Update_tbl_19.resx">
+      <DependentUpon>202105190245568_Update_tbl_19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105190247403_Update_tbl_20.resx">
+      <DependentUpon>202105190247403_Update_tbl_20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105190314158_Update_tbl_21.resx">
+      <DependentUpon>202105190314158_Update_tbl_21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105190315518_Update_tbl_22.resx">
+      <DependentUpon>202105190315518_Update_tbl_22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

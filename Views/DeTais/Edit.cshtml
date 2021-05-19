@@ -7,7 +7,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "DeTais", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LinkFileBaoCaoCuoiCung, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LinkFileBaoCaoCuoiCung, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="file" name="inputFileBaoCao">
                 @Html.ValidationMessageFor(model => model.LinkFileBaoCaoCuoiCung, "", new { @class = "text-danger" })
             </div>
         </div>

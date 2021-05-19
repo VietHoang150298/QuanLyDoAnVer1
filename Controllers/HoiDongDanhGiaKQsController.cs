@@ -101,6 +101,10 @@ namespace QuanLyDoAn.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+
+
+
         //public ActionResult DsDeTai(string maHoiDong)
         //{
         //    var hoiDong = from a in db.HoiDongDanhGiaKQs
