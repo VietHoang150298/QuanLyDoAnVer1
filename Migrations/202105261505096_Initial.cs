@@ -34,7 +34,7 @@ namespace QuanLyDoAn.Migrations
                 .PrimaryKey(t => t.IdDeTai);
             
             CreateTable(
-                "dbo.GiangVienHdSinhVien",
+                "dbo.GiangVienHdSinhViens",
                 c => new
                     {
                         IdGiangVienHdSinhVien = c.Int(nullable: false, identity: true),
@@ -122,6 +122,7 @@ namespace QuanLyDoAn.Migrations
                         MaHocKy = c.String(),
                         MaGiangVien = c.String(),
                         MaDeTai = c.String(),
+                        ThoiKhoaBieu = c.DateTime(),
                     })
                 .PrimaryKey(t => t.IdPhanBienDeTai);
             
@@ -130,7 +131,6 @@ namespace QuanLyDoAn.Migrations
                 c => new
                     {
                         IdPhanBien = c.Int(nullable: false, identity: true),
-                        ThoiKhoaBieu = c.DateTime(),
                         MaGiangVien = c.String(),
                     })
                 .PrimaryKey(t => t.IdPhanBien);
@@ -165,7 +165,7 @@ namespace QuanLyDoAn.Migrations
             DropTable("dbo.HoiDongDanhGiaKQs");
             DropTable("dbo.HocKys");
             DropTable("dbo.GiangViens");
-            DropTable("dbo.GiangVienHdSinhVien");
+            DropTable("dbo.GiangVienHdSinhViens");
             DropTable("dbo.DeTais");
             DropTable("dbo.ChiTietHoiDongs");
         }

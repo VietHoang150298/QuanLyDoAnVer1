@@ -146,21 +146,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105200832102_Initial.cs" />
-    <Compile Include="Migrations\202105200832102_Initial.Designer.cs">
-      <DependentUpon>202105200832102_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105200932421_Update_tbl_1.cs" />
-    <Compile Include="Migrations\202105200932421_Update_tbl_1.Designer.cs">
-      <DependentUpon>202105200932421_Update_tbl_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105200952196_Update_tbl_2.cs" />
-    <Compile Include="Migrations\202105200952196_Update_tbl_2.Designer.cs">
-      <DependentUpon>202105200952196_Update_tbl_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105201001343_Update_tbl_3.cs" />
-    <Compile Include="Migrations\202105201001343_Update_tbl_3.Designer.cs">
-      <DependentUpon>202105201001343_Update_tbl_3.cs</DependentUpon>
+    <Compile Include="Migrations\202105261505096_Initial.cs" />
+    <Compile Include="Migrations\202105261505096_Initial.Designer.cs">
+      <DependentUpon>202105261505096_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -386,17 +374,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105200832102_Initial.resx">
-      <DependentUpon>202105200832102_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105200932421_Update_tbl_1.resx">
-      <DependentUpon>202105200932421_Update_tbl_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105200952196_Update_tbl_2.resx">
-      <DependentUpon>202105200952196_Update_tbl_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105201001343_Update_tbl_3.resx">
-      <DependentUpon>202105201001343_Update_tbl_3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105261505096_Initial.resx">
+      <DependentUpon>202105261505096_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

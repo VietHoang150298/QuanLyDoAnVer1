@@ -8,7 +8,7 @@ using System.Web;
 
 namespace QuanLyDoAn.Models
 {
-    [Table("GiangVienHdSinhVien")]
+    [Table("GiangVienHdSinhViens")]
     public class GiangVienHdSinhVien
     {
         [Key]
