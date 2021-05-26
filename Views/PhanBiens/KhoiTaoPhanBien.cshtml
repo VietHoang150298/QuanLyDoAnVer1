@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.GiangVien>
+
+@{
+    ViewBag.Title = "KhoiTaoPhanBien";
+}
+
+<h4>Khởi tạo phản biện theo danh sách</h4>
+<p>
+    <button class="btn btn-outline-primary">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys", null, new { @class = "headerButton" })</button>
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="table table-bordered text-wrap">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.MaGiangVien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomThu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonViCongTac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaGiangVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomThu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonViCongTac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    <input type="checkbox" name="maGiangViens[]" value="@item.MaGiangVien" />
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}

@@ -62,9 +62,6 @@
         <th>
             @Html.DisplayNameFor(model => model.TenGiangVien)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaHocKy)
-        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -81,9 +78,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TenGiangVien)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHocKy)
             </td>
         </tr>
     }

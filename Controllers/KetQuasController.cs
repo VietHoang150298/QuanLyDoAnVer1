@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
+using QuanLyDoAn.ViewModels;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDoAn.Controllers
@@ -18,7 +19,24 @@ namespace QuanLyDoAn.Controllers
         // GET: KetQuas
         public ActionResult Index()
         {
-            return View(db.KetQuas.ToList());
+            var ketQua = from a in db.KetQuas
+                        join b in db.GiangViens
+                        on a.MaGiangVien equals b.MaGiangVien
+                        join c in db.HoiDongDanhGiaKQs
+                        on a.MaHoiDong equals c.MaHoiDong
+                        join d in db.DeTais
+                        on a.MaDeTai equals d.MaDeTai
+                        select new KetQuaViewModel
+                        {
+                            IdKetQua = a.IdKetQua,
+                            MaHoiDong = c.MaHoiDong,
+                            TenGiangVien = b.HoTen,
+                            TenDeTai = d.TenDeTai,
+                            DiemSo = a.DiemSo,
+                            IsPhanBien = a.IsPhanBien
+                        };
+            ViewBag.KetQua = ketQua.ToList();
+            return View();
         }
 
         // GET: KetQuas/Details/5

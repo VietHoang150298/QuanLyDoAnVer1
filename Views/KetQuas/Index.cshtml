@@ -1,6 +1,4 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.KetQua>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -49,51 +47,45 @@
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.MaHoiDong)
+            Mã Hội Đồng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaGiangVien)
+            Tên Giảng Viên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaDeTai)
+            Tên Đề Tài
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiemSo)
+            Điểm Số
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NhanXet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPhanBien)
+            Is Phản Biện
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in ViewBag.KetQua)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MaHoiDong)
+                @item.MaHoiDong
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaGiangVien)
+                @item.TenGiangVien
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaDeTai)
+                @item.TenDeTai
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiemSo)
+                @item.DiemSo
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NhanXet)
+                @item.IsPhanBien
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsPhanBien)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdKetQua }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdKetQua }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdKetQua })
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IdKetQua }) |
+                @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdKetQua }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.IdKetQua })
             </td>
         </tr>
     }

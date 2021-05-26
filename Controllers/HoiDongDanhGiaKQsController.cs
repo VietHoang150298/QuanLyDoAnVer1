@@ -101,9 +101,34 @@ namespace QuanLyDoAn.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
 
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HoiDongDanhGiaKQ hoiDongDanhGiaKQ = db.HoiDongDanhGiaKQs.Find(id);
 
+            if (hoiDongDanhGiaKQ == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hoiDongDanhGiaKQ);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaHocKy")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(hoiDongDanhGiaKQ).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(hoiDongDanhGiaKQ);
+        }
 
         //public ActionResult DsDeTai(string maHoiDong)
         //{
