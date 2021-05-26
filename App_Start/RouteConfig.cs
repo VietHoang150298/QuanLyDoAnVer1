@@ -16,7 +16,7 @@ namespace QuanLyDoAn
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "HocKys", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Authorize", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

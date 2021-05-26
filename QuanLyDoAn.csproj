@@ -134,6 +134,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Controllers\DeTaisController.cs" />
     <Compile Include="Controllers\GiangVienHdSinhViensController.cs" />
     <Compile Include="Controllers\GiangViensController.cs" />
@@ -150,7 +153,12 @@
     <Compile Include="Migrations\202105261505096_Initial.Designer.cs">
       <DependentUpon>202105261505096_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105261552227_Update_tbl_1.cs" />
+    <Compile Include="Migrations\202105261552227_Update_tbl_1.Designer.cs">
+      <DependentUpon>202105261552227_Update_tbl_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
     <Compile Include="Models\DeTai.cs" />
     <Compile Include="Models\GiangVien.cs" />
@@ -161,7 +169,10 @@
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\PhanBien.cs" />
     <Compile Include="Models\PhanBienDeTai.cs" />
+    <Compile Include="Models\Process\StringProcess.cs" />
+    <Compile Include="Models\Process\UserRoleProvider.cs" />
     <Compile Include="Models\QLDADbContext.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SinhVien.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DeTaiViewModel.cs" />
@@ -208,6 +219,12 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Accounts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Accounts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -356,9 +373,12 @@
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongDanhGia.cshtml" />
     <Content Include="Views\PhanBiens\KhoiTaoPhanBien.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\Edit.cshtml" />
+    <Content Include="Views\Authorize\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\ExcelFiles\" />
     <Folder Include="Content\FileBaoCaos\" />
   </ItemGroup>
@@ -376,6 +396,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105261505096_Initial.resx">
       <DependentUpon>202105261505096_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105261552227_Update_tbl_1.resx">
+      <DependentUpon>202105261552227_Update_tbl_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
