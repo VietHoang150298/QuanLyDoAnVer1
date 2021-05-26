@@ -12,10 +12,6 @@
         [Key]
         public int IdPhanBien { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
-        public DateTime? ThoiKhoaBieu { get; set; }
-
         [DisplayName("Mã Giảng Viên")]
         public string MaGiangVien { get; set; }
     }

@@ -11,7 +11,6 @@ namespace QuanLyDoAn.Models
             : base("name=QLDADbContext")
         {
         }
-
         public virtual DbSet<ChiTietHoiDong> ChiTietHoiDongs { get; set; }
         public virtual DbSet<DeTai> DeTais { get; set; }
         public virtual DbSet<GiangVien> GiangViens { get; set; }

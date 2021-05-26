@@ -16,6 +16,7 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: DeTais
+
         public ActionResult Index()
         {
             var hocKy = db.HocKys

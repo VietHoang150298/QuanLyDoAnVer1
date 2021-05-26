@@ -23,9 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.DieuKienTienQuyet)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaHocKy)
-        </th>
         <th></th>
     </tr>
 
@@ -40,9 +37,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DieuKienTienQuyet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHocKy)
             </td>
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdMonHoc }) |

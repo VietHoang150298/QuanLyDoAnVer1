@@ -15,5 +15,9 @@ namespace QuanLyDoAn.Models
         public string MaHocKy { get; set; }
         public string MaGiangVien { get; set; }
         public string MaDeTai { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public DateTime? ThoiKhoaBieu { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.PhanBien>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,32 +7,31 @@
 
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
-    
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm phản biện theo danh sách", "KhoiTaoPhanBien", null, new { @class = "headerButton" })</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.ThoiKhoaBieu)
+            Mã Giảng Viên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaGiangVien)
+            Tên Giảng Viên
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in ViewBag.PhanBien)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ThoiKhoaBieu)
+               @item.MaGiangVien
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaGiangVien)
+                @item.TenGiangVien
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdPhanBien }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdPhanBien }) |
-                @Html.ActionLink("Chọn Phản Biện", "DsDeTai", new { maGiangVien = item.MaGiangVien }) 
+                @Html.ActionLink("Chọn Phản Biện", "PhanCongPhanBien", new { maGiangVien = item.MaGiangVien })
             </td>
         </tr>
     }

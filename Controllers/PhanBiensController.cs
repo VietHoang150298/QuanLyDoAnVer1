@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
+using QuanLyDoAn.ViewModels;
 
 namespace QuanLyDoAn.Controllers
 {
@@ -17,24 +18,19 @@ namespace QuanLyDoAn.Controllers
         // GET: PhanBiens
         public ActionResult Index()
         {
-            return View(db.PhanBiens.ToList());
+            var phanBien = from a in db.PhanBiens
+                           join b in db.GiangViens
+                           on a.MaGiangVien equals b.MaGiangVien
+                           select new PhanBienViewModel
+                           {
+                               IdPhanBien = a.IdPhanBien,
+                               MaGiangVien = a.MaGiangVien,
+                               TenGiangVien = b.HoTen
+                           };
+            ViewBag.PhanBien = phanBien.ToList();
+            return View();
 
 
-        }
-
-        // GET: PhanBiens/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhanBien phanBien = db.PhanBiens.Find(id);
-            if (phanBien == null)
-            {
-                return HttpNotFound();
-            }
-            return View(phanBien);
         }
 
 
@@ -49,7 +45,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPhanBien,ThoiKhoaBieu,MaGiangVien")] PhanBien phanBien)
+        public ActionResult Create([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +77,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPhanBien,MaPhanBien,ThoiKhoaBieu,MaGiangVien,MaDeTai")] PhanBien phanBien)
+        public ActionResult Edit([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien)
         {
             if (ModelState.IsValid)
             {
@@ -115,6 +111,25 @@ namespace QuanLyDoAn.Controllers
             PhanBien phanBien = db.PhanBiens.Find(id);
             db.PhanBiens.Remove(phanBien);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult KhoiTaoPhanBien()
+        {
+            return View(db.GiangViens.ToList());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult KhoiTaoPhanBien([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien, string[] maGiangViens)
+        {
+            foreach (var maGiangVien in maGiangViens)
+            {
+                db.PhanBiens.Add(new PhanBien
+                {
+                    MaGiangVien = maGiangVien
+                });
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
