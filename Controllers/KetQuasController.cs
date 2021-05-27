@@ -20,21 +20,21 @@ namespace QuanLyDoAn.Controllers
         public ActionResult Index()
         {
             var ketQua = from a in db.KetQuas
-                        join b in db.GiangViens
-                        on a.MaGiangVien equals b.MaGiangVien
-                        join c in db.HoiDongDanhGiaKQs
-                        on a.MaHoiDong equals c.MaHoiDong
-                        join d in db.DeTais
-                        on a.MaDeTai equals d.MaDeTai
-                        select new KetQuaViewModel
-                        {
-                            IdKetQua = a.IdKetQua,
-                            MaHoiDong = c.MaHoiDong,
-                            TenGiangVien = b.HoTen,
-                            TenDeTai = d.TenDeTai,
-                            DiemSo = a.DiemSo,
-                            IsPhanBien = a.IsPhanBien
-                        };
+                         join b in db.GiangViens
+                         on a.MaGiangVien equals b.MaGiangVien
+                         join c in db.HoiDongDanhGiaKQs
+                         on a.MaHoiDong equals c.MaHoiDong
+                         join d in db.DeTais
+                         on a.MaDeTai equals d.MaDeTai
+                         select new KetQuaViewModel
+                         {
+                             IdKetQua = a.IdKetQua,
+                             MaHoiDong = c.MaHoiDong,
+                             TenGiangVien = b.HoTen,
+                             TenDeTai = d.TenDeTai,
+                             DiemSo = a.DiemSo,
+                             IsPhanBien = a.IsPhanBien
+                         };
             ViewBag.KetQua = ketQua.ToList();
             return View();
         }
