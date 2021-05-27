@@ -36,18 +36,10 @@ namespace QuanLyDoAn.Controllers
             }
             return 0;
         }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
-            //if (CheckSession() == 1)
-            //{
-            //    return RedirectToAction("Index", "Accounts", new { Area = "Admin" });
-            //}
-            //else if (CheckSession() == 2)
-            //{
-            //    return RedirectToAction("Index", "HocKys");
-            //}
-            //ViewBag.ReturnUrl = returnUrl;
             return View();
         }
         [AllowAnonymous]
@@ -92,11 +84,11 @@ namespace QuanLyDoAn.Controllers
             {
                 if (CheckSession() == 1)
                 {
-                    return RedirectToAction("Index", "Accounts", new { Area = "Admin" });
+                    return RedirectToAction("Index", "HocKys");
                 }
                 else if (CheckSession() == 2)
                 {
-                    return RedirectToAction("Index", "HocKys");
+                    return RedirectToAction("Index", "Accounts", new { Area = "Admin" });
                 }
             }
             if (Url.IsLocalUrl(returnUrl))
@@ -105,7 +97,7 @@ namespace QuanLyDoAn.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Accounts", new { Area = "Admin" });
+                return RedirectToAction("Login", "Authorize");
             }
         }
         public ActionResult Logout()
@@ -113,6 +105,12 @@ namespace QuanLyDoAn.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return Redirect("/Authorize/Login");
+        }
+
+
+        public ActionResult Login2()
+        {
+            return View();
         }
     }
 }

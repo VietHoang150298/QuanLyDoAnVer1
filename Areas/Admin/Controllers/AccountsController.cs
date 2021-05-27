@@ -39,7 +39,6 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
         // GET: Admin/Accounts/Create
         public ActionResult Create()
         {
-            ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName");
             return View();
         }
 

@@ -8,122 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
 
-namespace QuanLyDoAn.Controllers
+namespace QuanLyDoAn.Areas.Admin.Controllers
 {
-    public class HocKysController : Controller
+    public class RolesController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
 
-        // GET: HocKys
-        [Authorize]
+        // GET: Admin/Roles
         public ActionResult Index()
         {
-            return View(db.HocKys.ToList());
+            return View(db.Roles.ToList());
         }
 
-        public ActionResult InitialInfo()
-          {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy.ToString();
-            return View();
-        }
-
-        // GET: HocKys/Details/5
-        public ActionResult Details(int? id)
+        // GET: Admin/Roles/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HocKy hocKy = db.HocKys.Find(id);
-            if (hocKy == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(hocKy);
+            return View(role);
         }
 
-        // GET: HocKys/Create
+        // GET: Admin/Roles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: HocKys/Create
+        // POST: Admin/Roles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdHocKy,MaHocKy,TenHocKy,NamBatDau,NamKetThuc")] HocKy hocKy)
+        public ActionResult Create([Bind(Include = "RoleId,RoleName")] Role role)
         {
             if (ModelState.IsValid)
             {
-                db.HocKys.Add(hocKy);
+                db.Roles.Add(role);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(hocKy);
+            return View(role);
         }
 
-        // GET: HocKys/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Admin/Roles/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HocKy hocKy = db.HocKys.Find(id);
-            if (hocKy == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(hocKy);
+            return View(role);
         }
 
-        // POST: HocKys/Edit/5
+        // POST: Admin/Roles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdHocKy,MaHocKy,TenHocKy,NamBatDau,NamKetThuc")] HocKy hocKy)
+        public ActionResult Edit([Bind(Include = "RoleId,RoleName")] Role role)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hocKy).State = EntityState.Modified;
+                db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(hocKy);
+            return View(role);
         }
 
-        // GET: HocKys/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Admin/Roles/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HocKy hocKy = db.HocKys.Find(id);
-            if (hocKy == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(hocKy);
+            return View(role);
         }
 
-        // POST: HocKys/Delete/5
+        // POST: Admin/Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            HocKy hocKy = db.HocKys.Find(id);
-            db.HocKys.Remove(hocKy);
+            Role role = db.Roles.Find(id);
+            db.Roles.Remove(role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

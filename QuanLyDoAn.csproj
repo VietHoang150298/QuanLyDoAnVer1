@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Controllers\DeTaisController.cs" />
     <Compile Include="Controllers\GiangVienHdSinhViensController.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="ViewModels\SinhVienViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Content\AdminLayoutStyle.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -225,6 +227,12 @@
     <Content Include="Areas\Admin\Views\Accounts\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Accounts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Accounts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -374,11 +382,11 @@
     <Content Include="Views\PhanBiens\KhoiTaoPhanBien.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\Edit.cshtml" />
     <Content Include="Views\Authorize\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\ExcelFiles\" />
     <Folder Include="Content\FileBaoCaos\" />
   </ItemGroup>
