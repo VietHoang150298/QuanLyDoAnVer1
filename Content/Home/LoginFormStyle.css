@@ -1,0 +1,17 @@
+﻿body {
+    margin-top: 100px;
+}
+
+    body #loginForm {
+        padding: 0px;
+    }
+
+        body #loginForm img {
+            width: 40%;
+            height: 40%;
+        }
+
+        body #loginForm .form-control {
+            margin: auto;
+        }
+
