@@ -20,7 +20,7 @@ namespace QuanLyDoAn.Controllers
                 if (user != null)
                 {
                     //var role = db.Accounts.Find(user.ToString()).RoleId;
-                    var role = db.Accounts.Where(m => m.UserName == user.ToString()).FirstOrDefault().RoleId;
+                    var role = db.Accounts.Where(m => m.Email == user.ToString()).FirstOrDefault().RoleId;
                     if (role != null)
                     {
                         if (role.ToString() == "1")
@@ -49,28 +49,28 @@ namespace QuanLyDoAn.Controllers
             StringProcess strPro = new StringProcess();
             try
             {
-                if (!string.IsNullOrEmpty(acc.UserName) && !string.IsNullOrEmpty(acc.Password))
+                if (!string.IsNullOrEmpty(acc.Email) && !string.IsNullOrEmpty(acc.Password))
                 {
 
                     using (var db = new QLDADbContext())
                     {
                         var passToMD5 = strPro.GetMD5(acc.Password);
-                        var account = db.Accounts.Where(m => m.UserName.Equals(acc.UserName) && m.Password.Equals(passToMD5));
+                        var account = db.Accounts.Where(m => m.Email.Equals(acc.Email) && m.Password.Equals(passToMD5));
                         if (account.Count() == 1)
                         {
-                            FormsAuthentication.SetAuthCookie(acc.UserName, false);
-                            Session["idUser"] = acc.UserName;
+                            FormsAuthentication.SetAuthCookie(acc.Email, false);
+                            Session["idUser"] = acc.Email;
                             Session["roleUser"] = acc.RoleId;
                             //Session["StudentCode"] = account.FirstOrDefault().StudentCode;
                             //Session["TeacherCode"] = account.FirstOrDefault().TeacherCode;
-                            Response.Cookies.Add(new HttpCookie("userCookie", acc.UserName));
+                            Response.Cookies.Add(new HttpCookie("userCookie", acc.Email));
                             Response.Cookies.Add(new HttpCookie("roleCookie", acc.RoleId));
                             return RedirectToLocal(returnUrl);
                         }
                         ModelState.AddModelError("", "Thông tin đăng nhập chưa chính xác");
                     }
                 }
-                ModelState.AddModelError("", "Username and password is required.");
+                ModelState.AddModelError("", "Email and password is required.");
             }
             catch
             {
@@ -105,12 +105,6 @@ namespace QuanLyDoAn.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return Redirect("/Authorize/Login");
-        }
-
-
-        public ActionResult Login2()
-        {
-            return View();
         }
     }
 }
