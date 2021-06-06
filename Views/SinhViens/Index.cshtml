@@ -1,5 +1,5 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.SinhVien>
-
+﻿@model PagedList.IPagedList<QuanLyDoAn.Models.SinhVien>
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -49,22 +49,29 @@
     <button class="btn btn-outline-primary">@Html.ActionLink("Phân Giảng Viên Hướng Dẫn", "Index", "GiangVienHdSinhViens", null, new { @class = "headerButton" })</button>
     <button class="btn btn-outline-primary">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys", null, new { @class = "headerButton" })</button>
 </p>
+
+@*@using (Html.BeginForm())
+    {
+        <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search" name="searchString">
+        <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
+    }*@
+
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.MaSinhVien)
+            Mã Sinh Viên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoTen)
+            Họ Tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HomThu)
+            Hòm Thư
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TinChiTichLuy)
+            Tín Chỉ Tích Lũy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiemTichLuy)
+            Điểm Tích Lũy
         </th>
         <th></th>
     </tr>
@@ -94,3 +101,8 @@
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", "SinhViens",
+    new { page }))

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
 using Excel = Microsoft.Office.Interop.Excel;
+using PagedList;
 
 namespace QuanLyDoAn.Controllers
 {
@@ -16,7 +17,7 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: SinhViens
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
@@ -25,7 +26,25 @@ namespace QuanLyDoAn.Controllers
                              .ToList()
                              .FirstOrDefault();
             ViewBag.HocKy = hocKy;
-            return View(db.SinhViens.ToList());
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            var sinhViens = from s in db.SinhViens
+                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                sinhViens = sinhViens.Where(s => s.HoTen.Contains(searchString) || s.MaSinhVien.Contains(searchString));
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(sinhViens.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: SinhViens/Details/5

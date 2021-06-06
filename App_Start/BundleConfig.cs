@@ -27,7 +27,10 @@ namespace QuanLyDoAn
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/Home/NavBarStyle.css",
-                      "~/Content/Home/BodyStyle.css"));
+                      "~/Content/Home/BodyStyle.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/font-awesome.min.css"
+                      ));
         }
     }
 }

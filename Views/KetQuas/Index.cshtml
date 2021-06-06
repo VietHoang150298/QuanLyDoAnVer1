@@ -4,7 +4,6 @@
 }
 
 <h2>Danh sách kết quả</h2>
-
 @using (Html.BeginForm("Doc_File_Excel", "KetQuas", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="modal fade form-horizontal" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -58,9 +57,6 @@
         <th>
             Điểm Số
         </th>
-        <th>
-            Is Phản Biện
-        </th>
         <th></th>
     </tr>
 
@@ -79,10 +75,7 @@
             <td>
                 @item.DiemSo
             </td>
-            <td>
-                @item.IsPhanBien
-            </td>
-            <td>
+            <td width="15%">
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdKetQua }) |
                 @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdKetQua }) |
                 @Html.ActionLink("Xóa", "Delete", new { id = item.IdKetQua })
@@ -91,3 +84,4 @@
     }
 
 </table>
+

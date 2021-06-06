@@ -39,6 +39,7 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
         // GET: Admin/Accounts/Create
         public ActionResult Create()
         {
+            ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName");
             return View();
         }
 
@@ -61,8 +62,6 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.RoleId = new SelectList(db.Roles, "RoleId", "RoleName", account.RoleId);
 
             return View(account);
         }
@@ -87,7 +86,7 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountId,UserName,Email,Password,RoleId")] Account account)
+        public ActionResult Edit([Bind(Include = "AccountId,UserName,Email,Password,ConfirmPassword,RoleId")] Account account)
         {
             if (ModelState.IsValid)
             {
