@@ -13,31 +13,35 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        @Html.ActionLink("Học Kỳ", "Index", "HocKys", null, new { @class = "ActionLinkItem" })
+                        @Html.ActionLink("Trang chủ", "Index", "HocKys", null, new { @class = "ActionLinkItem" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Môn Học", "Index", "MonHocs", null, new { @class = "ActionLinkItem" })
+                    <li class="nav-item dropdown">
+                        <p class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Html.ActionLink("Môn Học", "Index", "MonHocs", null, new { @class = "ActionLinkItem" }) 
+                        </p>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <p class="dropdown-item">
+                                @Html.ActionLink("Đề Tài", "Index", "DeTais", null, new { @class = "ActionLinkItem" })
+                            </p>
+                            <p class="dropdown-item" >
+                                @Html.ActionLink("Kết Quả", "Index", "KetQuas", null, new { @class = "ActionLinkItem" })
+                            </p>
+                            <p class="dropdown-item">
+                                @Html.ActionLink("Phản Biện", "Index", "PhanBiens", null, new { @class = "ActionLinkItem" })
+                            </p>
+                            <p class="dropdown-item">
+                                @Html.ActionLink("Hội Đồng", "Index", "HoiDongDanhGiaKQs", null, new { @class = "ActionLinkItem" })
+                            </p>
+                            <p class="dropdown-item">
+                                @Html.ActionLink("Giảng Viên Hướng Dẫn", "Index", "GiangVienHdSinhViens", null, new { @class = "ActionLinkItem" })
+                            </p>
+                        </div>
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Giảng Viên", "Index", "GiangViens", null, new { @class = "ActionLinkItem" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Sinh Viên", "Index", "SinhViens", null, new { @class = "ActionLinkItem" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Đề Tài", "Index", "DeTais", null, new { @class = "ActionLinkItem" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Phản Biện", "Index", "PhanBiens", null, new { @class = "ActionLinkItem" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Hội Đồng", "Index", "HoiDongDanhGiaKQs", null, new { @class = "ActionLinkItem" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("SVGV", "Index", "GiangVienHdSinhViens", null, new { @class = "ActionLinkItem" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Kết Quả", "Index", "KetQuas", null, new { @class = "ActionLinkItem" })
                     </li>
                     <li class="nav-item">
                         <a href="/Authorize/Logout" class="ActionLinkItem">Logout</a>

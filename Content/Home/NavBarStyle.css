@@ -34,3 +34,8 @@
         text-decoration: none;
         color: white;
     }
+
+    #navbarSupportedContent ul li #navbarDropdown{
+        padding: 0px;
+    }
+
