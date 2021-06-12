@@ -17,7 +17,7 @@ namespace QuanLyDoAn.Controllers
 
         // GET: DeTais
 
-        public ActionResult Index()
+        public ActionResult Index(string maMonHoc2)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
@@ -26,7 +26,10 @@ namespace QuanLyDoAn.Controllers
                              .ToList()
                              .FirstOrDefault();
             ViewBag.HocKy = hocKy.ToString();
-            return View(db.DeTais.ToList());
+            var DeTais = from dt in db.DeTais
+                         where dt.MaMonHoc == maMonHoc2 
+                         select dt;
+            return View(DeTais.ToList());
         }
 
         // GET: DeTais/Details/5
@@ -117,7 +120,7 @@ namespace QuanLyDoAn.Controllers
         //Import File Excel============================================================================
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc2)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
@@ -151,7 +154,8 @@ namespace QuanLyDoAn.Controllers
                         deTai.TenDeTai = ((Excel.Range)range.Cells[row, 2]).Text;
                         deTai.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
                         deTai.MaGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
-                        deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
+                        //deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
+                        deTai.MaMonHoc = maMonHoc2;
                         deTai.SoLuongPhanBien = 0;
                         DsDeTai.Add(deTai);
                         db.DeTais.Add(deTai);

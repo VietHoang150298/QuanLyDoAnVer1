@@ -38,19 +38,18 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importExcelModal">
-        Nhập File Excel
-    </button>
-}
 
+
+}
+<input type="button" value="Nhập file excel" class="btn btn-primary" data-toggle="modal" data-target="#importExcelModal" name="maHocKy2 = @ViewBag.MaHocKy">
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys", null, new { @class = "headerButton" })</button>
+    @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.TenDeTai)
+            @Html.DisplayNameFor(model => model.MaDeTai)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MaMonHoc)
@@ -68,10 +67,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TenDeTai)
+                @Html.DisplayFor(modelItem => item.MaDeTai)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaMonHoc)
+                @Html.DisplayFor(modelItem => item.TenDeTai)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaSinhVien)

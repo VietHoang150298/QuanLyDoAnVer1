@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "KhoiTaoDLHK";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Khởi Tạo Dữ Liệu @ViewBag.HocKy</h2>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card text-primary border-primary" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Môn học</h5>
+                @Html.ActionLink("Khởi Tạo", "Index", "MonHocs", new { maHocKy2 = ViewBag.MaHocKy }, new { maHocKy2 = ViewBag.MaHocKy })
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card text-primary border-primary" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Sinh Viên</h5>
+                @Html.ActionLink("Khởi Tạo", "Index", "SinhViens")
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card text-primary border-primary" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Giảng Viên</h5>
+                @Html.ActionLink("Khởi Tạo", "Index", "GiangViens")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-lg-4">
+        <div class="card text-primary border-primary" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Danh sách giảng viên hướng dẫn sinh viên</h5>
+                @Html.ActionLink("Khởi Tạo", "Index", "GiangVienHdSinhViens")
+            </div>
+        </div>
+    </div>
+</div>

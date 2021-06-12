@@ -9,7 +9,9 @@
 <h1>@ViewBag.HocKy</h1>
 
 <p>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">
+        @Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })
+    </button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
@@ -46,7 +48,7 @@
             <td>
                 @*@Html.ActionLink("Sửa", "Edit", new { id = item.IdHocKy })|
                 @Html.ActionLink("Xóa", "Delete", new { id = item.IdHocKy })*@
-                @Html.ActionLink("Khởi Tạo", "InitialInfo", new { TenHocKy = item.TenHocKy })
+                @Html.ActionLink("Xử lý thông tin", "KhoiTaoDLHK", new {maHocKy = item.MaHocKy })
             </td>
         </tr>
     }

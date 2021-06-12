@@ -13,16 +13,15 @@ namespace QuanLyDoAn.Controllers
     public class HocKysController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
-
         // GET: HocKys
-        [Authorize]
         public ActionResult Index()
         {
             return View(db.HocKys.ToList());
         }
 
-        public ActionResult InitialInfo()
-          {
+        public ActionResult KhoiTaoDLHK(string maHocKy)
+           {
+            ViewBag.MaHocKy = maHocKy;
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
                              .Take(1)

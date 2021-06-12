@@ -164,6 +164,10 @@
     <Compile Include="Migrations\202105261552227_Update_tbl_1.Designer.cs">
       <DependentUpon>202105261552227_Update_tbl_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106091601348_Update_tbl_2.cs" />
+    <Compile Include="Migrations\202106091601348_Update_tbl_2.Designer.cs">
+      <DependentUpon>202106091601348_Update_tbl_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -383,7 +387,7 @@
     <Content Include="Views\DeTais\Edit.cshtml" />
     <Content Include="Views\DeTais\Index.cshtml" />
     <Content Include="Views\DeTais\Details.cshtml" />
-    <Content Include="Views\HocKys\InitialInfo.cshtml" />
+    <Content Include="Views\HocKys\KhoiTaoDLHK.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\Create.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\Index.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DsDeTai.cshtml" />
@@ -399,6 +403,7 @@
     <Content Include="Views\HoiDongDanhGiaKQs\Edit.cshtml" />
     <Content Include="Views\Authorize\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\MonHocs\KhoiTaoDLMH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -423,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105261552227_Update_tbl_1.resx">
       <DependentUpon>202105261552227_Update_tbl_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091601348_Update_tbl_2.resx">
+      <DependentUpon>202106091601348_Update_tbl_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

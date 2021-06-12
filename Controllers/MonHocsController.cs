@@ -7,16 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDoAn.Controllers
 {
     public class MonHocsController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
-
         // GET: MonHocs
-        public ActionResult Index()
+        public ActionResult Index(string maHocKy2)
         {
+            ViewBag.MaHocKy2 = maHocKy2;
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
                              .Take(1)
@@ -25,6 +26,19 @@ namespace QuanLyDoAn.Controllers
                              .FirstOrDefault();
             ViewBag.HocKy = hocKy;
             return View(db.MonHocs.ToList());
+        }
+
+        public ActionResult KhoiTaoDLMH(string maMonHoc)
+        {
+            ViewBag.MaMonHoc = maMonHoc;
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.TenHocKy)
+                             .ToList()
+                             .FirstOrDefault();
+            ViewBag.HocKy = hocKy.ToString();
+            return View();
         }
 
         // GET: MonHocs/Details/5
@@ -43,7 +57,7 @@ namespace QuanLyDoAn.Controllers
         }
 
         // GET: MonHocs/Create
-        public ActionResult Create(string maHocKy)
+        public ActionResult Create(string maHocKy3)
         {
             return View();
         }
@@ -53,15 +67,9 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc,string maHocKy)
+        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc, string maHocKy3)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            monHoc.MaHocKy = hocKy.ToString();
+            monHoc.MaHocKy = maHocKy3;
             if (ModelState.IsValid)
             {
                 db.MonHocs.Add(monHoc);

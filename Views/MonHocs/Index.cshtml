@@ -8,9 +8,11 @@
 <h2>Thông tin môn học @ViewBag.HocKy</h2>
 
 <p>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">
+        @Html.ActionLink("Thêm Mới", "Create", "MonHocs", new { maHocKy3 = ViewBag.MaHocKy2 }, new { maHocKy3 = ViewBag.MaHocKy2 })
+    </button>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Giảng Viên Hướng Dẫn", "Index", "GiangViens", null, new { @class = "headerButton" })</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "InitialInfo", "HocKys", null, new { @class = "headerButton" })</button>
+    @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
@@ -41,7 +43,7 @@
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdMonHoc }) |
                 @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdMonHoc }) |
-                @Html.ActionLink("Xóa", "Delete", new { id = item.IdMonHoc })
+                @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc }, new { maMonHoc = item.MaMonHoc }) 
             </td>
         </tr>
     }

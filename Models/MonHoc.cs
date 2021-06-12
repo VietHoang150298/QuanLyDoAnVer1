@@ -18,7 +18,7 @@ namespace QuanLyDoAn.Models
         [DisplayName("Tên Môn Học")]
         public string TenMonHoc { get; set; }
         [DisplayName("Điều Kiện Tiên Quyết")]
-        public bool? DieuKienTienQuyet { get; set; }
+        public string DieuKienTienQuyet { get; set; }
         [DisplayName("Mã Học Kỳ")]
         public string MaHocKy { get; set; }
     }
