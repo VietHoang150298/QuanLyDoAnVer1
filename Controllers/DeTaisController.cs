@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,7 +15,6 @@ namespace QuanLyDoAn.Controllers
     public class DeTaisController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
-
         // GET: DeTais
 
         public ActionResult Index(string maMonHoc2)
@@ -26,8 +26,9 @@ namespace QuanLyDoAn.Controllers
                              .ToList()
                              .FirstOrDefault();
             ViewBag.HocKy = hocKy.ToString();
+            ViewBag.MaMonHoc = maMonHoc2;
             var DeTais = from dt in db.DeTais
-                         where dt.MaMonHoc == maMonHoc2 
+                         where dt.MaMonHoc == maMonHoc2
                          select dt;
             return View(DeTais.ToList());
         }
@@ -154,8 +155,7 @@ namespace QuanLyDoAn.Controllers
                         deTai.TenDeTai = ((Excel.Range)range.Cells[row, 2]).Text;
                         deTai.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
                         deTai.MaGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
-                        //deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
-                        deTai.MaMonHoc = maMonHoc2;
+                        deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
                         deTai.SoLuongPhanBien = 0;
                         DsDeTai.Add(deTai);
                         db.DeTais.Add(deTai);
@@ -174,6 +174,36 @@ namespace QuanLyDoAn.Controllers
         }
 
         //Import File Excel============================================================================
+
+        // Chuyển giai đoạn=============================================================================
+
+        public ActionResult DuyetDiem(string maMonHoc3)
+        {
+            var DeTaisTTTN = from dt in db.DeTais
+                             join kq in db.KetQuas
+                             on dt.MaDeTai equals kq.MaDeTai
+                             where kq.DiemSo > 8
+                             select dt;
+            foreach (var item in DeTaisTTTN)
+            {
+                db.DeTais.Add(new DeTai()
+                {
+                    MaDeTai = item.MaDeTai,
+                    TenDeTai = item.TenDeTai,
+                    LinkFileBaoCaoCuoiCung = item.LinkFileBaoCaoCuoiCung,
+                    MaMonHoc = maMonHoc3,
+                    MaSinhVien = item.MaSinhVien,
+                    MaGiangVien = item.MaGiangVien,
+                    MaHoiDong = item.MaHoiDong,
+                    SoLuongPhanBien = item.SoLuongPhanBien
+                });
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // Chuyển giai đoạn=============================================================================
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
