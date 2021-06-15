@@ -15,5 +15,7 @@ namespace QuanLyDoAn.ViewModels
         public string TenDeTai { get; set; }
         public float DiemSo { get; set; }
         public bool? IsPhanBien { get; set; }
+        public string MaMonHoc { get; set; }
+        public string MaHocKy { get; set; }
     }
 }

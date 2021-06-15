@@ -22,14 +22,18 @@ namespace QuanLyDoAn.Controllers
             var ketQua = from a in db.KetQuas
                          join b in db.GiangViens
                          on a.MaGiangVien equals b.MaGiangVien
-                         join c in db.HoiDongDanhGiaKQs
-                         on a.MaHoiDong equals c.MaHoiDong
+                         //join c in db.HoiDongDanhGiaKQs
+                         //on a.MaHoiDong equals c.MaHoiDong
                          join d in db.DeTais
                          on a.MaDeTai equals d.MaDeTai
+                         join e in db.HocKys
+                         on a.MaHocKy equals e.MaHocKy
                          select new KetQuaViewModel
                          {
+                             MaMonHoc = a.MaMonHoc,
+                             MaDeTai = d.MaDeTai,
                              IdKetQua = a.IdKetQua,
-                             MaHoiDong = c.MaHoiDong,
+                             //MaHoiDong = c.MaHoiDong,
                              TenGiangVien = b.HoTen,
                              TenDeTai = d.TenDeTai,
                              DiemSo = a.DiemSo,
@@ -65,7 +69,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdKetQua,MaHoiDong,MaGiangVien,MaDeTai,DiemSo,NhanXet,IsPhanBien")] KetQua ketQua)
+        public ActionResult Create([Bind(Include = "IdKetQua,MaHoiDong,MaGiangVien,MaDeTai,DiemSo,NhanXet,IsPhanBien,MaMonHoc")] KetQua ketQua)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +101,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdKetQua,MaHoiDong,MaGiangVien,MaDeTai,DiemSo,NhanXet,IsPhanBien")] KetQua ketQua)
+        public ActionResult Edit([Bind(Include = "IdKetQua,MaHoiDong,MaGiangVien,MaDeTai,DiemSo,NhanXet,IsPhanBien,MaMonHoc")] KetQua ketQua)
         {
             if (ModelState.IsValid)
             {
@@ -139,6 +143,12 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
         {
+            var hocKy = db.HocKys
+                             .OrderByDescending(x => x.IdHocKy)
+                             .Take(1)
+                             .Select(x => x.MaHocKy)
+                             .ToList()
+                             .FirstOrDefault();
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select an excel file";
@@ -161,10 +171,12 @@ namespace QuanLyDoAn.Controllers
                     {
                         KetQua ketQua = new KetQua();
                         ketQua.MaHoiDong = ((Excel.Range)range.Cells[row, 1]).Text;
-                        ketQua.MaGiangVien = ((Excel.Range)range.Cells[row, 2]).Text;
-                        ketQua.MaDeTai = ((Excel.Range)range.Cells[row, 3]).Text;
-                        ketQua.DiemSo = float.Parse(((Excel.Range)range.Cells[row, 4]).Text);
-                        ketQua.NhanXet = ((Excel.Range)range.Cells[row, 5]).Text;
+                        ketQua.MaMonHoc = ((Excel.Range)range.Cells[row, 2]).Text;
+                        ketQua.MaGiangVien = ((Excel.Range)range.Cells[row, 3]).Text;
+                        ketQua.MaDeTai = ((Excel.Range)range.Cells[row, 4]).Text;
+                        ketQua.DiemSo = float.Parse(((Excel.Range)range.Cells[row, 5]).Text);
+                        ketQua.NhanXet = ((Excel.Range)range.Cells[row, 6]).Text;
+                        ketQua.MaHocKy = hocKy.ToString();
                         DsKetQua.Add(ketQua);
                         db.KetQuas.Add(ketQua);
                     }

@@ -168,6 +168,14 @@
     <Compile Include="Migrations\202106091601348_Update_tbl_2.Designer.cs">
       <DependentUpon>202106091601348_Update_tbl_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106141750383_Update_tbl_3.cs" />
+    <Compile Include="Migrations\202106141750383_Update_tbl_3.Designer.cs">
+      <DependentUpon>202106141750383_Update_tbl_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106151407133_Update_tbl_4.cs" />
+    <Compile Include="Migrations\202106151407133_Update_tbl_4.Designer.cs">
+      <DependentUpon>202106151407133_Update_tbl_4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -431,6 +439,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106091601348_Update_tbl_2.resx">
       <DependentUpon>202106091601348_Update_tbl_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106141750383_Update_tbl_3.resx">
+      <DependentUpon>202106141750383_Update_tbl_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106151407133_Update_tbl_4.resx">
+      <DependentUpon>202106151407133_Update_tbl_4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

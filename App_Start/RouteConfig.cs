@@ -18,6 +18,12 @@ namespace QuanLyDoAn
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "HocKys", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "DeTaiTheoMonHoc",
+                url: "{controller}/{action}/{id}",
+                new { controller = "DeTais", action = "Index", id = UrlParameter.Optional}
+             );
         }
     }
 }

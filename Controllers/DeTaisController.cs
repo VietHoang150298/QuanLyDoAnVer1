@@ -177,7 +177,7 @@ namespace QuanLyDoAn.Controllers
 
         // Chuyển giai đoạn=============================================================================
 
-        public ActionResult DuyetDiem(string maMonHoc3)
+        public ActionResult DuyetDiem(string maMonHoc2)
         {
             var DeTaisTTTN = from dt in db.DeTais
                              join kq in db.KetQuas
@@ -191,7 +191,7 @@ namespace QuanLyDoAn.Controllers
                     MaDeTai = item.MaDeTai,
                     TenDeTai = item.TenDeTai,
                     LinkFileBaoCaoCuoiCung = item.LinkFileBaoCaoCuoiCung,
-                    MaMonHoc = maMonHoc3,
+                    MaMonHoc = maMonHoc2,
                     MaSinhVien = item.MaSinhVien,
                     MaGiangVien = item.MaGiangVien,
                     MaHoiDong = item.MaHoiDong,
@@ -199,7 +199,7 @@ namespace QuanLyDoAn.Controllers
                 });
             }
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "DeTais", new { maMonHoc2 });
         }
 
         // Chuyển giai đoạn=============================================================================

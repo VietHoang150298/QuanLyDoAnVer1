@@ -158,7 +158,7 @@ namespace QuanLyDoAn.Controllers
                 });
                 DeTai deTai = (from a in db.DeTais
                                where a.MaDeTai == maDeTai
-                               select a).SingleOrDefault();
+                               select a).FirstOrDefault();
                 deTai.SoLuongPhanBien += 1;
                 db.SaveChanges();
             }
