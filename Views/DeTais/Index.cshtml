@@ -44,7 +44,7 @@
 <input type="button" value="Nhập file excel" class="btn btn-primary" data-toggle="modal" data-target="#importExcelModal" >
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
-    <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm", "DuyetDiem", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc })</button>
+    <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm", "DuyetDiem", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc, @class = "headerButton" })</button>
    
     @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>

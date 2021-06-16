@@ -69,17 +69,20 @@ namespace QuanLyDoAn.Controllers
                                where a.MaHoiDong == maHoiDong
                                select a).SingleOrDefault();
                 hoiDongDanhGiaKQ.DemSoLuongThanhVien += 1;
-                if (hoiDongDanhGiaKQ.SoLuongThanhVien >= 0)
-                {
-                    db.SaveChanges();
-                }
-                else
-                {
-                    ViewBag.ErrorMessage = "Vượt quá số lương thành viên, mời chọn lại!";
-                    return RedirectToAction("PhanCongThanhVienHD");
-                }
             }
-            return RedirectToAction("Index");
+            HoiDongDanhGiaKQ hoiDongDanhGiaKQ2 = (from a in db.HoiDongDanhGiaKQs
+                                                 where a.MaHoiDong == maHoiDong
+                                                 select a).SingleOrDefault();
+            if (hoiDongDanhGiaKQ2.DemSoLuongThanhVien <= hoiDongDanhGiaKQ2.SoLuongThanhVien)
+            {
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Vượt quá số lương thành viên, mời chọn lại!";
+                return RedirectToAction("PhanCongThanhVienHD");
+            }
+            return RedirectToAction("DanhSachPhanCongHD");
         }
 
         public ActionResult PhanCongDanhGia(string maHoiDong)

@@ -19,6 +19,7 @@ namespace QuanLyDoAn.Controllers
         // GET: KetQuas
         public ActionResult Index(string maMonHoc2)
         {
+            ViewBag.ErrorFlag = 0;
             ViewBag.MaMonHoc = maMonHoc2;
             var ketQua = from a in db.KetQuas
                          join b in db.GiangViens

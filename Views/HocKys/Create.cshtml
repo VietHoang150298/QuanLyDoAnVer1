@@ -23,7 +23,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TenHocKy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.MaHocKy, new { minlength = "6", maxlength = "30", @class = "TextboxStyle" })
+                @Html.TextBoxFor(model => model.TenHocKy, new { minlength = "6", maxlength = "30", @class = "TextboxStyle" })
+                @Html.ValidationMessageFor(model => model.TenHocKy, "", new { @class = "text-danger" })
             </div>
         </div>
 
