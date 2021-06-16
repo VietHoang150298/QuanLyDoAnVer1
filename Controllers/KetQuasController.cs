@@ -17,8 +17,9 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: KetQuas
-        public ActionResult Index()
+        public ActionResult Index(string maMonHoc2)
         {
+            ViewBag.MaMonHoc = maMonHoc2;
             var ketQua = from a in db.KetQuas
                          join b in db.GiangViens
                          on a.MaGiangVien equals b.MaGiangVien
@@ -28,6 +29,7 @@ namespace QuanLyDoAn.Controllers
                          on a.MaDeTai equals d.MaDeTai
                          join e in db.HocKys
                          on a.MaHocKy equals e.MaHocKy
+                         where a.MaMonHoc == maMonHoc2
                          select new KetQuaViewModel
                          {
                              MaMonHoc = a.MaMonHoc,
@@ -141,7 +143,7 @@ namespace QuanLyDoAn.Controllers
         //Import File Excel============================================================================
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc2)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
@@ -151,6 +153,7 @@ namespace QuanLyDoAn.Controllers
                              .FirstOrDefault();
             if (excelfile == null || excelfile.ContentLength == 0)
             {
+                ViewBag.ErrorFlag = 1;
                 ViewBag.Error = "Please select an excel file";
                 return View("Index");
             }
@@ -158,6 +161,7 @@ namespace QuanLyDoAn.Controllers
             {
                 if (excelfile.FileName.EndsWith("xls") || excelfile.FileName.EndsWith("xlsx"))
                 {
+                    ViewBag.ErrorFlag = 0;
                     string path = Server.MapPath("~/Content/ExcelFiles/" + excelfile.FileName);
                     if (System.IO.File.Exists(path))
                         System.IO.File.Delete(path);
@@ -183,10 +187,11 @@ namespace QuanLyDoAn.Controllers
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "KetQuas", new { maMonHoc2});
                 }
                 else
                 {
+                    ViewBag.ErrorFlag = 1;
                     ViewBag.Error = "File type is incorrect<br>";
                     return View("Index");
                 }

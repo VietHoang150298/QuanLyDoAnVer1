@@ -14,8 +14,10 @@ namespace QuanLyDoAn.Models
         [Key]
         public int IdHocKy { get; set; }
         [DisplayName("Mã Học Kỳ")]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Không được nhập ký tự đặc biệt!")]
+        [Required(ErrorMessage = "Hãy nhập mã học kỳ!")]
         public string MaHocKy { get; set; }
-
+        [Required(ErrorMessage = "Hãy nhập tên học kỳ!")]
         [StringLength(50)]
         [DisplayName("Tên Học Kỳ")]
         public string TenHocKy { get; set; }

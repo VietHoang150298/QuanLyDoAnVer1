@@ -62,14 +62,17 @@ namespace QuanLyDoAn.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.HocKys.Any(x => x.MaHocKy == hocKy.MaHocKy))
+                {
+                    ModelState.AddModelError("maHocKy", "Mã học kỳ đã tồn tại!");
+                    return View("Create");
+                }
                 db.HocKys.Add(hocKy);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(hocKy);
         }
-
         // GET: HocKys/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -100,7 +103,7 @@ namespace QuanLyDoAn.Controllers
             }
             return View(hocKy);
         }
-
+        
         // GET: HocKys/Delete/5
         public ActionResult Delete(int? id)
         {

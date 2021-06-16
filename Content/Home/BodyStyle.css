@@ -10,10 +10,26 @@
         font-size: 14px;
     }
 
-    body .body-content .btnItem {
-        padding: 1px 5px 1px 5px;
-    }
-        body .body-content p .headerButton:hover {
+        body .body-content .btnItem {
+            padding: 1px 5px 1px 5px;
+        }
+
+        body .body-content .headerButton:hover {
             text-decoration: none;
             color: white;
         }
+
+        body .body-content .TextboxStyle {
+            padding: 0px 12px;
+            height: 36px;
+            width: 400px;
+            border-radius: 4px;
+            border: 1px solid;
+            border-color: #CED4DA;
+        }
+
+            body .body-content .TextboxStyle:focus {
+                outline: none;
+                /*box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);*/
+                box-shadow: 0 0 0 0.2rem #BFDEFF;
+            }
