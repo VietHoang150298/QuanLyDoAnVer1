@@ -188,6 +188,18 @@
     <Compile Include="Migrations\202106161750598_Update_tbl_7.Designer.cs">
       <DependentUpon>202106161750598_Update_tbl_7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106171251580_Update_tbl_8.cs" />
+    <Compile Include="Migrations\202106171251580_Update_tbl_8.Designer.cs">
+      <DependentUpon>202106171251580_Update_tbl_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106171259380_Update_tbl_9.cs" />
+    <Compile Include="Migrations\202106171259380_Update_tbl_9.Designer.cs">
+      <DependentUpon>202106171259380_Update_tbl_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106171300347_Update_tbl_10.cs" />
+    <Compile Include="Migrations\202106171300347_Update_tbl_10.Designer.cs">
+      <DependentUpon>202106171300347_Update_tbl_10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -197,6 +209,7 @@
     <Compile Include="Models\HocKy.cs" />
     <Compile Include="Models\HoiDongDanhGiaKQ.cs" />
     <Compile Include="Models\KetQua.cs" />
+    <Compile Include="Models\LoaiMonHoc.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\PhanBien.cs" />
     <Compile Include="Models\PhanBienDeTai.cs" />
@@ -466,6 +479,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106161750598_Update_tbl_7.resx">
       <DependentUpon>202106161750598_Update_tbl_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106171251580_Update_tbl_8.resx">
+      <DependentUpon>202106171251580_Update_tbl_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106171259380_Update_tbl_9.resx">
+      <DependentUpon>202106171259380_Update_tbl_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106171300347_Update_tbl_10.resx">
+      <DependentUpon>202106171300347_Update_tbl_10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
