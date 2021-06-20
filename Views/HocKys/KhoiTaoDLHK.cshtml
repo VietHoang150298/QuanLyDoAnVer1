@@ -3,10 +3,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@foreach (var item in ViewBag.HocKy)
+{
+<h2>Khởi Tạo Dữ Liệu @item.TenHocKy</h2>
+}
 
-<h2>Khởi Tạo Dữ Liệu @ViewBag.HocKy</h2>
 
-<div class="row">
+<div class="row mt-4">
     <div class="col-lg-4">
         <div class="card text-primary border-primary" style="width: 18rem;">
             <div class="card-body">

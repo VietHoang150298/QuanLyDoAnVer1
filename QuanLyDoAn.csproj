@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoaiMonHocsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Controllers\AuthorizeController.cs" />
     <Compile Include="Controllers\DeTaisController.cs" />
@@ -200,6 +201,10 @@
     <Compile Include="Migrations\202106171300347_Update_tbl_10.Designer.cs">
       <DependentUpon>202106171300347_Update_tbl_10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106200225123_Update_tbl_11.cs" />
+    <Compile Include="Migrations\202106200225123_Update_tbl_11.Designer.cs">
+      <DependentUpon>202106200225123_Update_tbl_11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -221,7 +226,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DeTaiViewModel.cs" />
     <Compile Include="ViewModels\GiangVienHuongDanViewModel.cs" />
+    <Compile Include="ViewModels\HocKyViewModel.cs" />
     <Compile Include="ViewModels\KetQuaViewModel.cs" />
+    <Compile Include="ViewModels\MonHocViewModel.cs" />
     <Compile Include="ViewModels\PhanBienViewModel.cs" />
     <Compile Include="ViewModels\SinhVienViewModel.cs" />
   </ItemGroup>
@@ -286,6 +293,11 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\LoaiMonHocs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiMonHocs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiMonHocs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiMonHocs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiMonHocs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -488,6 +500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106171300347_Update_tbl_10.resx">
       <DependentUpon>202106171300347_Update_tbl_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106200225123_Update_tbl_11.resx">
+      <DependentUpon>202106200225123_Update_tbl_11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

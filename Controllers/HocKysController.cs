@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
+using QuanLyDoAn.ViewModels;
 
 namespace QuanLyDoAn.Controllers
 {
@@ -22,13 +23,10 @@ namespace QuanLyDoAn.Controllers
         public ActionResult KhoiTaoDLHK(string maHocKy)
            {
             ViewBag.MaHocKy = maHocKy;
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy.ToString();
+            var hocKy = from a in db.HocKys
+                           where a.MaHocKy == maHocKy
+                           select new HocKyViewModel {TenHocKy = a.TenHocKy};
+            ViewBag.HocKy = hocKy.ToList();
             return View();
         }
 

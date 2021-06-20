@@ -26,5 +26,6 @@ namespace QuanLyDoAn.Models
 
         [DisplayName("Mã Học Kỳ")]
         public string MaHocKy { get; set; }
+        public string MaMonHoc { get; set; }
     }
 }

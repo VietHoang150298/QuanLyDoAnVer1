@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
+using QuanLyDoAn.ViewModels;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDoAn.Controllers
@@ -19,13 +20,11 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult Index(string maMonHoc2)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy.ToString();
+            ViewBag.ErrorFlag = 0;
+            var monHoc = from a in db.MonHocs
+                        where a.MaMonHoc == maMonHoc2
+                        select new MonHocViewModel { TenMonHoc = a.TenMonHoc, IdLoaiMonHoc = a.IdLoaiMonHoc};
+            ViewBag.MonHoc = monHoc.ToList();
             ViewBag.MaMonHoc = maMonHoc2;
             var DeTais = from dt in db.DeTais
                          where dt.MaMonHoc == maMonHoc2
@@ -123,6 +122,10 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc2)
         {
+            var monHoc = from a in db.MonHocs
+                         where a.MaMonHoc == maMonHoc2
+                         select new MonHocViewModel { TenMonHoc = a.TenMonHoc };
+            ViewBag.MonHoc = monHoc.ToList();
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
                              .Take(1)
@@ -132,13 +135,15 @@ namespace QuanLyDoAn.Controllers
             ViewBag.HocKy = hocKy;
             if (excelfile == null || excelfile.ContentLength == 0)
             {
-                ViewBag.Error = "Please select an excel file";
-                return View("Index");
+                ViewBag.ErrorFlag = 1;
+                ViewBag.Error = "Hãy chọn một file Excel!";
+                return RedirectToAction("Index", "DeTais", new { maMonHoc2 });
             }
             else
             {
                 if (excelfile.FileName.EndsWith("xls") || excelfile.FileName.EndsWith("xlsx"))
                 {
+                    ViewBag.ErrorFlag = 0;
                     string path = Server.MapPath("~/Content/ExcelFiles/" + excelfile.FileName);
                     if (System.IO.File.Exists(path))
                         System.IO.File.Delete(path);
@@ -163,11 +168,12 @@ namespace QuanLyDoAn.Controllers
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "DeTais", new { maMonHoc2 });
                 }
                 else
                 {
-                    ViewBag.Error = "File type is incorrect<br>";
+                    ViewBag.ErrorFlag = 1;
+                    ViewBag.Error = "Định dạng file không đúng!<br>";
                     return View("Index");
                 }
             }
@@ -182,7 +188,7 @@ namespace QuanLyDoAn.Controllers
             var DeTaisTTTN = from dt in db.DeTais
                              join kq in db.KetQuas
                              on dt.MaDeTai equals kq.MaDeTai
-                             where kq.DiemSo > 8
+                             where kq.DiemSo >=5
                              select dt;
             foreach (var item in DeTaisTTTN)
             {

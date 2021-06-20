@@ -188,7 +188,7 @@ namespace QuanLyDoAn.Controllers
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index", "KetQuas", new { maMonHoc2});
+                    return RedirectToAction("Index", "KetQuas", new { maMonHoc2 });
                 }
                 else
                 {

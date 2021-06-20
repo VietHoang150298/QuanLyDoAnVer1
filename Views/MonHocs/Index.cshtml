@@ -5,7 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin môn học @ViewBag.HocKy</h2>
+@foreach (var item in ViewBag.HocKy)
+{
+    <h2>Thông Tin Môn Học @item.TenHocKy</h2>
+}
 
 <p>
     <button class="btn btn-outline-primary mt-3">
@@ -42,7 +45,7 @@
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdMonHoc }) |
                 @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdMonHoc }) |
-                @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc }, new { maMonHoc = item.MaMonHoc }) 
+                @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc }, new { maMonHoc = item.MaMonHoc })
             </td>
         </tr>
     }

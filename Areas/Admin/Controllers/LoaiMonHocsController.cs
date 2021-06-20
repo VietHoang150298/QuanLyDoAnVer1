@@ -7,129 +7,110 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
-using QuanLyDoAn.ViewModels;
-using Excel = Microsoft.Office.Interop.Excel;
 
-namespace QuanLyDoAn.Controllers
+namespace QuanLyDoAn.Areas.Admin.Controllers
 {
-    public class MonHocsController : Controller
+    public class LoaiMonHocsController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
-        // GET: MonHocs
-        public ActionResult Index(string maHocKy2)
+
+        // GET: Admin/LoaiMonHocs
+        public ActionResult Index()
         {
-            ViewBag.MaHocKy2 = maHocKy2;
-            var hocKy = from a in db.HocKys
-                        where a.MaHocKy == maHocKy2
-                        select new HocKyViewModel { TenHocKy = a.TenHocKy };
-            ViewBag.HocKy = hocKy.ToList();
-            return View(db.MonHocs.ToList());
+            return View(db.LoaiMonHocs.ToList());
         }
 
-        public ActionResult KhoiTaoDLMH(string maMonHoc)
-        {
-            ViewBag.MaMonHoc = maMonHoc;
-            var monHoc = from a in db.MonHocs
-                        where a.MaMonHoc == maMonHoc
-                        select new MonHocViewModel { TenMonHoc = a.TenMonHoc, IdLoaiMonHoc = a.IdLoaiMonHoc };
-            ViewBag.MonHoc = monHoc.ToList();
-            return View();
-        }
-
-        // GET: MonHocs/Details/5
+        // GET: Admin/LoaiMonHocs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MonHoc monHoc = db.MonHocs.Find(id);
-            if (monHoc == null)
+            LoaiMonHoc loaiMonHoc = db.LoaiMonHocs.Find(id);
+            if (loaiMonHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(monHoc);
+            return View(loaiMonHoc);
         }
 
-        // GET: MonHocs/Create
-        public ActionResult Create(string maHocKy3)
+        // GET: Admin/LoaiMonHocs/Create
+        public ActionResult Create()
         {
-            ViewBag.TenLoaiMonHoc = new SelectList(db.LoaiMonHocs, "IdLoaiMonHoc", "TenLoaiMonHoc");
             return View();
         }
 
-        // POST: MonHocs/Create
+        // POST: Admin/LoaiMonHocs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,IdLoaiMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc, string maHocKy3)
+        public ActionResult Create([Bind(Include = "IdLoaiMonHoc,TenLoaiMonHoc")] LoaiMonHoc loaiMonHoc)
         {
-            
-            monHoc.MaHocKy = maHocKy3;
             if (ModelState.IsValid)
             {
-                db.MonHocs.Add(monHoc);
+                db.LoaiMonHocs.Add(loaiMonHoc);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(monHoc);
+            return View(loaiMonHoc);
         }
 
-        // GET: MonHocs/Edit/5
+        // GET: Admin/LoaiMonHocs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MonHoc monHoc = db.MonHocs.Find(id);
-            if (monHoc == null)
+            LoaiMonHoc loaiMonHoc = db.LoaiMonHocs.Find(id);
+            if (loaiMonHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(monHoc);
+            return View(loaiMonHoc);
         }
 
-        // POST: MonHocs/Edit/5
+        // POST: Admin/LoaiMonHocs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdMonHoc,MaMonHoc,TenMonHoc,IdLoaiMonHoc,DieuKienTienQuyet,MaHocKy")] MonHoc monHoc)
+        public ActionResult Edit([Bind(Include = "IdLoaiMonHoc,TenLoaiMonHoc")] LoaiMonHoc loaiMonHoc)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(monHoc).State = EntityState.Modified;
+                db.Entry(loaiMonHoc).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(monHoc);
+            return View(loaiMonHoc);
         }
 
-        // GET: MonHocs/Delete/5
+        // GET: Admin/LoaiMonHocs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MonHoc monHoc = db.MonHocs.Find(id);
-            if (monHoc == null)
+            LoaiMonHoc loaiMonHoc = db.LoaiMonHocs.Find(id);
+            if (loaiMonHoc == null)
             {
                 return HttpNotFound();
             }
-            return View(monHoc);
+            return View(loaiMonHoc);
         }
 
-        // POST: MonHocs/Delete/5
+        // POST: Admin/LoaiMonHocs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MonHoc monHoc = db.MonHocs.Find(id);
-            db.MonHocs.Remove(monHoc);
+            LoaiMonHoc loaiMonHoc = db.LoaiMonHocs.Find(id);
+            db.LoaiMonHocs.Remove(loaiMonHoc);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

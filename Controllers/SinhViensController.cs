@@ -42,7 +42,7 @@ namespace QuanLyDoAn.Controllers
                 sinhViens = sinhViens.Where(s => s.HoTen.Contains(searchString) || s.MaSinhVien.Contains(searchString));
             }
 
-            int pageSize = 10;
+            int pageSize = 15;
             int pageNumber = (page ?? 1);
             return View(sinhViens.ToList().ToPagedList(pageNumber, pageSize));
         }

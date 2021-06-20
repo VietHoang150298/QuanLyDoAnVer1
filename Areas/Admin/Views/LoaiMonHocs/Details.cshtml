@@ -1,0 +1,27 @@
+﻿@model QuanLyDoAn.Models.LoaiMonHoc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoaiMonHoc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLoaiMonHoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoaiMonHoc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdLoaiMonHoc }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
