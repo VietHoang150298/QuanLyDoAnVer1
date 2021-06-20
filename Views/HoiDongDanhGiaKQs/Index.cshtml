@@ -8,7 +8,9 @@
 <h2>Danh sách hội đồng</h2>
 
 <p>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">
+        @Html.ActionLink("Thêm Mới", "Create", "HoiDongDanhGiaKQs", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })
+    </button>
     @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Phân công hội đồng", "DanhSachPhanCongHD", null, new { @class = "headerButton" })</button>
 </p>
@@ -24,7 +26,7 @@
             @Html.DisplayNameFor(model => model.SoLuongThanhVien)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaHocKy)
+            @Html.DisplayNameFor(model => model.MaMonHoc)
         </th>
         <th></th>
     </tr>
@@ -42,11 +44,11 @@
                 @Html.DisplayFor(modelItem => item.SoLuongThanhVien)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaHocKy)
+                @Html.DisplayFor(modelItem => item.MaMonHoc)
             </td>
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdHoiDongDGKQ }) |
-                @Html.ActionLink("Chọn Đề Tài", "PhanCongDanhGia", new { maHoiDong = item.MaHoiDong }) 
+                @Html.ActionLink("Chọn Đề Tài", "PhanCongDanhGia", new { maHoiDong = item.MaHoiDong, maMonHoc = item.MaMonHoc })
             </td>
         </tr>
     }

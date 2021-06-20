@@ -26,7 +26,7 @@
             Đã phân công
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaHocKy)
+            @Html.DisplayNameFor(model => model.MaMonHoc)
         </th>
         <th></th>
     </tr>
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.DemSoLuongThanhVien)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaHocKy)
+                @Html.DisplayFor(modelItem => item.MaMonHoc)
             </td>
             <td>
                 @Html.ActionLink("Phân Công", "PhanCongThanhVienHD", new { maHoiDong = item.MaHoiDong }) 

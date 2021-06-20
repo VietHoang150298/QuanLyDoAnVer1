@@ -15,34 +15,29 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
         // GET: HoiDongDanhGiaKQs
 
-        public ActionResult Index()
+        public ActionResult Index(string maMonHoc)
         {
+            ViewBag.MaMonHoc = maMonHoc;
             return View(db.HoiDongDanhGiaKQs.ToList());
         }
-        public ActionResult Create()
+        public ActionResult Create(string maMonHoc)
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaHocKy")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
+        public ActionResult Create([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaMonHoc")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ, string maMonHoc)
         {
             hoiDongDanhGiaKQ.DemSoLuongThanhVien = 0;
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            hoiDongDanhGiaKQ.MaHocKy = hocKy.ToString();
+            hoiDongDanhGiaKQ.MaMonHoc = maMonHoc;
             if (ModelState.IsValid)
             {
                 db.HoiDongDanhGiaKQs.Add(hoiDongDanhGiaKQ);
                 db.SaveChanges();
                 RedirectToAction("ChonHoiDong");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc });
         }
 
         public ActionResult DanhSachPhanCongHD()
@@ -85,9 +80,10 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("DanhSachPhanCongHD");
         }
 
-        public ActionResult PhanCongDanhGia(string maHoiDong)
+        public ActionResult PhanCongDanhGia(string maHoiDong, string maMonHoc)
         {
-            return View(db.DeTais.ToList());
+            //return View(db.DeTais.Where(m => m.MaMonHoc == maMonHoc).Where(s => s.MaHoiDong == null).ToList());
+            return View(db.DeTais.Where(m => m.MaMonHoc == maMonHoc).ToList());
         }
         
         [HttpPost]
@@ -122,7 +118,7 @@ namespace QuanLyDoAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaHocKy")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
+        public ActionResult Edit([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaMonHoc")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
         {
             if (ModelState.IsValid)
             {
