@@ -45,9 +45,13 @@
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
     @foreach (var item in ViewBag.MonHoc)
     {
-        if (item.IdLoaiMonHoc > 1)
+        if (item.IdLoaiMonHoc == 2)
         {
-            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm", "DuyetDiem", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc, @class = "headerButton" })</button>
+            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm", "DuyetDiemTTSX", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc, @class = "headerButton" })</button>
+        }
+        else if(item.IdLoaiMonHoc == 3)
+        {
+            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm TTTN", "DuyetDiemTTTN", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc, @class = "headerButton" })</button>
         }
 
     }

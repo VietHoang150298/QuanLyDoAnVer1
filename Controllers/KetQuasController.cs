@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using QuanLyDoAn.Models;
 using QuanLyDoAn.ViewModels;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -17,7 +18,7 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: KetQuas
-        public ActionResult Index(string maMonHoc2)
+        public ActionResult Index(string maMonHoc2, string currentFilter, string searchString, int? page)
         {
             ViewBag.ErrorFlag = 0;
             ViewBag.MaMonHoc = maMonHoc2;
@@ -28,8 +29,6 @@ namespace QuanLyDoAn.Controllers
                          //on a.MaHoiDong equals c.MaHoiDong
                          join d in db.DeTais
                          on a.MaDeTai equals d.MaDeTai
-                         join e in db.HocKys
-                         on a.MaHocKy equals e.MaHocKy
                          where a.MaMonHoc == maMonHoc2
                          select new KetQuaViewModel
                          {
@@ -43,6 +42,24 @@ namespace QuanLyDoAn.Controllers
                              IsPhanBien = a.IsPhanBien
                          };
             ViewBag.KetQua = ketQua.ToList();
+            //if (searchString != null)
+            //{
+            //    page = 1;
+            //}
+            //else
+            //{
+            //    searchString = currentFilter;
+            //}
+            //ViewBag.CurrentFilter = searchString;
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    ketQua = ketQua.Where(s => s.MaDeTai.Contains(searchString) || s.MaDeTai.Contains(searchString));
+            //}
+
+            //int pageSize = 10;
+            //int pageNumber = (page ?? 1);
+            //ViewBag.KetQua = ketQua.ToList();
+            //return View(ketQua.ToList().ToPagedList(pageNumber, pageSize));
             return View();
         }
 
@@ -146,12 +163,6 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc2)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.ErrorFlag = 1;
@@ -176,12 +187,11 @@ namespace QuanLyDoAn.Controllers
                     {
                         KetQua ketQua = new KetQua();
                         ketQua.MaHoiDong = ((Excel.Range)range.Cells[row, 1]).Text;
-                        ketQua.MaMonHoc = ((Excel.Range)range.Cells[row, 2]).Text;
-                        ketQua.MaGiangVien = ((Excel.Range)range.Cells[row, 3]).Text;
-                        ketQua.MaDeTai = ((Excel.Range)range.Cells[row, 4]).Text;
-                        ketQua.DiemSo = float.Parse(((Excel.Range)range.Cells[row, 5]).Text);
-                        ketQua.NhanXet = ((Excel.Range)range.Cells[row, 6]).Text;
-                        ketQua.MaHocKy = hocKy.ToString();
+                        ketQua.MaMonHoc = maMonHoc2;
+                        ketQua.MaGiangVien = ((Excel.Range)range.Cells[row, 2]).Text;
+                        ketQua.MaDeTai = ((Excel.Range)range.Cells[row, 3]).Text;
+                        ketQua.DiemSo = float.Parse(((Excel.Range)range.Cells[row, 4]).Text);
+                        ketQua.NhanXet = ((Excel.Range)range.Cells[row, 5]).Text;
                         DsKetQua.Add(ketQua);
                         db.KetQuas.Add(ketQua);
                     }

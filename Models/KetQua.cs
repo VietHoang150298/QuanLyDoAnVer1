@@ -21,8 +21,6 @@ namespace QuanLyDoAn.Models
         public string MaDeTai { get; set; }
         [DisplayName("Mã Môn Học")]
         public string MaMonHoc { get; set; }
-        [DisplayName("Mã Học Kỳ")]
-        public string MaHocKy { get; set; }
         [DisplayName("Điểm Số")]
         public float DiemSo { get; set; }
         [DisplayName("Nhận Xét")]

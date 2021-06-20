@@ -1,4 +1,6 @@
-﻿@{
+﻿@*@model PagedList.IPagedList<QuanLyDoAn.ViewModels.KetQuaViewModel>
+@using PagedList.Mvc*@
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -39,12 +41,13 @@
 }
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
     @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            Mã Kết Quả
+            Mã Môn Học
         </th>
         <th>
             Mã Đề Tài
@@ -96,4 +99,8 @@
 
 
 </table>
+@*<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
+@Html.PagedListPager(Model, page => Url.Action("Index", "KetQuas",
+    new { page }))*@

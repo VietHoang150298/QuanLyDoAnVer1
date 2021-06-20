@@ -209,6 +209,10 @@
     <Compile Include="Migrations\202106200620051_Update_tbl_12.Designer.cs">
       <DependentUpon>202106200620051_Update_tbl_12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106200758479_Update_tbl_13.cs" />
+    <Compile Include="Migrations\202106200758479_Update_tbl_13.Designer.cs">
+      <DependentUpon>202106200758479_Update_tbl_13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -453,6 +457,7 @@
     <Content Include="Views\Authorize\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\MonHocs\KhoiTaoDLMH.cshtml" />
+    <Content Include="Views\DeTais\DuyetDiemTTTN.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -510,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106200620051_Update_tbl_12.resx">
       <DependentUpon>202106200620051_Update_tbl_12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106200758479_Update_tbl_13.resx">
+      <DependentUpon>202106200758479_Update_tbl_13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
