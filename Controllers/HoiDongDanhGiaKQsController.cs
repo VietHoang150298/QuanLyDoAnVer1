@@ -12,7 +12,7 @@ namespace QuanLyDoAn.Controllers
 {
     public class HoiDongDanhGiaKQsController : Controller
     {
-        private QLDADbContext db = new QLDADbContext();
+        private readonly QLDADbContext db = new QLDADbContext();
         // GET: HoiDongDanhGiaKQs
 
         public ActionResult Index(string maMonHoc)
@@ -39,7 +39,7 @@ namespace QuanLyDoAn.Controllers
                 }
                 db.HoiDongDanhGiaKQs.Add(hoiDongDanhGiaKQ);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc });
             }
             return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc });
         }

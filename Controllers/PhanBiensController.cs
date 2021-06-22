@@ -16,7 +16,7 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: PhanBiens
-        public ActionResult Index()
+        public ActionResult Index(string maMonHoc2)
         {
             var phanBien = from a in db.PhanBiens
                            join b in db.GiangViens
@@ -28,6 +28,7 @@ namespace QuanLyDoAn.Controllers
                                TenGiangVien = b.HoTen
                            };
             ViewBag.PhanBien = phanBien.ToList();
+            ViewBag.MaMonHoc = maMonHoc2;
             return View();
 
 
@@ -114,23 +115,25 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult KhoiTaoPhanBien()
+        public ActionResult KhoiTaoPhanBien(string maMonHoc)
         {
             return View(db.GiangViens.ToList());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult KhoiTaoPhanBien([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien, string[] maGiangViens)
+        //public ActionResult KhoiTaoPhanBien([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien, string[] maGiangViens, string maMonHoc)
+        public ActionResult KhoiTaoPhanBien(string[] maGiangViens, string maMonHoc)
         {
             foreach (var maGiangVien in maGiangViens)
             {
                 db.PhanBiens.Add(new PhanBien
                 {
-                    MaGiangVien = maGiangVien
+                    MaGiangVien = maGiangVien,
+                    MaMonHoc = maMonHoc
                 });
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","PhanBiens",new { maMonHoc});
         }
 
         public ActionResult PhanCongPhanBien(string maGiangVien)
@@ -143,18 +146,11 @@ namespace QuanLyDoAn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PhanCongPhanBien([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
             foreach (var maDeTai in maDeTais)
             {
                 db.PhanBienDeTais.Add(new PhanBienDeTai { 
                     MaDeTai = maDeTai,
-                    MaGiangVien = maGiangVien,
-                    MaHocKy = hocKy.ToString()
+                    MaGiangVien = maGiangVien
                 });
                 DeTai deTai = (from a in db.DeTais
                                where a.MaDeTai == maDeTai

@@ -213,6 +213,14 @@
     <Compile Include="Migrations\202106200758479_Update_tbl_13.Designer.cs">
       <DependentUpon>202106200758479_Update_tbl_13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106222326103_Update_tbl_14.cs" />
+    <Compile Include="Migrations\202106222326103_Update_tbl_14.Designer.cs">
+      <DependentUpon>202106222326103_Update_tbl_14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106222330476_Update_tbl_15.cs" />
+    <Compile Include="Migrations\202106222330476_Update_tbl_15.Designer.cs">
+      <DependentUpon>202106222330476_Update_tbl_15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -518,6 +526,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106200758479_Update_tbl_13.resx">
       <DependentUpon>202106200758479_Update_tbl_13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106222326103_Update_tbl_14.resx">
+      <DependentUpon>202106222326103_Update_tbl_14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106222330476_Update_tbl_15.resx">
+      <DependentUpon>202106222330476_Update_tbl_15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

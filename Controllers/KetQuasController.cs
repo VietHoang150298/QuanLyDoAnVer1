@@ -41,7 +41,7 @@ namespace QuanLyDoAn.Controllers
                              DiemSo = a.DiemSo,
                              IsPhanBien = a.IsPhanBien
                          };
-            ViewBag.KetQua = ketQua.ToList();
+            ViewBag.KetQua = ketQua.Distinct().ToList();
             //if (searchString != null)
             //{
             //    page = 1;

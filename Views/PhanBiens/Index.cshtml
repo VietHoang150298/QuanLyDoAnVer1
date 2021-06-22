@@ -7,7 +7,7 @@
 
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm phản biện theo danh sách", "KhoiTaoPhanBien", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm phản biện theo danh sách", "KhoiTaoPhanBien", "PhanBiens", new { maMonHoc = ViewBag.MaMonHoc }, new { @class = "headerButton" })</button>
     @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>
 <table class="table table-bordered text-wrap">
@@ -31,7 +31,7 @@
                 @item.TenGiangVien
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdPhanBien }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IdPhanBien }) |
                 @Html.ActionLink("Chọn Phản Biện", "PhanCongPhanBien", new { maGiangVien = item.MaGiangVien })
             </td>
         </tr>

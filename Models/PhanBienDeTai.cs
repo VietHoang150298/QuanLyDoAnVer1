@@ -12,7 +12,6 @@ namespace QuanLyDoAn.Models
     {
         [Key]
         public int IdPhanBienDeTai { get; set; }
-        public string MaHocKy { get; set; }
         public string MaGiangVien { get; set; }
         public string MaDeTai { get; set; }
 
