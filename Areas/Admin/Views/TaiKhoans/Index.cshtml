@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.Account>
+﻿@model IEnumerable<QuanLyDoAn.Models.TaiKhoan>
 
 @{
     ViewBag.Title = "Index";
@@ -13,16 +13,16 @@
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.TenTaiKhoan)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.MatKhau)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RoleId)
+            @Html.DisplayNameFor(model => model.IdVaiTro)
         </th>
         <th></th>
     </tr>
@@ -31,21 +31,21 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.TenTaiKhoan)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                @Html.DisplayFor(modelItem => item.MatKhau)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RoleId)
+                @Html.DisplayFor(modelItem => item.IdVaiTro)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AccountId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AccountId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AccountId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdTaiKhoan }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdTaiKhoan }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdTaiKhoan })
             </td>
         </tr>
     }

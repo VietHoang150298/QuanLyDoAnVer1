@@ -1,4 +1,4 @@
-﻿@model QuanLyDoAn.Models.Role
+﻿@model QuanLyDoAn.Models.VaiTro
 
 @{
     ViewBag.Title = "Edit";
@@ -15,13 +15,13 @@
         <h4>Role</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.RoleId)
+        @Html.HiddenFor(model => model.IdVaiTro)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TenVaiTro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.TenVaiTro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenVaiTro, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -14,6 +14,7 @@ namespace QuanLyDoAn.Models
         [Key]
         public int IdLoaiMonHoc { get; set; }
         [DisplayName("Tên Loại Môn Học")]
+        [StringLength(50)]
         public string TenLoaiMonHoc { get; set; }
     }
 }

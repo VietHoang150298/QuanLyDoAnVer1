@@ -10,24 +10,24 @@ using QuanLyDoAn.Models;
 
 namespace QuanLyDoAn.Areas.Admin.Controllers
 {
-    public class RolesController : Controller
+    public class VaiTrosController : Controller
     {
         private QLDADbContext db = new QLDADbContext();
 
-        // GET: Admin/Roles
+        // GET: Admin/VaiTros
         public ActionResult Index()
         {
-            return View(db.Roles.ToList());
+            return View(db.VaiTros.ToList());
         }
 
-        // GET: Admin/Roles/Details/5
+        // GET: Admin/VaiTros/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
+            VaiTro role = db.VaiTros.Find(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -35,37 +35,37 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
             return View(role);
         }
 
-        // GET: Admin/Roles/Create
+        // GET: Admin/VaiTros/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Roles/Create
+        // POST: Admin/VaiTros/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoleId,RoleName")] Role role)
+        public ActionResult Create([Bind(Include = "IdVaiTro, TenVaiTro")] VaiTro vaiTro)
         {
             if (ModelState.IsValid)
             {
-                db.Roles.Add(role);
+                db.VaiTros.Add(vaiTro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(role);
+            return View(vaiTro);
         }
 
-        // GET: Admin/Roles/Edit/5
+        // GET: Admin/VaiTros/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
+            VaiTro role = db.VaiTros.Find(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -73,30 +73,30 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
             return View(role);
         }
 
-        // POST: Admin/Roles/Edit/5
+        // POST: Admin/VaiTros/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleId,RoleName")] Role role)
+        public ActionResult Edit([Bind(Include = "IdVaiTro, TenVaiTro")] VaiTro vaiTro)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(role).State = EntityState.Modified;
+                db.Entry(vaiTro).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(role);
+            return View(vaiTro);
         }
 
-        // GET: Admin/Roles/Delete/5
+        // GET: Admin/VaiTros/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
+            VaiTro role = db.VaiTros.Find(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -104,13 +104,13 @@ namespace QuanLyDoAn.Areas.Admin.Controllers
             return View(role);
         }
 
-        // POST: Admin/Roles/Delete/5
+        // POST: Admin/VaiTros/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Role role = db.Roles.Find(id);
-            db.Roles.Remove(role);
+            VaiTro role = db.VaiTros.Find(id);
+            db.VaiTros.Remove(role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

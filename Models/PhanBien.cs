@@ -15,8 +15,10 @@ namespace QuanLyDoAn.Models
         public int IdPhanBien { get; set; }
 
         [DisplayName("Mã Giảng Viên")]
+        [StringLength(50)]
         public string MaGiangVien { get; set; }
         [DisplayName("Mã Môn Học")]
+        [StringLength(50)]
         public string MaMonHoc { get; set; }
     }
 }

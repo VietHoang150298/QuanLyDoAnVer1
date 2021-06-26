@@ -22,8 +22,8 @@ namespace QuanLyDoAn.Models
         public virtual DbSet<GiangVienHdSinhVien> GiangVienHdSinhViens { get; set; }
         public virtual DbSet<PhanBienDeTai> PhanBienDeTais { get; set; }
         public virtual DbSet<KetQua> KetQuas { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<VaiTro> VaiTros { get; set; }
         public virtual DbSet<LoaiMonHoc> LoaiMonHocs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

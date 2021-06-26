@@ -7,22 +7,25 @@ using System.Web;
 
 namespace QuanLyDoAn.Models
 {
-    [Table("Accounts")]
-    public class Account
+    [Table("TaiKhoans")]
+    public class TaiKhoan
     {
         [Key]
-        public int AccountId { get; set; }
+        public int IdTaiKhoan { get; set; }
         [StringLength(50)]
-        public string UserName { get; set; }
+        public string TenTaiKhoan { get; set; }
+        [StringLength(50)]
         public string Email { get; set; }
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        [StringLength(50)]
+        public string MatKhau { get; set; }
         [Required]
         [NotMapped]
-        [Compare("Password", ErrorMessage = "Password and confirm password does not match.")]
+        [Compare("MatKhau", ErrorMessage = "Mật Khẩu Xác Nhận Không Đúng.")]
         [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
+        [StringLength(50)]
+        public string MatKhauXacNhan { get; set; }
         [StringLength(20)]
-        public string RoleId { get; set; }
+        public string IdVaiTro { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.Role>
-
+﻿@model IEnumerable<QuanLyDoAn.Models.VaiTro>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -13,7 +12,7 @@
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.RoleName)
+            @Html.DisplayNameFor(model => model.TenVaiTro)
         </th>
         <th></th>
     </tr>
@@ -22,12 +21,12 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RoleName)
+                @Html.DisplayFor(modelItem => item.TenVaiTro)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.RoleId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.RoleId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.RoleId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdVaiTro }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdVaiTro }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdVaiTro })
             </td>
         </tr>
     }

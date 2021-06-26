@@ -7,13 +7,13 @@ using System.Web;
 
 namespace QuanLyDoAn.Models
 {
-    [Table("Roles")]
-    public class Role
+    [Table("VaiTros")]
+    public class VaiTro
     {
         [Key]
         [StringLength(20)]
-        public string RoleId { get; set; }
+        public string IdVaiTro { get; set; }
         [StringLength(50)]
-        public string RoleName { get; set; }
+        public string TenVaiTro { get; set; }
     }
 }

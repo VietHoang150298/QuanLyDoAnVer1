@@ -13,12 +13,16 @@ namespace QuanLyDoAn.Models
     {
         [Key]
         public int IdKetQua { get; set; }
+        [StringLength(50)]
         [DisplayName("Mã Hội Đồng")]
         public string MaHoiDong { get; set; }
+        [StringLength(50)]
         [DisplayName("Mã Giảng Viên")]
         public string MaGiangVien { get; set; }
+        [StringLength(50)]
         [DisplayName("Mã Đề Tài")]
         public string MaDeTai { get; set; }
+        [StringLength(50)]
         [DisplayName("Mã Môn Học")]
         public string MaMonHoc { get; set; }
         [DisplayName("Điểm Số")]

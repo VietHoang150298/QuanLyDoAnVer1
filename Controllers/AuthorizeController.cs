@@ -19,8 +19,8 @@ namespace QuanLyDoAn.Controllers
                 var user = HttpContext.Session["idUser"];
                 if (user != null)
                 {
-                    //var role = db.Accounts.Find(user.ToString()).RoleId;
-                    var role = db.Accounts.Where(m => m.Email == user.ToString()).FirstOrDefault().RoleId;
+                    //var role = db.TaiKhoans.Find(user.ToString()).RoleId;
+                    var role = db.TaiKhoans.Where(m => m.Email == user.ToString()).FirstOrDefault().IdVaiTro;
                     if (role != null)
                     {
                         if (role.ToString() == "1")
@@ -44,27 +44,27 @@ namespace QuanLyDoAn.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(Account acc, string returnUrl)
+        public ActionResult Login(TaiKhoan acc, string returnUrl)
         {
             StringProcess strPro = new StringProcess();
             try
             {
-                if (!string.IsNullOrEmpty(acc.Email) && !string.IsNullOrEmpty(acc.Password))
+                if (!string.IsNullOrEmpty(acc.Email) && !string.IsNullOrEmpty(acc.MatKhau))
                 {
 
                     using (var db = new QLDADbContext())
                     {
-                        var passToMD5 = strPro.GetMD5(acc.Password);
-                        var account = db.Accounts.Where(m => m.Email.Equals(acc.Email) && m.Password.Equals(passToMD5));
+                        var passToMD5 = strPro.GetMD5(acc.MatKhau);
+                        var account = db.TaiKhoans.Where(m => m.Email.Equals(acc.Email) && m.MatKhau.Equals(passToMD5));
                         if (account.Count() == 1)
                         {
                             FormsAuthentication.SetAuthCookie(acc.Email, false);
                             Session["idUser"] = acc.Email;
-                            Session["roleUser"] = acc.RoleId;
+                            Session["roleUser"] = acc.IdVaiTro;
                             //Session["StudentCode"] = account.FirstOrDefault().StudentCode;
                             //Session["TeacherCode"] = account.FirstOrDefault().TeacherCode;
                             Response.Cookies.Add(new HttpCookie("userCookie", acc.Email));
-                            Response.Cookies.Add(new HttpCookie("roleCookie", acc.RoleId));
+                            Response.Cookies.Add(new HttpCookie("roleCookie", acc.IdVaiTro));
                             return RedirectToLocal(returnUrl);
                         }
                         ModelState.AddModelError("", "Thông tin đăng nhập chưa chính xác");
@@ -88,7 +88,7 @@ namespace QuanLyDoAn.Controllers
                 }
                 else if (CheckSession() == 2)
                 {
-                    return RedirectToAction("Index", "Accounts", new { Area = "Admin" });
+                    return RedirectToAction("Index", "TaiKhoans", new { Area = "Admin" });
                 }
             }
             if (Url.IsLocalUrl(returnUrl))

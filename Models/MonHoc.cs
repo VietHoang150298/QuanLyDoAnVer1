@@ -14,12 +14,16 @@ namespace QuanLyDoAn.Models
         [Key]
         public int IdMonHoc { get; set; }
         [DisplayName("Mã Môn Học")]
+        [StringLength(50)]
         public string MaMonHoc { get; set; }
         [DisplayName("Tên Môn Học")]
+        [StringLength(50)]
         public string TenMonHoc { get; set; }
         [DisplayName("Điều Kiện Tiên Quyết")]
+        [StringLength(50)]
         public string DieuKienTienQuyet { get; set; }
         [DisplayName("Mã Học Kỳ")]
+        [StringLength(50)]
         public string MaHocKy { get; set; }
         [DisplayName("Loại Môn Học")]
         public int IdLoaiMonHoc { get; set; }

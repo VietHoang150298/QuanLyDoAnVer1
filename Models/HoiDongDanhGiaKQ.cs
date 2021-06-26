@@ -14,6 +14,7 @@ namespace QuanLyDoAn.Models
         [Key]
         public int IdHoiDongDGKQ { get; set; }
         [DisplayName("Mã Hội Đồng")]
+        [StringLength(50)]
         public string MaHoiDong { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
@@ -25,6 +26,7 @@ namespace QuanLyDoAn.Models
         public int DemSoLuongThanhVien { get; set; }
 
         [DisplayName("Mã Môn Học")]
+        [StringLength(50)]
         public string MaMonHoc { get; set; }
     }
 }

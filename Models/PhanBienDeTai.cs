@@ -12,8 +12,11 @@ namespace QuanLyDoAn.Models
     {
         [Key]
         public int IdPhanBienDeTai { get; set; }
+        [StringLength(50)]
         public string MaGiangVien { get; set; }
+        [StringLength(50)]
         public string MaDeTai { get; set; }
+        [StringLength(50)]
         public string MaMonHoc { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

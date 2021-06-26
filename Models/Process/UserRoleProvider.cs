@@ -35,15 +35,15 @@ namespace QuanLyDoAn.Models.Process
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string tenTaiKhoan)
         {
             using (QLDADbContext db = new QLDADbContext())
             {
-                var userRoles = (from account in db.Accounts
-                                 join role in db.Roles
-                                 on account.RoleId equals role.RoleId
-                                 where account.UserName == username
-                                 select role.RoleId).ToArray();
+                var userRoles = (from account in db.TaiKhoans
+                                 join role in db.VaiTros
+                                 on account.IdVaiTro equals role.IdVaiTro
+                                 where account.TenTaiKhoan == tenTaiKhoan
+                                 select role.IdVaiTro).ToArray();
                 return userRoles;
             }
             throw new NotImplementedException();
