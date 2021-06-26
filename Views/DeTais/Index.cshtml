@@ -24,7 +24,7 @@
 
                     @Html.Raw(ViewBag.Error) <br /><span>Excel File</span>
                     <input type="file" class="btn btn-outline-primary" name="excelfile" />
-                    <input type="hidden" name="maMonHoc2" value="@ViewBag.MaMonHoc" />
+                    <input type="hidden" name="maMonHoc" value="@ViewBag.MaMonHoc" />
 
 
                 </div>
@@ -47,13 +47,12 @@
     {
         if (item.IdLoaiMonHoc == 2)
         {
-            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm", "DuyetDiemTTSX", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc, @class = "headerButton" })</button>
+            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm TTSX", "DuyetDiemTTSX", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })</button>
         }
         else if(item.IdLoaiMonHoc == 3)
         {
-            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm TTTN", "DuyetDiemTTTN", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc, @class = "headerButton" })</button>
+            <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm TTTN", "DuyetDiemDATN", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })</button>
         }
-
     }
     @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>

@@ -20,6 +20,7 @@ namespace QuanLyDoAn.Controllers
             ViewBag.MaMonHoc = maMonHoc;
             return View(db.HoiDongDanhGiaKQs.Where(s => s.MaMonHoc == maMonHoc).ToList());
         }
+        
         public ActionResult Create(string maMonHoc)
         {
             return View();
@@ -133,5 +134,24 @@ namespace QuanLyDoAn.Controllers
             }
             return View(hoiDongDanhGiaKQ);
         }
+        //======================================Chi Tiết Hội Đồng=============================
+        public ActionResult ChiTietHoiDong(string maHoiDong)
+        {
+            var chiTietHoiDong = from a in db.ChiTietHoiDongs
+                                 join b in db.HoiDongDanhGiaKQs
+                                 on a.MaHoiDong equals b.MaHoiDong
+                                 join c in db.GiangViens
+                                 on a.MaGiangVien equals c.MaGiangVien
+                                 where b.MaHoiDong == maHoiDong
+                                 select new ChiTietHoiDongViewModel
+                                 {
+                                     MaHoiDong = b.MaHoiDong,
+                                     MaGiangVien = a.MaGiangVien,
+                                     TenGiangVien = c.HoTen
+                                 };
+            ViewBag.ChiTietHoiDong = chiTietHoiDong.ToList();
+            return View();
+        }
+        //======================================Chi Tiết Hội Đồng=============================
     }
 }

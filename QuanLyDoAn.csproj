@@ -221,6 +221,18 @@
     <Compile Include="Migrations\202106222330476_Update_tbl_15.Designer.cs">
       <DependentUpon>202106222330476_Update_tbl_15.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106230104243_Update_tbl_16.cs" />
+    <Compile Include="Migrations\202106230104243_Update_tbl_16.Designer.cs">
+      <DependentUpon>202106230104243_Update_tbl_16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106261012332_Update_tbl_17.cs" />
+    <Compile Include="Migrations\202106261012332_Update_tbl_17.Designer.cs">
+      <DependentUpon>202106261012332_Update_tbl_17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106261035368_Update_tbl_18.cs" />
+    <Compile Include="Migrations\202106261035368_Update_tbl_18.Designer.cs">
+      <DependentUpon>202106261035368_Update_tbl_18.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -243,6 +255,7 @@
     <Compile Include="ViewModels\DeTaiViewModel.cs" />
     <Compile Include="ViewModels\GiangVienHuongDanViewModel.cs" />
     <Compile Include="ViewModels\HocKyViewModel.cs" />
+    <Compile Include="ViewModels\ChiTietHoiDongViewModel.cs" />
     <Compile Include="ViewModels\KetQuaViewModel.cs" />
     <Compile Include="ViewModels\MonHocViewModel.cs" />
     <Compile Include="ViewModels\PhanBienViewModel.cs" />
@@ -465,7 +478,8 @@
     <Content Include="Views\Authorize\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\MonHocs\KhoiTaoDLMH.cshtml" />
-    <Content Include="Views\DeTais\DuyetDiemTTTN.cshtml" />
+    <Content Include="Views\DeTais\DSDTHoanThanhDoAn.cshtml" />
+    <Content Include="Views\HoiDongDanhGiaKQs\ChiTietHoiDong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -532,6 +546,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106222330476_Update_tbl_15.resx">
       <DependentUpon>202106222330476_Update_tbl_15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106230104243_Update_tbl_16.resx">
+      <DependentUpon>202106230104243_Update_tbl_16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106261012332_Update_tbl_17.resx">
+      <DependentUpon>202106261012332_Update_tbl_17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106261035368_Update_tbl_18.resx">
+      <DependentUpon>202106261035368_Update_tbl_18.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,18 +18,23 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
         // GET: DeTais
 
-        public ActionResult Index(string maMonHoc2)
+        public ActionResult Index(string maMonHoc)
         {
             ViewBag.ErrorFlag = 0;
             var monHoc = from a in db.MonHocs
-                         where a.MaMonHoc == maMonHoc2
+                         where a.MaMonHoc == maMonHoc
                          select new MonHocViewModel { TenMonHoc = a.TenMonHoc, IdLoaiMonHoc = a.IdLoaiMonHoc };
             ViewBag.MonHoc = monHoc.ToList();
-            ViewBag.MaMonHoc = maMonHoc2;
+            ViewBag.MaMonHoc = maMonHoc;
             var DeTais = from dt in db.DeTais
-                         where dt.MaMonHoc == maMonHoc2
+                         where dt.MaMonHoc == maMonHoc
                          select dt;
             return View(DeTais.ToList());
+        }
+
+        public ActionResult DSDTHoanThanhDoAn(string maMonHoc)
+        {
+            return View(db.DeTais.Where(s => s.MaMonHoc == maMonHoc ).Where(p => p.MaHoiDong == null).ToList());
         }
 
         // GET: DeTais/Details/5
@@ -120,10 +125,10 @@ namespace QuanLyDoAn.Controllers
         //Import File Excel============================================================================
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc2)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc)
         {
             var monHoc = from a in db.MonHocs
-                         where a.MaMonHoc == maMonHoc2
+                         where a.MaMonHoc == maMonHoc
                          select new MonHocViewModel { TenMonHoc = a.TenMonHoc };
             ViewBag.MonHoc = monHoc.ToList();
             var hocKy = db.HocKys
@@ -137,7 +142,7 @@ namespace QuanLyDoAn.Controllers
             {
                 ViewBag.ErrorFlag = 1;
                 ViewBag.Error = "Hãy chọn một file Excel!";
-                return RedirectToAction("Index", "DeTais", new { maMonHoc2 });
+                return RedirectToAction("Index", "DeTais", new { maMonHoc });
             }
             else
             {
@@ -168,7 +173,7 @@ namespace QuanLyDoAn.Controllers
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index", "DeTais", new { maMonHoc2 });
+                    return RedirectToAction("Index", "DeTais", new { maMonHoc });
                 }
                 else
                 {
@@ -181,16 +186,16 @@ namespace QuanLyDoAn.Controllers
 
         //Import File Excel============================================================================
 
-        // Duyệt điểm sang thực tập tốt nghiệp=============================================================================
+        // Duyệt điểm sang thực tập Sản Xuất=============================================================================
 
-        public ActionResult DuyetDiemTTSX(string maMonHoc2)
+        public ActionResult DuyetDiemTTSX(string maMonHoc)
         {
             var DeTaisTTTN = from dt in db.DeTais
                              join kq in db.KetQuas
                              on dt.MaDeTai equals kq.MaDeTai
                              join mh in db.MonHocs
                              on kq.MaMonHoc equals mh.MaMonHoc
-                             where kq.DiemSo >= 5 && mh.IdLoaiMonHoc == 1
+                             where kq.DiemSo >= 5 && mh.IdLoaiMonHoc ==1
                              select dt;
             foreach (var item in DeTaisTTTN)
             {
@@ -199,7 +204,7 @@ namespace QuanLyDoAn.Controllers
                     MaDeTai = item.MaDeTai,
                     TenDeTai = item.TenDeTai,
                     LinkFileBaoCaoCuoiCung = item.LinkFileBaoCaoCuoiCung,
-                    MaMonHoc = maMonHoc2,
+                    MaMonHoc = maMonHoc,
                     MaSinhVien = item.MaSinhVien,
                     MaGiangVien = item.MaGiangVien,
                     MaHoiDong = item.MaHoiDong,
@@ -207,20 +212,51 @@ namespace QuanLyDoAn.Controllers
                 });
             }
             db.SaveChanges();
-            return RedirectToAction("Index", "DeTais", new { maMonHoc2 });
+            return RedirectToAction("Index", "DeTais", new { maMonHoc });
         }
 
-        // Duyệt điểm sang thực tập tốt nghiệp=============================================================================
+        // Duyệt điểm sang thực tập Sản Xuất=============================================================================
 
-        // Duyệt điểm sang ĐATN=============================================================================
+        // Duyệt điểm sang thực tập tốt nghiệp =============================================================================
 
-        public ActionResult DuyetDiemTTTN(string maMonHoc2)
+        public ActionResult DuyetDiemTTTN(string maMonHoc)
+        {
+            var DeTaisTTTN = from dt in db.DeTais
+                             join kq in db.KetQuas
+                             on dt.MaDeTai equals kq.MaDeTai
+                             join mh in db.MonHocs
+                             on kq.MaMonHoc equals mh.MaMonHoc
+                             where kq.DiemSo >= 5 && mh.IdLoaiMonHoc == 2
+                             select dt;
+            foreach (var item in DeTaisTTTN)
+            {
+                db.DeTais.Add(new DeTai()
+                {
+                    MaDeTai = item.MaDeTai,
+                    TenDeTai = item.TenDeTai,
+                    LinkFileBaoCaoCuoiCung = item.LinkFileBaoCaoCuoiCung,
+                    MaMonHoc = maMonHoc,
+                    MaSinhVien = item.MaSinhVien,
+                    MaGiangVien = item.MaGiangVien,
+                    MaHoiDong = item.MaHoiDong,
+                    SoLuongPhanBien = item.SoLuongPhanBien
+                });
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index", "DeTais", new { maMonHoc });
+        }
+
+        // Duyệt điểm sang thực tập tốt nghiệp =============================================================================
+
+
+        // Duyệt điểm ĐATN=============================================================================
+
+        public ActionResult DuyetDiemDATN(string maMonHoc)
         {
             var DeTaiDATN = from a in db.KetQuas
-                                //where a.MaMonHoc == "TTTN-001"
                             join d in db.MonHocs
                             on a.MaMonHoc equals d.MaMonHoc
-                            where d.IdLoaiMonHoc == 2
+                            where d.IdLoaiMonHoc == 3
                             group a by a.MaDeTai
                             into b
                             join c in db.DeTais
@@ -242,7 +278,7 @@ namespace QuanLyDoAn.Controllers
                     {
                         MaDeTai = item.MaDeTai,
                         TenDeTai = item.TenDeTai,
-                        MaMonHoc = maMonHoc2,
+                        MaMonHoc = maMonHoc,
                         MaSinhVien = item.MaSinhVien,
                         MaGiangVien = item.MaGiangVien,
                         SoLuongPhanBien = 0
@@ -251,10 +287,10 @@ namespace QuanLyDoAn.Controllers
 
             }
             db.SaveChanges();
-            return RedirectToAction("Index", "DeTais", new { maMonHoc2});
+            return RedirectToAction("DSDTHoanThanhDoAn", "DeTais", new { maMonHoc});
         }
 
-        // Duyệt điểm sang ĐATN=============================================================================
+        // Duyệt điểm ĐATN=============================================================================
 
         protected override void Dispose(bool disposing)
         {

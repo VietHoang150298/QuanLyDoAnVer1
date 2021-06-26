@@ -4,9 +4,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Danh sách sinh viên @ViewBag.HocKy</h2>
-
+@foreach (var item in ViewBag.HocKy)
+{
+    <h2>Danh sách sinh viên @item.TenHocKy</h2>
+}
 @using (Html.BeginForm("Doc_File_Excel", "SinhViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="modal fade form-horizontal" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

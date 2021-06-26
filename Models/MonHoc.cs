@@ -23,5 +23,9 @@ namespace QuanLyDoAn.Models
         public string MaHocKy { get; set; }
         [DisplayName("Loại Môn Học")]
         public int IdLoaiMonHoc { get; set; }
+        [DisplayName("Số Lượng Phản Biện Tối Đa Cho Một Đề Tài")]
+        public int? SoLuongPhanBienToiDa { get; set; }
+        [DisplayName("Thành Lập Hội Đồng")]
+        public bool? ThanhLapHoiDong { get; set; }
     }
 }

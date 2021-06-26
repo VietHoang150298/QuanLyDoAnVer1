@@ -14,6 +14,7 @@ namespace QuanLyDoAn.Models
         public int IdPhanBienDeTai { get; set; }
         public string MaGiangVien { get; set; }
         public string MaDeTai { get; set; }
+        public string MaMonHoc { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]

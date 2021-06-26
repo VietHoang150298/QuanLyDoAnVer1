@@ -18,10 +18,10 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: KetQuas
-        public ActionResult Index(string maMonHoc2, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string maMonHoc, string currentFilter, string searchString, int? page)
         {
             ViewBag.ErrorFlag = 0;
-            ViewBag.MaMonHoc = maMonHoc2;
+            ViewBag.MaMonHoc = maMonHoc;
             var ketQua = from a in db.KetQuas
                          join b in db.GiangViens
                          on a.MaGiangVien equals b.MaGiangVien
@@ -29,7 +29,7 @@ namespace QuanLyDoAn.Controllers
                          //on a.MaHoiDong equals c.MaHoiDong
                          join d in db.DeTais
                          on a.MaDeTai equals d.MaDeTai
-                         where a.MaMonHoc == maMonHoc2
+                         where a.MaMonHoc == maMonHoc
                          select new KetQuaViewModel
                          {
                              MaMonHoc = a.MaMonHoc,
@@ -161,7 +161,7 @@ namespace QuanLyDoAn.Controllers
         //Import File Excel============================================================================
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc2)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maMonHoc)
         {
             if (excelfile == null || excelfile.ContentLength == 0)
             {
@@ -187,18 +187,22 @@ namespace QuanLyDoAn.Controllers
                     {
                         KetQua ketQua = new KetQua();
                         ketQua.MaHoiDong = ((Excel.Range)range.Cells[row, 1]).Text;
-                        ketQua.MaMonHoc = maMonHoc2;
+                        ketQua.MaMonHoc = maMonHoc;
                         ketQua.MaGiangVien = ((Excel.Range)range.Cells[row, 2]).Text;
                         ketQua.MaDeTai = ((Excel.Range)range.Cells[row, 3]).Text;
                         ketQua.DiemSo = float.Parse(((Excel.Range)range.Cells[row, 4]).Text);
                         ketQua.NhanXet = ((Excel.Range)range.Cells[row, 5]).Text;
+                        if (ketQua.MaHoiDong == "")
+                        {
+                            ketQua.IsPhanBien = true;
+                        }
                         DsKetQua.Add(ketQua);
                         db.KetQuas.Add(ketQua);
                     }
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index", "KetQuas", new { maMonHoc2 });
+                    return RedirectToAction("Index", "KetQuas", new { maMonHoc });
                 }
                 else
                 {

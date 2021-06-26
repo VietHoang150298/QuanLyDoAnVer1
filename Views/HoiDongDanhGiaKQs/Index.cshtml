@@ -47,6 +47,7 @@
                 @Html.DisplayFor(modelItem => item.MaMonHoc)
             </td>
             <td>
+                @Html.ActionLink("Chi Tiết", "ChiTietHoiDong", new { maHoiDong = item.MaHoiDong }) |
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdHoiDongDGKQ }) |
                 @Html.ActionLink("Chọn Đề Tài", "PhanCongDanhGia", new { maHoiDong = item.MaHoiDong, maMonHoc = item.MaMonHoc })
             </td>

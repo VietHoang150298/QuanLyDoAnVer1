@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using QuanLyDoAn.Models;
 using Excel = Microsoft.Office.Interop.Excel;
 using PagedList;
+using QuanLyDoAn.ViewModels;
 
 namespace QuanLyDoAn.Controllers
 {
@@ -17,15 +18,12 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: SinhViens
-        public ActionResult Index(string currentFilter, string searchString, int? page)
+        public ActionResult Index(string currentFilter, string searchString, int? page,string maHocKy)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy )
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy;
+            var hocKy = from a in db.HocKys
+                        where a.MaHocKy == maHocKy
+                        select new HocKyViewModel { TenHocKy = a.TenHocKy };
+            ViewBag.HocKy = hocKy.ToList();
             if (searchString != null)
             {
                 page = 1;
@@ -36,6 +34,7 @@ namespace QuanLyDoAn.Controllers
             }
             ViewBag.CurrentFilter = searchString;
             var sinhViens = from s in db.SinhViens
+                            where s.MaHocKy ==maHocKy
                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {

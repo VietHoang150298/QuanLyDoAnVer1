@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDoAn.Models;
+using QuanLyDoAn.ViewModels;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDoAn.Controllers
@@ -16,16 +17,13 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: GiangViens
-        public ActionResult Index()
+        public ActionResult Index(string maHocKy)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy;
-            return View(db.GiangViens.ToList());
+            var hocKy = from a in db.HocKys
+                        where a.MaHocKy == maHocKy
+                        select new HocKyViewModel { TenHocKy = a.TenHocKy };
+            ViewBag.HocKy = hocKy.ToList();
+            return View(db.GiangViens.Where(s => s.MaHocKy == maHocKy).ToList());
         }
 
         // GET: GiangViens/Details/5

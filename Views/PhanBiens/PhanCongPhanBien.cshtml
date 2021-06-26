@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanLyDoAn.Models.DeTai>
+﻿@*@model IEnumerable<QuanLyDoAn.Models.DeTai>*@
 
 @{
     ViewBag.Title = "DsDeTai";
@@ -11,30 +11,73 @@
 {
     @Html.AntiForgeryToken()
     <table class="table table-bordered text-wrap">
+        @*<tr class="table-primary">
+                <th>
+                    @Html.DisplayNameFor(model => model.MaDeTai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenDeTai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaSinhVien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLuongPhanBien)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaDeTai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenDeTai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSinhVien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongPhanBien)
+                    </td>
+                    <td>
+                        <input type="checkbox" name="maDeTais[]" value="@item.MaDeTai" />
+                    </td>
+                </tr>
+            }*@
+
         <tr class="table-primary">
             <th>
-                @Html.DisplayNameFor(model => model.MaDeTai)
+                Mã Đề Tài
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TenDeTai)
+                Tên Đề Tài
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaSinhVien)
+                Mã Sinh Viên
+            </th>
+            <th>
+                Số Lượng Phản Biện
             </th>
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in ViewBag.DeTais)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaDeTai)
+                    @item.MaDeTai
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TenDeTai)
+                    @item.TenDeTai
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaSinhVien)
+                    @item.MaSinhVien
+                </td>
+                <td>
+                    @item.SoLuongPhanBien
                 </td>
                 <td>
                     <input type="checkbox" name="maDeTais[]" value="@item.MaDeTai" />
@@ -45,7 +88,7 @@
     </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Lưu" class="btn btn-outline-primary" />
         </div>
     </div>
 }

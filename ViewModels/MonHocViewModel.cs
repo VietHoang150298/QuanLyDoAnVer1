@@ -9,5 +9,6 @@ namespace QuanLyDoAn.ViewModels
     {
         public string TenMonHoc { get; set; }
         public int IdLoaiMonHoc { get; set; }
+        public bool? ThanhLapHoiDong { get; set; }
     }
 }

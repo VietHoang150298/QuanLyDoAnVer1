@@ -14,27 +14,38 @@
             <div class="card text-primary border-primary" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Đề Tài</h5>
-                    @Html.ActionLink("Khởi Tạo", "Index", "DeTais", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc })
+                    @Html.ActionLink("Khởi Tạo", "Index", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc })
                 </div>
             </div>
         </div>
         @if (item.IdLoaiMonHoc > 1)
         {
-            <div class="col-lg-4 mb-5">
-                <div class="card text-primary border-primary" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Hội đồng đánh giá kết quả</h5>
-                        @Html.ActionLink("Khởi Tạo", "Index", "HoiDongDanhGiaKQs", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc })
+            if (item.ThanhLapHoiDong == true)
+            {
+                <div class="col-lg-4 mb-5">
+                    <div class="card text-primary border-primary" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Hội đồng đánh giá kết quả</h5>
+                            @Html.ActionLink("Khởi Tạo", "Index", "HoiDongDanhGiaKQs", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc })
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
             if (item.IdLoaiMonHoc > 2)
             {
                 <div class="col-lg-4">
                     <div class="card text-primary border-primary" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Phản Biện</h5>
-                            @Html.ActionLink("Khởi Tạo", "Index", "PhanBiens", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc })
+                            @Html.ActionLink("Khởi Tạo", "Index", "PhanBiens", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card text-primary border-primary" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Danh Sách Đề Tài Hoàn Thành Đồ Án</h5>
+                            @Html.ActionLink("Danh Sách", "DSDTHoanThanhDoAn", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc })
                         </div>
                     </div>
                 </div>
@@ -44,7 +55,7 @@
             <div class="card text-primary border-primary" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Kết Quả</h5>
-                    @Html.ActionLink("Khởi Tạo", "Index", "KetQuas", new { maMonHoc2 = ViewBag.MaMonHoc }, new { maMonHoc2 = ViewBag.MaMonHoc })
+                    @Html.ActionLink("Khởi Tạo", "Index", "KetQuas", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc })
                 </div>
             </div>
         </div>

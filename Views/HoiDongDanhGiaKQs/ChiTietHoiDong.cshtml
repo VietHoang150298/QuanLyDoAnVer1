@@ -1,0 +1,41 @@
+﻿@*@model QuanLyDoAn.Models.GiangVien*@
+
+@{
+    ViewBag.Title = "ChiTietHoiDong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Chi Tiết Hội Đồng</h4>
+
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            Mã Hội Đồng
+        </th>
+        <th>
+            Mã Giảng Viên
+        </th>
+        <th>
+            Tên Giảng Viên
+        </th>
+    </tr>
+    @foreach (var item in ViewBag.ChiTietHoiDong)
+    {
+    <tr>
+        <td>
+            @item.MaHoiDong
+        </td>
+        <td>
+            @item.MaGiangVien
+        </td>
+        <td>
+            @item.TenGiangVien
+        </td>
+    </tr>
+    }
+
+
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

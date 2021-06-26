@@ -16,19 +16,22 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: PhanBiens
-        public ActionResult Index(string maMonHoc2)
+        public ActionResult Index(string maMonHoc)
         {
             var phanBien = from a in db.PhanBiens
                            join b in db.GiangViens
                            on a.MaGiangVien equals b.MaGiangVien
+                           join c in db.MonHocs
+                           on a.MaMonHoc equals maMonHoc
                            select new PhanBienViewModel
                            {
                                IdPhanBien = a.IdPhanBien,
                                MaGiangVien = a.MaGiangVien,
-                               TenGiangVien = b.HoTen
+                               TenGiangVien = b.HoTen,
+                               MaMonHoc = maMonHoc
                            };
-            ViewBag.PhanBien = phanBien.ToList();
-            ViewBag.MaMonHoc = maMonHoc2;
+            ViewBag.PhanBien = phanBien.Distinct().ToList();
+            ViewBag.MaMonHoc = maMonHoc;
             return View();
 
 
@@ -121,7 +124,6 @@ namespace QuanLyDoAn.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult KhoiTaoPhanBien([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien, string[] maGiangViens, string maMonHoc)
         public ActionResult KhoiTaoPhanBien(string[] maGiangViens, string maMonHoc)
         {
             foreach (var maGiangVien in maGiangViens)
@@ -136,29 +138,36 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index","PhanBiens",new { maMonHoc});
         }
 
-        public ActionResult PhanCongPhanBien(string maGiangVien)
+        public ActionResult PhanCongPhanBien(string maGiangVien, string maMonHoc)
         {
-
-            return View(db.DeTais.Where(s => s.SoLuongPhanBien < 2).ToList());
+            var deTai = from a in db.DeTais
+                        join b in db.MonHocs
+                        on a.MaMonHoc equals b.MaMonHoc
+                        where a.MaHoiDong != null && b.MaMonHoc == maMonHoc && a.SoLuongPhanBien < b.SoLuongPhanBienToiDa
+                        select a;
+            ViewBag.DeTais = deTai.Distinct().ToList();
+            return View();
+            //return View(db.DeTais.Where(s => s.SoLuongPhanBien < 2).Where(s => s.MaMonHoc == maMonHoc).Where(s=> s.MaHoiDong != null).ToList());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PhanCongPhanBien([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien)
+        public ActionResult PhanCongPhanBien([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien, string maMonHoc)
         {
             foreach (var maDeTai in maDeTais)
             {
                 db.PhanBienDeTais.Add(new PhanBienDeTai { 
                     MaDeTai = maDeTai,
-                    MaGiangVien = maGiangVien
+                    MaGiangVien = maGiangVien,
+                    MaMonHoc = maMonHoc
                 });
                 DeTai deTai = (from a in db.DeTais
-                               where a.MaDeTai == maDeTai
+                               where a.MaDeTai == maDeTai && a.MaMonHoc == maMonHoc && a.MaHoiDong != null
                                select a).FirstOrDefault();
                 deTai.SoLuongPhanBien += 1;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PhanBiens", new { maMonHoc});
         }
 
 

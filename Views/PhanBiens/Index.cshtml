@@ -32,7 +32,7 @@
             </td>
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.IdPhanBien }) |
-                @Html.ActionLink("Chọn Phản Biện", "PhanCongPhanBien", new { maGiangVien = item.MaGiangVien })
+                @Html.ActionLink("Chọn Phản Biện", "PhanCongPhanBien", new { maGiangVien = item.MaGiangVien, maMonHoc = item.MaMonHoc })
             </td>
         </tr>
     }

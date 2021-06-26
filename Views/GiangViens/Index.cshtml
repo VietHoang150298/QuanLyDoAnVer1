@@ -4,9 +4,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Danh sách giảng viên đăng ký hướng dẫn @ViewBag.HocKy</h2>
-
+@foreach (var item in ViewBag.HocKy)
+{
+    <h2>Danh sách giảng viên đăng ký hướng dẫn @item.TenHocKy</h2>
+}
 @using (Html.BeginForm("Doc_File_Excel", "GiangViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="modal fade form-horizontal" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -21,7 +22,7 @@
 
                 <div class="modal-body">
 
-                    @Html.Raw(ViewBag.Error) <br/><span>Excel File</span>
+                    @Html.Raw(ViewBag.Error) <br /><span>Excel File</span>
                     <input type="file" class="btn btn-outline-primary" name="excelfile" />
 
 

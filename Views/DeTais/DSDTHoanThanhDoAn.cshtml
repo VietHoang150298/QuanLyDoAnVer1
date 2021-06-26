@@ -1,0 +1,54 @@
+﻿@model IEnumerable<QuanLyDoAn.Models.DeTai>
+
+@{
+    ViewBag.Title = "DSDTHoanThanhDoAn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 class="mt-3">Danh Sách Hoàn Thành Đồ Án Tốt Nghiệp</h4>
+
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.MaDeTai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDeTai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaMonHoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSinhVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaGiangVien)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDeTai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDeTai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaMonHoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaGiangVien)
+            </td>
+            <td>
+                @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdDeTai }) 
+            </td>
+        </tr>
+    }
+
+</table>
