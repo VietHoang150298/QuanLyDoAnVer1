@@ -17,7 +17,6 @@ namespace QuanLyDoAn.Models
         [StringLength(50)]
         public string MaDeTai { get; set; }
         [DisplayName("Tên Đề Tài")]
-        [StringLength(50)]
         public string TenDeTai { get; set; }
         [DisplayName("File Báo Cáo")]
         public string LinkFileBaoCaoCuoiCung { get; set; }

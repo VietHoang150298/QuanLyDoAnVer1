@@ -24,6 +24,7 @@ namespace QuanLyDoAn.Controllers
                         where a.MaHocKy == maHocKy
                         select new HocKyViewModel { TenHocKy = a.TenHocKy };
             ViewBag.HocKy = hocKy.ToList();
+            ViewBag.MaHocKy = maHocKy;
             if (searchString != null)
             {
                 page = 1;
@@ -88,7 +89,7 @@ namespace QuanLyDoAn.Controllers
 
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maHocKy)
         {
             var hocKy = db.HocKys
                              .OrderByDescending(x => x.IdHocKy)
@@ -134,7 +135,7 @@ namespace QuanLyDoAn.Controllers
                     workbook.Close(0);
                     application.Quit();
                     //ViewBag.DS_DeTais = DS_DeTais;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "SinhViens", new { maHocKy });
                 }
                 else
                 {

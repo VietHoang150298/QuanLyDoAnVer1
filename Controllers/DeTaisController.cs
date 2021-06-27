@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -34,7 +35,7 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult DSDTHoanThanhDoAn(string maMonHoc)
         {
-            return View(db.DeTais.Where(s => s.MaMonHoc == maMonHoc ).Where(p => p.MaHoiDong == null).ToList());
+            return View(db.DeTais.Where(s => s.MaMonHoc == maMonHoc).Where(p => p.MaHoiDong == null).ToList());
         }
 
         // GET: DeTais/Details/5
@@ -131,56 +132,66 @@ namespace QuanLyDoAn.Controllers
                          where a.MaMonHoc == maMonHoc
                          select new MonHocViewModel { TenMonHoc = a.TenMonHoc };
             ViewBag.MonHoc = monHoc.ToList();
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy;
-            if (excelfile == null || excelfile.ContentLength == 0)
+            try
             {
-                ViewBag.ErrorFlag = 1;
-                ViewBag.Error = "Hãy chọn một file Excel!";
-                return RedirectToAction("Index", "DeTais", new { maMonHoc });
-            }
-            else
-            {
-                if (excelfile.FileName.EndsWith("xls") || excelfile.FileName.EndsWith("xlsx"))
+                if (excelfile == null || excelfile.ContentLength == 0)
                 {
-                    ViewBag.ErrorFlag = 0;
-                    string path = Server.MapPath("~/Content/ExcelFiles/" + excelfile.FileName);
-                    if (System.IO.File.Exists(path))
-                        System.IO.File.Delete(path);
-                    excelfile.SaveAs(path);
-                    Excel.Application application = new Excel.Application();
-                    Excel.Workbook workbook = application.Workbooks.Open(path);
-                    Excel.Worksheet worksheet = workbook.ActiveSheet;
-                    Excel.Range range = worksheet.UsedRange;
-                    List<DeTai> DsDeTai = new List<DeTai>();
-                    for (int row = 2; row <= range.Rows.Count; row++)
-                    {
-                        DeTai deTai = new DeTai();
-                        deTai.MaDeTai = ((Excel.Range)range.Cells[row, 1]).Text;
-                        deTai.TenDeTai = ((Excel.Range)range.Cells[row, 2]).Text;
-                        deTai.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
-                        deTai.MaGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
-                        deTai.MaMonHoc = ((Excel.Range)range.Cells[row, 5]).Text;
-                        deTai.SoLuongPhanBien = 0;
-                        DsDeTai.Add(deTai);
-                        db.DeTais.Add(deTai);
-                    }
-                    db.SaveChanges();
-                    workbook.Close(0);
-                    application.Quit();
+                    ViewBag.ErrorFlag = 1;
+                    ViewBag.Error = "Hãy chọn một file Excel!";
                     return RedirectToAction("Index", "DeTais", new { maMonHoc });
                 }
                 else
                 {
-                    ViewBag.ErrorFlag = 1;
-                    ViewBag.Error = "Định dạng file không đúng!<br>";
-                    return View("Index");
+                    if (excelfile.FileName.EndsWith("xls") || excelfile.FileName.EndsWith("xlsx"))
+                    {
+                        ViewBag.ErrorFlag = 0;
+                        string path = Server.MapPath("~/Content/ExcelFiles/" + excelfile.FileName);
+                        if (System.IO.File.Exists(path))
+                            System.IO.File.Delete(path);
+                        excelfile.SaveAs(path);
+                        Excel.Application application = new Excel.Application();
+                        Excel.Workbook workbook = application.Workbooks.Open(path);
+                        Excel.Worksheet worksheet = workbook.ActiveSheet;
+                        Excel.Range range = worksheet.UsedRange;
+                        List<DeTai> DsDeTai = new List<DeTai>();
+                        for (int row = 2; row <= range.Rows.Count; row++)
+                        {
+                            DeTai deTai = new DeTai();
+                            deTai.MaDeTai = ((Excel.Range)range.Cells[row, 1]).Text;
+                            deTai.TenDeTai = ((Excel.Range)range.Cells[row, 2]).Text;
+                            deTai.MaSinhVien = ((Excel.Range)range.Cells[row, 3]).Text;
+                            deTai.MaGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
+                            deTai.MaMonHoc = maMonHoc;
+                            deTai.SoLuongPhanBien = 0;
+                            DsDeTai.Add(deTai);
+                            db.DeTais.Add(deTai);
+                        }
+                        db.SaveChanges();
+                        workbook.Close(0);
+                        application.Quit();
+                        return RedirectToAction("Index", "DeTais", new { maMonHoc });
+                    }
+                    else
+                    {
+                        ViewBag.ErrorFlag = 1;
+                        ViewBag.Error = "Định dạng file không đúng!<br>";
+                        return View("Index");
+                    }
                 }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
             }
         }
 
@@ -195,7 +206,7 @@ namespace QuanLyDoAn.Controllers
                              on dt.MaDeTai equals kq.MaDeTai
                              join mh in db.MonHocs
                              on kq.MaMonHoc equals mh.MaMonHoc
-                             where kq.DiemSo >= 5 && mh.IdLoaiMonHoc ==1
+                             where kq.DiemSo >= 5 && mh.IdLoaiMonHoc == 1
                              select dt;
             foreach (var item in DeTaisTTTN)
             {
@@ -287,7 +298,7 @@ namespace QuanLyDoAn.Controllers
 
             }
             db.SaveChanges();
-            return RedirectToAction("DSDTHoanThanhDoAn", "DeTais", new { maMonHoc});
+            return RedirectToAction("DSDTHoanThanhDoAn", "DeTais", new { maMonHoc });
         }
 
         // Duyệt điểm ĐATN=============================================================================

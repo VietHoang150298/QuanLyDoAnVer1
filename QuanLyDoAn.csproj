@@ -245,6 +245,10 @@
     <Compile Include="Migrations\202106261933085_Update_tbl_21.Designer.cs">
       <DependentUpon>202106261933085_Update_tbl_21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106270738432_Update_tbl_22.cs" />
+    <Compile Include="Migrations\202106270738432_Update_tbl_22.Designer.cs">
+      <DependentUpon>202106270738432_Update_tbl_22.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\ChiTietHoiDong.cs" />
@@ -576,6 +580,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106261933085_Update_tbl_21.resx">
       <DependentUpon>202106261933085_Update_tbl_21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106270738432_Update_tbl_22.resx">
+      <DependentUpon>202106270738432_Update_tbl_22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

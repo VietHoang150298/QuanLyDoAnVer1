@@ -19,6 +19,7 @@ namespace QuanLyDoAn.Controllers
         // GET: GiangViens
         public ActionResult Index(string maHocKy)
         {
+            ViewBag.MaHocKy = maHocKy;
             var hocKy = from a in db.HocKys
                         where a.MaHocKy == maHocKy
                         select new HocKyViewModel { TenHocKy = a.TenHocKy };
@@ -68,15 +69,9 @@ namespace QuanLyDoAn.Controllers
         //Import File Excel============================================================================
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maHocKy)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy;
+            ViewBag.MaHocKy = maHocKy;
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select an excel file";
@@ -106,14 +101,14 @@ namespace QuanLyDoAn.Controllers
                         giangVien.MaBoMon = ((Excel.Range)range.Cells[row, 6]).Text;
                         giangVien.DonViCongTac = ((Excel.Range)range.Cells[row, 7]).Text;
                         giangVien.DienThoai = ((Excel.Range)range.Cells[row, 8]).Text;
-                        giangVien.MaHocKy = hocKy.ToString();
+                        giangVien.MaHocKy = maHocKy;
                         DsGiangVien.Add(giangVien);
                         db.GiangViens.Add(giangVien);
                     }
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","GiangViens", new { maHocKy});
                 }
                 else
                 {

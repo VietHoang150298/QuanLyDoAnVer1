@@ -54,6 +54,7 @@ namespace QuanLyDoAn.Controllers
         // GET: MonHocs/Create
         public ActionResult Create(string maHocKy)
         {
+            ViewBag.MaHocKy = maHocKy;
             ViewBag.TenLoaiMonHoc = new SelectList(db.LoaiMonHocs, "IdLoaiMonHoc", "TenLoaiMonHoc");
             return View();
         }
@@ -75,7 +76,7 @@ namespace QuanLyDoAn.Controllers
                 }
                 db.MonHocs.Add(monHoc);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "MonHocs", new { maHocKy});
             }
 
             return View(monHoc);
