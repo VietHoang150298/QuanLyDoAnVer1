@@ -37,6 +37,12 @@ namespace QuanLyDoAn.Controllers
 
         }
 
+        //============================Chi Tiết Phản Biện=================================================
+        public ActionResult ChiTietPhanBien()
+        {
+            return View();
+        }
+        //============================Chi Tiết Phản Biện=================================================
 
         // GET: PhanBiens/Create
         public ActionResult Create()

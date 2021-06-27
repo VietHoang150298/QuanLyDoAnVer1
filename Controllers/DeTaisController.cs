@@ -232,26 +232,37 @@ namespace QuanLyDoAn.Controllers
 
         public ActionResult DuyetDiemTTTN(string maMonHoc)
         {
-            var DeTaisTTTN = from dt in db.DeTais
-                             join kq in db.KetQuas
-                             on dt.MaDeTai equals kq.MaDeTai
-                             join mh in db.MonHocs
-                             on kq.MaMonHoc equals mh.MaMonHoc
-                             where kq.DiemSo >= 5 && mh.IdLoaiMonHoc == 2
-                             select dt;
-            foreach (var item in DeTaisTTTN)
+            var DeTaisTTTN = from a in db.KetQuas
+                             join b in db.MonHocs
+                             on a.MaMonHoc equals b.MaMonHoc
+                             where b.IdLoaiMonHoc == 2
+                             group a by a.MaDeTai
+                             into c
+                             join d in db.DeTais
+                             on c.Key equals d.MaDeTai
+                             select new KetQuaViewModel
+                             {
+                                 MaDeTai = c.Key,
+                                 TenDeTai = d.TenDeTai,
+                                 MaSinhVien = d.MaSinhVien,
+                                 MaGiangVien = d.MaGiangVien,
+                                 DiemSo = c.Average(s => s.DiemSo)
+                             };
+            var themDeTaiTTTN = DeTaisTTTN.Distinct().ToList();
+            foreach (var item in themDeTaiTTTN)
             {
-                db.DeTais.Add(new DeTai()
+                if (item.DiemSo >= 5)
                 {
-                    MaDeTai = item.MaDeTai,
-                    TenDeTai = item.TenDeTai,
-                    LinkFileBaoCaoCuoiCung = item.LinkFileBaoCaoCuoiCung,
-                    MaMonHoc = maMonHoc,
-                    MaSinhVien = item.MaSinhVien,
-                    MaGiangVien = item.MaGiangVien,
-                    MaHoiDong = item.MaHoiDong,
-                    SoLuongPhanBien = item.SoLuongPhanBien
-                });
+                    db.DeTais.Add(new DeTai()
+                    {
+                        MaDeTai = item.MaDeTai,
+                        TenDeTai = item.TenDeTai,
+                        MaMonHoc = maMonHoc,
+                        MaSinhVien = item.MaSinhVien,
+                        MaGiangVien = item.MaGiangVien,
+                        SoLuongPhanBien = 0
+                    });
+                }
             }
             db.SaveChanges();
             return RedirectToAction("Index", "DeTais", new { maMonHoc });
