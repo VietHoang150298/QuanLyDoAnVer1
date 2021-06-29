@@ -496,6 +496,7 @@
     <Content Include="Views\MonHocs\KhoiTaoDLMH.cshtml" />
     <Content Include="Views\DeTais\DSDTHoanThanhDoAn.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\ChiTietHoiDong.cshtml" />
+    <Content Include="Views\PhanBiens\ChiTietPhanBien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

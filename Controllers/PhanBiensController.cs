@@ -38,8 +38,23 @@ namespace QuanLyDoAn.Controllers
         }
 
         //============================Chi Tiết Phản Biện=================================================
-        public ActionResult ChiTietPhanBien()
+        public ActionResult ChiTietPhanBien(string maGiangVien)
         {
+            ViewBag.maGiangVien = maGiangVien;
+            var phanBienDeTais = from a in db.PhanBienDeTais
+                                 where a.MaGiangVien == maGiangVien
+                                 join b in db.GiangViens
+                                 on a.MaGiangVien equals b.MaGiangVien
+                                 group a by a.MaDeTai
+                                 into c
+                                 join d in db.DeTais
+                                 on c.Key equals d.MaDeTai
+                                 select new PhanBienViewModel
+                                 {
+                                     MaDeTai =  c.Key,
+                                     TenDeTai = d.TenDeTai
+                                 };
+            ViewBag.phanBienDeTais = phanBienDeTais.Distinct().ToList();
             return View();
         }
         //============================Chi Tiết Phản Biện=================================================

@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietPhanBien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4>Thông Tin Phản Biện</h4>
+
+<table class="table table-bordered text-wrap">
+    <tr class="table-primary">
+        <th>
+            Mã Đề Tài
+        </th>
+        <th>
+            Tên Đề Tài
+        </th>
+    </tr>
+    @foreach (var item in ViewBag.phanBienDeTais)
+    {
+        <tr>
+            <td>
+                @item.MaDeTai
+            </td>
+            <td>
+                @item.TenDeTai
+            </td>
+        </tr>
+    }
+
+
+</table>
+<p>
+    @Html.ActionLink("Trở lại", "Index")
+</p>
