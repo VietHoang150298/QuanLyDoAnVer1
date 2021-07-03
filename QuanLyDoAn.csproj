@@ -461,7 +461,6 @@
     <Content Include="Views\GiangViens\Index.cshtml" />
     <Content Include="Views\GiangViens\Create.cshtml" />
     <Content Include="Views\SinhViens\Create.cshtml" />
-    <Content Include="Views\SinhViens\Details.cshtml" />
     <Content Include="Views\SinhViens\Index.cshtml" />
     <Content Include="Views\MonHocs\Create.cshtml" />
     <Content Include="Views\MonHocs\Delete.cshtml" />
@@ -497,6 +496,7 @@
     <Content Include="Views\DeTais\DSDTHoanThanhDoAn.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\ChiTietHoiDong.cshtml" />
     <Content Include="Views\PhanBiens\ChiTietPhanBien.cshtml" />
+    <Content Include="Views\SinhViens\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -59,7 +59,21 @@ namespace QuanLyDoAn.Controllers
             {
                 return HttpNotFound();
             }
-            return View(sinhVien);
+            var detailSinhVien = from a in db.SinhViens
+                                 where a.IdSinhVien == id
+                                 select a;
+                           //select new SinhVien { 
+                           //     MaSinhVien = a.MaSinhVien,
+                           //     HoTen = a.HoTen,
+                           //     HomThu = a.HomThu,
+                           //     MaLop = a.MaLop,
+                           //     DienThoai = a.DienThoai,
+                           //     DiemTichLuy = a.DiemTichLuy,
+                           //     TinChiTichLuy = a.TinChiTichLuy,
+                           //     MaHocKy = a.MaHocKy
+                           //};
+            ViewBag.chiTietSinhVien = detailSinhVien.ToList();
+            return PartialView("DeTails");
         }
 
         // GET: SinhViens/Create

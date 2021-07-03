@@ -17,7 +17,7 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: GiangViens
-        public ActionResult Index(string maHocKy)
+        public ActionResult Index(string maHocKy, string maGiangVien)
         {
             ViewBag.MaHocKy = maHocKy;
             var hocKy = from a in db.HocKys

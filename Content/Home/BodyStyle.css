@@ -33,3 +33,7 @@
                 /*box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);*/
                 box-shadow: 0 0 0 0.2rem #BFDEFF;
             }
+    body .body-content table .detailButton{
+        text-decoration: none;
+        color:white;
+    }
