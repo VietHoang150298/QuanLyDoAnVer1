@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 @foreach (var item in ViewBag.HocKy)
 {
     <h2>Thông Tin Môn Học @item.TenHocKy</h2>
@@ -16,8 +18,25 @@
     </button>
     @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            </div>
+            <div class="modal-body" id="myModalBodyDiv">
+
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
+        <th>
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.MaMonHoc)
         </th>
@@ -34,6 +53,11 @@
     {
         <tr>
             <td>
+                <button class="btn btn-danger">
+                    @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc }, new { @class = "detailButton" })
+                </button>
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.MaMonHoc)
             </td>
             <td>
@@ -43,11 +67,27 @@
                 @Html.DisplayFor(modelItem => item.DieuKienTienQuyet)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.IdMonHoc }) |
-                @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdMonHoc }) |
-                @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc }, new { maMonHoc = item.MaMonHoc })
+                <button class="btn btn-warning ">
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.IdMonHoc }, new { @class = "detailButton" })
+                </button>
+                <button type="button" class="btn btn-success" onclick="ShowMonHoc(@item.IdMonHoc)" data-toggle="modal" data-target="#myModal">
+                    Chi Tiết
+                </button>
             </td>
         </tr>
     }
 
 </table>
+<script>
+    var ShowMonHoc = function (idMonHoc) {
+        $.ajax({
+            type: "POST",
+            url: "/MonHocs/Details",
+            data: { id: idMonHoc },
+            success: function (response) {
+                $("#myModalBodyDiv").html(response);
+                $("#myModal").modal("show");
+            }
+        })
+    }
+</script>

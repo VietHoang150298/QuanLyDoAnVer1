@@ -48,7 +48,11 @@ namespace QuanLyDoAn.Controllers
             {
                 return HttpNotFound();
             }
-            return View(monHoc);
+            var ChiTietMonHoc = from a in db.MonHocs
+                                 where a.IdMonHoc == id
+                                 select a;
+            ViewBag.chiTietMonHoc = ChiTietMonHoc.ToList();
+            return PartialView("DeTails");
         }
 
         // GET: MonHocs/Create

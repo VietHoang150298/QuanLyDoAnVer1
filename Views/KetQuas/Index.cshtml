@@ -41,7 +41,10 @@
 }
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
-    <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm Đồ Án", "DuyetDiemDATN", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })</button>
+    @if (ViewBag.MaMonHoc == "DATN-001")
+    {
+        <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm Đồ Án", "DuyetDiemDATN", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })</button>
+    }
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">

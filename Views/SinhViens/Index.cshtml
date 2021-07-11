@@ -102,25 +102,18 @@
                 @Html.DisplayFor(modelItem => item.DiemTichLuy)
             </td>
             <td>
-                @*<button class="btn btn-success">
-                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdSinhVien }, new { @class = "detailButton" })
-                </button>*@
-                @*<a href="#" class="btn btn-success" onclick="ShowDeTails(@item.IdSinhVien)">Chi Tiết</a>*@
-                <button type="button" class="btn btn-primary" onclick="ShowDeTails(@item.IdSinhVien)" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-success" onclick="ShowSinhViens(@item.IdSinhVien)" data-toggle="modal" data-target="#myModal">
                     Chi Tiết
                 </button>
             </td>
         </tr>
     }
-
 </table>
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index", "SinhViens",  new { ViewBag.MaHocKy,page }))
-
+@Html.PagedListPager(Model, page => Url.Action("Index", "SinhViens", new { ViewBag.MaHocKy, page }))
 <script>
-    var ShowDeTails = function (idSinhVien) {
+    var ShowSinhViens = function (idSinhVien) {
         $.ajax({
             type: "POST",
             url: "/SinhViens/Details",

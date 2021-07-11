@@ -16,6 +16,8 @@
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
         <th>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.MaHocKy)
         </th>
         <th>
@@ -27,12 +29,16 @@
         <th>
             @Html.DisplayNameFor(model => model.NamKetThuc)
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                <button class="btn btn-danger">
+                    @Html.ActionLink("Xử lý thông tin", "KhoiTaoDLHK", new { maHocKy = item.MaHocKy }, new { @class = "detailButton" })
+                </button>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaHocKy)
             </td>
@@ -44,11 +50,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NamKetThuc)
-            </td>
-            <td>
-                @*@Html.ActionLink("Sửa", "Edit", new { id = item.IdHocKy })|
-                @Html.ActionLink("Xóa", "Delete", new { id = item.IdHocKy })*@
-                @Html.ActionLink("Xử lý thông tin", "KhoiTaoDLHK", new {maHocKy = item.MaHocKy })
             </td>
         </tr>
     }

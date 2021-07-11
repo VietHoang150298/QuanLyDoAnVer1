@@ -60,7 +60,7 @@ namespace QuanLyDoAn.Controllers
         //============================Chi Tiết Phản Biện=================================================
 
         // GET: PhanBiens/Create
-        public ActionResult Create()
+        public ActionResult Create()    
         {
             return View();
         }
@@ -159,25 +159,88 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index","PhanBiens",new { maMonHoc});
         }
 
-        public ActionResult PhanCongPhanBien(string maGiangVien, string maMonHoc)
+        // Phân công phản biện=============================================================================
+        public ActionResult phanPhanBien(string maMonHoc, string maDeTai)
         {
-            var deTai = from a in db.DeTais
-                        join b in db.MonHocs
-                        on a.MaMonHoc equals b.MaMonHoc
-                        where a.MaHoiDong != null && b.MaMonHoc == maMonHoc && a.SoLuongPhanBien < b.SoLuongPhanBienToiDa
-                        select a;
-            ViewBag.DeTais = deTai.Distinct().ToList();
+            var giangVienHd = from a in db.DeTais
+                              where a.MaDeTai == maDeTai && a.MaMonHoc == maMonHoc
+                              select a.MaGiangVien;
+            var phanBienDeTai = from a in db.PhanBienDeTais
+                                where a.MaDeTai == maDeTai
+                                select a.MaGiangVien;
+            var dsPhanBien = from a in db.PhanBiens
+                             join b in db.GiangViens
+                             on a.MaGiangVien equals b.MaGiangVien
+                             where a.MaGiangVien != giangVienHd.FirstOrDefault() && a.MaGiangVien != phanBienDeTai.FirstOrDefault()
+                             select new PhanBienViewModel
+                             {
+                                 MaGiangVien = a.MaGiangVien,
+                                 HoTen = b.HoTen,
+                                 HomThu = b.HomThu,
+                                 DonViCongTac = b.DonViCongTac,
+                                 DienThoai = b.DienThoai
+                             };
+            ViewBag.DsPhanBien = dsPhanBien.Distinct().ToList();
             return View();
-            //return View(db.DeTais.Where(s => s.SoLuongPhanBien < 2).Where(s => s.MaMonHoc == maMonHoc).Where(s=> s.MaHoiDong != null).ToList());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PhanCongPhanBien([Bind(Include = "IdPhanBienDeTai,MaHocKy,MaGiangVien,MaDeTai")] PhanBienDeTai phanBienDeTai, string[] maDeTais, string maGiangVien, string maMonHoc)
+        //Danh sách Dề Tài ====================================================================================================
+        public ActionResult DanhSachDeTai(string maMonHoc, string searchString)
         {
-            foreach (var maDeTai in maDeTais)
+            ViewBag.ErrorFlag = 0;
+            var monHoc = from a in db.MonHocs
+                         where a.MaMonHoc == maMonHoc
+                         select new MonHocViewModel { TenMonHoc = a.TenMonHoc, IdLoaiMonHoc = a.IdLoaiMonHoc };
+            ViewBag.MonHoc = monHoc.ToList();
+            ViewBag.MaMonHoc = maMonHoc;
+            var DeTais = from dt in db.DeTais
+                         where dt.MaMonHoc == maMonHoc && dt.SoLuongPhanBien !=2
+                         select dt;
+            if (!String.IsNullOrEmpty(searchString))
             {
-                db.PhanBienDeTais.Add(new PhanBienDeTai { 
+                DeTais = DeTais.Where(s => s.TenDeTai.Contains(searchString) || s.MaSinhVien.Contains(searchString));
+            }
+            return View(DeTais.ToList());
+        }
+        //Danh sách Dề Tài ====================================================================================================
+
+        // Phân công phản biện=============================================================================
+        public ActionResult PhanCongPhanBien(string maMonHoc, string maDeTai)
+        {
+            var giangVienHd = from a in db.DeTais
+                              where a.MaDeTai == maDeTai && a.MaMonHoc == maMonHoc
+                              select a.MaGiangVien;
+            var phanBienDeTai = from a in db.PhanBienDeTais
+                                where a.MaDeTai == maDeTai
+                                select a.MaGiangVien;
+            var dsPhanBien = from a in db.PhanBiens
+                             join b in db.GiangViens
+                             on a.MaGiangVien equals b.MaGiangVien
+                             where a.MaGiangVien != giangVienHd.FirstOrDefault() && a.MaGiangVien != phanBienDeTai.FirstOrDefault()
+                             select new PhanBienViewModel
+                             {
+                                 MaGiangVien = a.MaGiangVien,
+                                 HoTen = b.HoTen,
+                                 HomThu = b.HomThu,
+                                 DonViCongTac = b.DonViCongTac,
+                                 DienThoai = b.DienThoai
+                             };
+            ViewBag.DsPhanBien = dsPhanBien.Distinct().ToList();
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult phanPhanBien(string maDeTai, string[] maGiangViens, string maMonHoc)
+        {
+            var Count = 0;
+            var soLuongPhanBienToiDa = (from mh in db.MonHocs
+                                        where mh.MaMonHoc == maMonHoc
+                                        select mh.SoLuongPhanBienToiDa).Single();
+            foreach (var maGiangVien in maGiangViens)
+            {
+                db.PhanBienDeTais.Add(new PhanBienDeTai
+                {
                     MaDeTai = maDeTai,
                     MaGiangVien = maGiangVien,
                     MaMonHoc = maMonHoc
@@ -186,11 +249,20 @@ namespace QuanLyDoAn.Controllers
                                where a.MaDeTai == maDeTai && a.MaMonHoc == maMonHoc && a.MaHoiDong != null
                                select a).FirstOrDefault();
                 deTai.SoLuongPhanBien += 1;
+                Count = (int)deTai.SoLuongPhanBien;
+            }
+
+            if (Count <= soLuongPhanBienToiDa)
+            {
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", "PhanBiens", new { maMonHoc});
+            else
+            {
+                return RedirectToAction("Index", "DeTais", new { maMonHoc });
+            }
+            return RedirectToAction("Index", "DeTais", new { maMonHoc });
         }
-
+        // Phân công phản biện=============================================================================
 
         protected override void Dispose(bool disposing)
         {

@@ -1,89 +1,64 @@
-﻿@model QuanLyDoAn.Models.GiangVien
-
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿
 <div>
-    <h4>Thông tin chi tiết</h4>
+    <h4>Giảng Viên</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaGiangVien)
-        </dt>
+    @foreach (var item in ViewBag.chiTietGiangVien)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                Mã Giảng Viên
+            </dt>
+            <dd>
+                @item.MaGiangVien
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaGiangVien)
-        </dd>
+            <dt>
+                Họ Tên
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HoDem)
-        </dt>
+            <dd>
+                @item.HoTen
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HoDem)
-        </dd>
+            <dt>
+                Hòm Thư
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ten)
-        </dt>
+            <dd>
+                @item.HomThu
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
+            <dt>
+                Đơn Vị Công Tác
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
+            <dd>
+                @item.DonViCongTac
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
+            <dt>
+                Điện Thoại
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HomThu)
-        </dt>
+            <dd>
+                @item.DienThoai
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HomThu)
-        </dd>
+            <dt>
+                Mã Bộ Môn
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DonViCongTac)
-        </dt>
+            <dd>
+                @item.MaBoMon
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonViCongTac)
-        </dd>
+            <dt>
+                Mã Học Kỳ
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DienThoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DienThoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaBoMon)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaBoMon)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaHocKy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaHocKy)
-        </dd>
-
-    </dl>
+            <dd>
+                @item.MaHocKy
+            </dd>
+        </dl>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdGiangVien }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

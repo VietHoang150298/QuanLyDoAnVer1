@@ -13,5 +13,9 @@ namespace QuanLyDoAn.ViewModels
         public string MaDeTai { get; set; }
         public string TenDeTai { get; set; }
         public string MaMonHoc { get; set; }
+        public string HoTen { get; set; }
+        public string HomThu { get; set; }
+        public string DonViCongTac { get; set; }
+        public string DienThoai { get; set; }
     }
 }

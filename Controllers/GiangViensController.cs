@@ -39,7 +39,11 @@ namespace QuanLyDoAn.Controllers
             {
                 return HttpNotFound();
             }
-            return View(giangVien);
+            var ChiTietGiangVien = from a in db.GiangViens
+                                 where a.IdGiangVien == id
+                                 select a;
+            ViewBag.chiTietGiangVien = ChiTietGiangVien.ToList();
+            return PartialView("DeTails");
         }
 
         // GET: GiangViens/Create

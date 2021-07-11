@@ -457,14 +457,12 @@
     <Content Include="Views\HocKys\Details.cshtml" />
     <Content Include="Views\HocKys\Edit.cshtml" />
     <Content Include="Views\HocKys\Index.cshtml" />
-    <Content Include="Views\GiangViens\Details.cshtml" />
     <Content Include="Views\GiangViens\Index.cshtml" />
     <Content Include="Views\GiangViens\Create.cshtml" />
     <Content Include="Views\SinhViens\Create.cshtml" />
     <Content Include="Views\SinhViens\Index.cshtml" />
     <Content Include="Views\MonHocs\Create.cshtml" />
     <Content Include="Views\MonHocs\Delete.cshtml" />
-    <Content Include="Views\MonHocs\Details.cshtml" />
     <Content Include="Views\MonHocs\Edit.cshtml" />
     <Content Include="Views\MonHocs\Index.cshtml" />
     <Content Include="Views\GiangVienHdSinhViens\Create.cshtml" />
@@ -484,7 +482,6 @@
     <Content Include="Views\PhanBiens\Delete.cshtml" />
     <Content Include="Views\PhanBiens\Edit.cshtml" />
     <Content Include="Views\PhanBiens\Index.cshtml" />
-    <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongThanhVienHD.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DanhSachPhanCongHD.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongDanhGia.cshtml" />
@@ -497,6 +494,11 @@
     <Content Include="Views\HoiDongDanhGiaKQs\ChiTietHoiDong.cshtml" />
     <Content Include="Views\PhanBiens\ChiTietPhanBien.cshtml" />
     <Content Include="Views\SinhViens\Details.cshtml" />
+    <Content Include="Views\GiangViens\Details.cshtml" />
+    <Content Include="Views\MonHocs\Details.cshtml" />
+    <Content Include="Views\DeTais\phanPhanBien.cshtml" />
+    <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
+    <Content Include="Views\PhanBiens\DanhSachDeTai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

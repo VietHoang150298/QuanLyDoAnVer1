@@ -1,63 +1,49 @@
-﻿@model QuanLyDoAn.Models.MonHoc
-
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿
 <div>
-    <h4>Thông tin chi tiết</h4>
+    <h4>Môn Học</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaMonHoc)
-        </dt>
+    @foreach (var item in ViewBag.chiTietMonHoc)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                Mã Môn Học
+            </dt>
+            <dd>
+                @item.MaMonHoc
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaMonHoc)
-        </dd>
+            <dt>
+                Tên Môn Học
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TenMonHoc)
-        </dt>
+            <dd>
+                @item.TenMonHoc
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenMonHoc)
-        </dd>
+            <dt>
+                Điều Kiện Tiên Quyết
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DieuKienTienQuyet)
-        </dt>
+            <dd>
+                @item.DieuKienTienQuyet
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DieuKienTienQuyet)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ThanhLapHoiDong)
-        </dt>
+            <dt>
+                Mã Học Kỳ
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ThanhLapHoiDong)
-        </dd>'
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuongPhanBienToiDa)
-        </dt>
+            <dd>
+                @item.MaHocKy
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SoLuongPhanBienToiDa)
-        </dd>'
+            <dt>
+                Số Lượng Phản Biện Tối Đa
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaHocKy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaHocKy)
-        </dd>
-
-    </dl>
+            <dd>
+                @item.SoLuongPhanBienToiDa
+            </dd>
+        </dl>
+    }
 </div>
-<p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.IdMonHoc }) |
-    @Html.ActionLink("Trở về", "Index")
-</p>
+
