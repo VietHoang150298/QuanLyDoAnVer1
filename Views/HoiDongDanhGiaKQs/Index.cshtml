@@ -11,7 +11,7 @@
     <button class="btn btn-outline-primary mt-3">
         @Html.ActionLink("Thêm Mới", "Create", "HoiDongDanhGiaKQs", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })
     </button>
-    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Phân công hội đồng", "DanhSachPhanCongHD", null, new { @class = "headerButton" })</button>
+    <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Phân công hội đồng", "DanhSachPhanCongHD", new { maMonHoc = ViewBag.MaMonHoc }, new { @class = "headerButton" })</button>
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
@@ -47,10 +47,11 @@
             </td>
             <td>
                 @Html.ActionLink("Chi Tiết", "ChiTietHoiDong", new { maHoiDong = item.MaHoiDong }) |
-                @Html.ActionLink("Sửa", "Edit", new { id = item.IdHoiDongDGKQ }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.IdHoiDongDGKQ, maMonHoc = ViewBag.MaMonHoc }) |
                 @Html.ActionLink("Chọn Đề Tài", "PhanCongDanhGia", new { maHoiDong = item.MaHoiDong, maMonHoc = item.MaMonHoc })
             </td>
         </tr>
     }
 
 </table>
+<button class="btn btn-outline-primary ml-1">@Html.ActionLink("Trở Lại", "KhoiTaoDLMH","MonHocs", new {  maMonHoc = ViewBag.MaMonHoc }, new { @class = "headerButton" })</button>

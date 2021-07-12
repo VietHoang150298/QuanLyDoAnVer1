@@ -478,9 +478,6 @@
     <Content Include="Views\HoiDongDanhGiaKQs\Create.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\Index.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DsDeTai.cshtml" />
-    <Content Include="Views\PhanBiens\Create.cshtml" />
-    <Content Include="Views\PhanBiens\Delete.cshtml" />
-    <Content Include="Views\PhanBiens\Edit.cshtml" />
     <Content Include="Views\PhanBiens\Index.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\PhanCongThanhVienHD.cshtml" />
     <Content Include="Views\HoiDongDanhGiaKQs\DanhSachPhanCongHD.cshtml" />
@@ -498,6 +495,7 @@
     <Content Include="Views\MonHocs\Details.cshtml" />
     <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
     <Content Include="Views\PhanBiens\DanhSachDeTai.cshtml" />
+    <Content Include="Views\PhanBiens\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

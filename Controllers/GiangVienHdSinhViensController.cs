@@ -16,30 +16,21 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: GiangVienHdSinhViens
-        public ActionResult Index()
+        public ActionResult Index(string maHocKy)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.TenHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy.ToString();
-            return View(db.GiangVienHdSinhViens.ToList());
+            ViewBag.MaHocKy = maHocKy;
+            var tenHocKy = from a in db.HocKys
+                           where a.MaHocKy == maHocKy
+                           select a.TenHocKy;
+            ViewBag.TenHocKy = tenHocKy.FirstOrDefault();
+            return View(db.GiangVienHdSinhViens.Where(s => s.MaHocKy == maHocKy).ToList());
         }
 
         //Import File Excel============================================================================
         [HttpPost]
 
-        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile)
+        public ActionResult Doc_File_Excel(HttpPostedFileBase excelfile, string maHocKy)
         {
-            var hocKy = db.HocKys
-                             .OrderByDescending(x => x.IdHocKy)
-                             .Take(1)
-                             .Select(x => x.MaHocKy)
-                             .ToList()
-                             .FirstOrDefault();
-            ViewBag.HocKy = hocKy;
             if (excelfile == null || excelfile.ContentLength == 0)
             {
                 ViewBag.Error = "Please select an excel file";
@@ -65,19 +56,19 @@ namespace QuanLyDoAn.Controllers
                         giangVienHdSinhVien.TenSinhVien = ((Excel.Range)range.Cells[row, 2]).Text;
                         giangVienHdSinhVien.MaGiangVien = ((Excel.Range)range.Cells[row, 3]).Text;
                         giangVienHdSinhVien.TenGiangVien = ((Excel.Range)range.Cells[row, 4]).Text;
-                        giangVienHdSinhVien.MaHocKy = hocKy.ToString();
+                        giangVienHdSinhVien.MaHocKy = maHocKy;
                         DsGiangVienHdSinhViens.Add(giangVienHdSinhVien);
                         db.GiangVienHdSinhViens.Add(giangVienHdSinhVien);
                     }
                     db.SaveChanges();
                     workbook.Close(0);
                     application.Quit();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "GiangVienHdSinhViens", new { maHocKy});
                 }
                 else
                 {
                     ViewBag.Error = "File type is incorrect<br>";
-                    return View("Index");
+                    return View("Index", "GiangVienHdSinhViens", new { maHocKy });
                 }
             }
         }

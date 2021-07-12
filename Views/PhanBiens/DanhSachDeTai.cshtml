@@ -49,8 +49,6 @@
                     @Html.DisplayFor(modelItem => item.MaMonHoc)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.IdDeTai }) |
-                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdDeTai })|
                     @Html.ActionLink("Chọn Phản Biện", "PhanCongPhanBien", new { maDeTai = item.MaDeTai, maMonHoc = ViewBag.MaMonHoc })
                 </td>
             </tr>
@@ -62,10 +60,4 @@
 
     }
 </table>
-@*<script>
-        $(document).ready(function () {
-            $("#submitButton").on("click", function () {
-                alert("Thành Công");
-            });
-        });
-    </script>*@
+<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Trở Lại", "Index", new { maMonHoc = ViewBag.MaMonHoc }, new { @class = "headerButton" })</button>

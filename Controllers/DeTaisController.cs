@@ -32,9 +32,9 @@ namespace QuanLyDoAn.Controllers
                          select dt;
             if (!String.IsNullOrEmpty(searchString))
             {
-                DeTais = DeTais.Where(s => s.TenDeTai.Contains(searchString) || s.MaSinhVien.Contains(searchString));
+                DeTais = DeTais.Where(s => s.TenDeTai.Contains(searchString) || s.MaSinhVien.Contains(searchString) || s.MaDeTai.Contains(searchString));
             }
-            return View(DeTais.ToList());
+            return View(DeTais);
         }
 
         public ActionResult DSDTHoanThanhDoAn(string maMonHoc)
@@ -86,7 +86,7 @@ namespace QuanLyDoAn.Controllers
         }
 
         // GET: DeTais/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string maMonHoc)
         {
             if (id == null)
             {
@@ -106,7 +106,7 @@ namespace QuanLyDoAn.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDeTai,MaDeTai,TenDeTai, LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong")] DeTai deTai, HttpPostedFileBase inputFileBaoCao)
+        public ActionResult Edit([Bind(Include = "IdDeTai,MaDeTai,TenDeTai, LinkFileBaoCaoCuoiCung,MaMonHoc,MaSinhVien,MaGiangVien,MaHoiDong")] DeTai deTai, HttpPostedFileBase inputFileBaoCao, string maMonHoc)
         {
             if (inputFileBaoCao != null)
             {
@@ -114,16 +114,15 @@ namespace QuanLyDoAn.Controllers
                 string path = "/Content/FileBaoCaos/" + extensionName;
                 string urlImg = System.IO.Path.Combine(Server.MapPath("~/Content/FileBaoCaos/") + extensionName);
                 inputFileBaoCao.SaveAs(urlImg);
-                //tours.avatar = path;
                 deTai.LinkFileBaoCaoCuoiCung = path;
             }
             if (ModelState.IsValid)
             {
                 db.Entry(deTai).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { maMonHoc });
             }
-            return View(deTai);
+            return RedirectToAction("Index", new { maMonHoc});
         }
 
 
@@ -298,7 +297,7 @@ namespace QuanLyDoAn.Controllers
             var themDeTaiDATN = DeTaiDATN.Distinct().ToList();
             foreach (var item in themDeTaiDATN)
             {
-                if (item.DiemTrungBinh > 7)
+                if (item.DiemTrungBinh >= 5)
                 {
                     db.DeTais.Add(new DeTai()
                     {

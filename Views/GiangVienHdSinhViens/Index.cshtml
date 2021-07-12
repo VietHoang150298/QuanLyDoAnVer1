@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Danh sách giảng viên hướng dẫn sinh viên @ViewBag.HocKy</h2>
+<h2>Danh sách giảng viên hướng dẫn sinh viên @ViewBag.TenHocKy</h2>
 
 @using (Html.BeginForm("Doc_File_Excel", "GiangVienHdSinhViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -23,8 +23,7 @@
 
                     @Html.Raw(ViewBag.Error) <br /><span>Excel File</span>
                     <input type="file" class="btn btn-outline-primary" name="excelfile" />
-
-
+                    <input type="hidden" name="maHocKy" value="@ViewBag.MaHocKy" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

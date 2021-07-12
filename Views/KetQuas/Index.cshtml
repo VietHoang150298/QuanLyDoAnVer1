@@ -41,7 +41,7 @@
 }
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
-    @if (ViewBag.MaMonHoc == "DATN-001")
+    @if (ViewBag.LoaiMonHoc == 3)
     {
         <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm Đồ Án", "DuyetDiemDATN", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })</button>
     }
@@ -101,8 +101,4 @@
 
 
 </table>
-@*<br />
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index", "KetQuas",
-        new { page }))*@
+<button class="btn btn-outline-primary ml-1">@Html.ActionLink("Trở Lại", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = ViewBag.MaMonHoc }, new { @class = "headerButton" })</button>

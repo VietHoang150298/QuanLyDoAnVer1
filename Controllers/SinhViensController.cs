@@ -25,26 +25,15 @@ namespace QuanLyDoAn.Controllers
                         select new HocKyViewModel { TenHocKy = a.TenHocKy };
             ViewBag.HocKy = hocKy.ToList();
             ViewBag.MaHocKy = maHocKy;
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
             ViewBag.CurrentFilter = searchString;
             var sinhViens = from s in db.SinhViens
-                            where s.MaHocKy ==maHocKy
+                            where s.MaHocKy == maHocKy
                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 sinhViens = sinhViens.Where(s => s.HoTen.Contains(searchString) || s.MaSinhVien.Contains(searchString));
             }
-
-            int pageSize = 15;
-            int pageNumber = (page ?? 1);
-            return View(sinhViens.ToList().ToPagedList(pageNumber, pageSize));
+            return View(sinhViens);
         }
 
         // GET: SinhViens/Details/5

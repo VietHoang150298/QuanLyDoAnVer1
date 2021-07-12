@@ -46,19 +46,20 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc });
         }
 
-        public ActionResult DanhSachPhanCongHD()
+        public ActionResult DanhSachPhanCongHD(string maMonHoc)
         {
-            return View(db.HoiDongDanhGiaKQs.Where(s => s.DemSoLuongThanhVien < s.SoLuongThanhVien).ToList());
+            ViewBag.MaMonHoc = maMonHoc;
+            return View(db.HoiDongDanhGiaKQs.Where(s => s.MaMonHoc == maMonHoc).Where(s => s.DemSoLuongThanhVien < s.SoLuongThanhVien).ToList());
         }
 
-        public ActionResult PhanCongThanhVienHD(string maHoiDong)
+        public ActionResult PhanCongThanhVienHD(string maHoiDong, string maMonHoc)
         {
             return View(db.GiangViens.ToList());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PhanCongThanhVienHD([Bind(Include = "IdChiTietHoiDong,MaHoiDong,MaGiangVien")] ChiTietHoiDong chiTietHoiDong, string[] maGiangViens, string maHoiDong)
+        public ActionResult PhanCongThanhVienHD([Bind(Include = "IdChiTietHoiDong,MaHoiDong,MaGiangVien")] ChiTietHoiDong chiTietHoiDong, string[] maGiangViens, string maHoiDong, string maMonHoc)
         {
             foreach (var maGiangVien in maGiangViens)
             {
@@ -84,7 +85,7 @@ namespace QuanLyDoAn.Controllers
                 ViewBag.ErrorMessage = "Vượt quá số lượng thành viên, mời chọn lại!";
                 return RedirectToAction("PhanCongThanhVienHD", new { maHoiDong });
             }
-            return RedirectToAction("DanhSachPhanCongHD");
+            return RedirectToAction("DanhSachPhanCongHD", new { maMonHoc});
         }
 
         public ActionResult PhanCongDanhGia(string maHoiDong, string maMonHoc)
@@ -108,7 +109,7 @@ namespace QuanLyDoAn.Controllers
             return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc });
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string maMonHoc)
         {
             if (id == null)
             {
@@ -125,15 +126,16 @@ namespace QuanLyDoAn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaMonHoc")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ)
+        public ActionResult Edit([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaMonHoc")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ, string maMonHoc)
         {
+            hoiDongDanhGiaKQ.DemSoLuongThanhVien = 0;
             if (ModelState.IsValid)
             {
                 db.Entry(hoiDongDanhGiaKQ).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc});
             }
-            return View(hoiDongDanhGiaKQ);
+            return RedirectToAction("Index", "HoiDongDanhGiaKQs", new { maMonHoc });
         }
         //======================================Chi Tiết Hội Đồng=============================
         public ActionResult ChiTietHoiDong(string maHoiDong)

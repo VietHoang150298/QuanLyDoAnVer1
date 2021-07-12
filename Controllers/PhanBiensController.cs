@@ -59,63 +59,11 @@ namespace QuanLyDoAn.Controllers
         }
         //============================Chi Tiết Phản Biện=================================================
 
-        // GET: PhanBiens/Create
-        public ActionResult Create()    
-        {
-            return View();
-        }
-
-        // POST: PhanBiens/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien)
-        {
-            if (ModelState.IsValid)
-            {
-                db.PhanBiens.Add(phanBien);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(phanBien);
-        }
-
-        // GET: PhanBiens/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhanBien phanBien = db.PhanBiens.Find(id);
-            if (phanBien == null)
-            {
-                return HttpNotFound();
-            }
-            return View(phanBien);
-        }
-
-        // POST: PhanBiens/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPhanBien,MaGiangVien")] PhanBien phanBien)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(phanBien).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(phanBien);
-        }
-
+       
         // GET: PhanBiens/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string maMonHoc)
         {
+            ViewBag.MaMonHoc = maMonHoc;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -131,12 +79,12 @@ namespace QuanLyDoAn.Controllers
         // POST: PhanBiens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string maMonHoc)
         {
             PhanBien phanBien = db.PhanBiens.Find(id);
             db.PhanBiens.Remove(phanBien);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { maMonHoc });
         }
 
         public ActionResult KhoiTaoPhanBien(string maMonHoc)

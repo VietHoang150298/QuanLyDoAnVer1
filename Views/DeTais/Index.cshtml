@@ -41,6 +41,7 @@
     </div>
 }
 <input type="button" value="Nhập file excel" class="btn btn-primary mt-3" data-toggle="modal" data-target="#importExcelModal">
+
 <p>
     <button class="btn btn-outline-primary mt-3">@Html.ActionLink("Thêm Mới", "Create", null, new { @class = "headerButton" })</button>
     @foreach (var item in ViewBag.MonHoc)
@@ -54,7 +55,6 @@
             <button class="btn btn-outline-primary mt-3"> @Html.ActionLink("Duyệt Điểm TTTN", "DuyetDiemTTTN", "DeTais", new { maMonHoc = ViewBag.MaMonHoc }, new { maMonHoc = ViewBag.MaMonHoc, @class = "headerButton" })</button>
         }
     }
-    @*<button class="btn btn-outline-primary mt-3">@Html.ActionLink("Khởi Tạo Học Kỳ", "KhoiTaoDLHK", "HocKys", null, new { @class = "headerButton" })</button>*@
 </p>
 <table class="table table-bordered text-wrap">
     <tr class="table-primary">
@@ -96,7 +96,7 @@
                     @Html.DisplayFor(modelItem => item.MaMonHoc)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "Edit", new { id = item.IdDeTai }) |
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.IdDeTai, maMonHoc = ViewBag.MaMonHoc }) |
                     @Html.ActionLink("Chi Tiết", "Details", new { id = item.IdDeTai })
                 </td>
             </tr>
@@ -108,10 +108,3 @@
 
     }
 </table>
-@*<script>
-        $(document).ready(function () {
-            $("#submitButton").on("click", function () {
-                alert("Thành Công");
-            });
-        });
-    </script>*@

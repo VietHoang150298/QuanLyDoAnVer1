@@ -20,13 +20,15 @@ namespace QuanLyDoAn.Controllers
         // GET: KetQuas
         public ActionResult Index(string maMonHoc, string currentFilter, string searchString, int? page)
         {
+            var loaiMonHoc = from a in db.MonHocs
+                             where a.MaMonHoc == maMonHoc
+                             select a.IdLoaiMonHoc;
+            ViewBag.LoaiMonHoc = loaiMonHoc.SingleOrDefault();
             ViewBag.ErrorFlag = 0;
             ViewBag.MaMonHoc = maMonHoc;
             var ketQua = from a in db.KetQuas
                          join b in db.GiangViens
                          on a.MaGiangVien equals b.MaGiangVien
-                         //join c in db.HoiDongDanhGiaKQs
-                         //on a.MaHoiDong equals c.MaHoiDong
                          join d in db.DeTais
                          on a.MaDeTai equals d.MaDeTai
                          where a.MaMonHoc == maMonHoc
@@ -35,31 +37,12 @@ namespace QuanLyDoAn.Controllers
                              MaMonHoc = a.MaMonHoc,
                              MaDeTai = d.MaDeTai,
                              IdKetQua = a.IdKetQua,
-                             //MaHoiDong = c.MaHoiDong,
                              TenGiangVien = b.HoTen,
                              TenDeTai = d.TenDeTai,
                              DiemSo = a.DiemSo,
                              IsPhanBien = a.IsPhanBien
                          };
             ViewBag.KetQua = ketQua.Distinct().ToList();
-            //if (searchString != null)
-            //{
-            //    page = 1;
-            //}
-            //else
-            //{
-            //    searchString = currentFilter;
-            //}
-            //ViewBag.CurrentFilter = searchString;
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    ketQua = ketQua.Where(s => s.MaDeTai.Contains(searchString) || s.MaDeTai.Contains(searchString));
-            //}
-
-            //int pageSize = 10;
-            //int pageNumber = (page ?? 1);
-            //ViewBag.KetQua = ketQua.ToList();
-            //return View(ketQua.ToList().ToPagedList(pageNumber, pageSize));
             return View();
         }
 

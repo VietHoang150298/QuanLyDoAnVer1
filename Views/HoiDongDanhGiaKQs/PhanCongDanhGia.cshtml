@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Phân công hội đồng đánh giá cho đề tài</h2>
-<hr />*@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -14,6 +12,9 @@
     <hr />
     <table class="table table-bordered text-wrap">
         <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.MaDeTai)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.TenDeTai)
             </th>
@@ -35,6 +36,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDeTai)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenDeTai)
                 </td>

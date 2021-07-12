@@ -54,7 +54,7 @@
         <tr>
             <td>
                 <button class="btn btn-danger">
-                    @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc }, new { @class = "detailButton" })
+                    @Html.ActionLink("Xử Lý Thông Tin", "KhoiTaoDLMH", "MonHocs", new { maMonHoc = item.MaMonHoc, maHocKy = ViewBag.MaHocKy }, new { @class = "detailButton" })
                 </button>
             </td>
             <td>

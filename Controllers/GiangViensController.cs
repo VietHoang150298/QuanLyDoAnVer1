@@ -17,14 +17,21 @@ namespace QuanLyDoAn.Controllers
         private QLDADbContext db = new QLDADbContext();
 
         // GET: GiangViens
-        public ActionResult Index(string maHocKy, string maGiangVien)
+        public ActionResult Index(string maHocKy, string maGiangVien, string searchString)
         {
             ViewBag.MaHocKy = maHocKy;
             var hocKy = from a in db.HocKys
                         where a.MaHocKy == maHocKy
                         select new HocKyViewModel { TenHocKy = a.TenHocKy };
             ViewBag.HocKy = hocKy.ToList();
-            return View(db.GiangViens.Where(s => s.MaHocKy == maHocKy).ToList());
+            var giangViens = from s in db.GiangViens
+                            where s.MaHocKy == maHocKy
+                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                giangViens = giangViens.Where(s => s.HoTen.Contains(searchString) || s.MaGiangVien.Contains(searchString) || s.MaBoMon.Contains(searchString));
+            }
+            return View(giangViens);
         }
 
         // GET: GiangViens/Details/5

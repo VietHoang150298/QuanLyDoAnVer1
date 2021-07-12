@@ -26,8 +26,9 @@ namespace QuanLyDoAn.Controllers
             return View(db.MonHocs.Where(s => s.MaHocKy == maHocKy).ToList());
         }
 
-        public ActionResult KhoiTaoDLMH(string maMonHoc)
+        public ActionResult KhoiTaoDLMH(string maMonHoc, string maHocKy)
         {
+            ViewBag.MaHocKy = maHocKy;
             ViewBag.MaMonHoc = maMonHoc;
             var monHoc = from a in db.MonHocs
                         where a.MaMonHoc == maMonHoc
