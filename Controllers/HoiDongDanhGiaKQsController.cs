@@ -3,6 +3,7 @@ using QuanLyDoAn.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,7 +21,7 @@ namespace QuanLyDoAn.Controllers
             ViewBag.MaMonHoc = maMonHoc;
             return View(db.HoiDongDanhGiaKQs.Where(s => s.MaMonHoc == maMonHoc).ToList());
         }
-        
+
         public ActionResult Create(string maMonHoc)
         {
             return View();
@@ -30,7 +31,7 @@ namespace QuanLyDoAn.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdHoiDongDGKQ,MaHoiDong,ThoiKhoaBieu,SoLuongThanhVien,DemSoLuongThanhVien,MaMonHoc")] HoiDongDanhGiaKQ hoiDongDanhGiaKQ, string maMonHoc)
         {
-            
+
             if (ModelState.IsValid)
             {
                 if (db.HoiDongDanhGiaKQs.Any(x => x.MaHoiDong == hoiDongDanhGiaKQ.MaHoiDong))
@@ -81,7 +82,7 @@ namespace QuanLyDoAn.Controllers
             else
             {
                 ViewBag.ErrorMessage = "Vượt quá số lượng thành viên, mời chọn lại!";
-                return RedirectToAction("PhanCongThanhVienHD");
+                return RedirectToAction("PhanCongThanhVienHD", new { maHoiDong });
             }
             return RedirectToAction("DanhSachPhanCongHD");
         }

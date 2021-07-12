@@ -158,32 +158,6 @@ namespace QuanLyDoAn.Controllers
             }
             return RedirectToAction("Index","PhanBiens",new { maMonHoc});
         }
-
-        // Phân công phản biện=============================================================================
-        public ActionResult phanPhanBien(string maMonHoc, string maDeTai)
-        {
-            var giangVienHd = from a in db.DeTais
-                              where a.MaDeTai == maDeTai && a.MaMonHoc == maMonHoc
-                              select a.MaGiangVien;
-            var phanBienDeTai = from a in db.PhanBienDeTais
-                                where a.MaDeTai == maDeTai
-                                select a.MaGiangVien;
-            var dsPhanBien = from a in db.PhanBiens
-                             join b in db.GiangViens
-                             on a.MaGiangVien equals b.MaGiangVien
-                             where a.MaGiangVien != giangVienHd.FirstOrDefault() && a.MaGiangVien != phanBienDeTai.FirstOrDefault()
-                             select new PhanBienViewModel
-                             {
-                                 MaGiangVien = a.MaGiangVien,
-                                 HoTen = b.HoTen,
-                                 HomThu = b.HomThu,
-                                 DonViCongTac = b.DonViCongTac,
-                                 DienThoai = b.DienThoai
-                             };
-            ViewBag.DsPhanBien = dsPhanBien.Distinct().ToList();
-            return View();
-        }
-
         //Danh sách Dề Tài ====================================================================================================
         public ActionResult DanhSachDeTai(string maMonHoc, string searchString)
         {
@@ -231,7 +205,7 @@ namespace QuanLyDoAn.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult phanPhanBien(string maDeTai, string[] maGiangViens, string maMonHoc)
+        public ActionResult PhanCongPhanBien(string maDeTai, string[] maGiangViens, string maMonHoc)
         {
             var Count = 0;
             var soLuongPhanBienToiDa = (from mh in db.MonHocs
@@ -258,9 +232,9 @@ namespace QuanLyDoAn.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "DeTais", new { maMonHoc });
+                return RedirectToAction("DanhSachDeTai", "PhanBiens", new { maMonHoc });
             }
-            return RedirectToAction("Index", "DeTais", new { maMonHoc });
+            return RedirectToAction("DanhSachDeTai", "PhanBiens", new { maMonHoc });
         }
         // Phân công phản biện=============================================================================
 

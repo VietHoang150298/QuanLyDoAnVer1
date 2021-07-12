@@ -496,7 +496,6 @@
     <Content Include="Views\SinhViens\Details.cshtml" />
     <Content Include="Views\GiangViens\Details.cshtml" />
     <Content Include="Views\MonHocs\Details.cshtml" />
-    <Content Include="Views\DeTais\phanPhanBien.cshtml" />
     <Content Include="Views\PhanBiens\PhanCongPhanBien.cshtml" />
     <Content Include="Views\PhanBiens\DanhSachDeTai.cshtml" />
   </ItemGroup>
